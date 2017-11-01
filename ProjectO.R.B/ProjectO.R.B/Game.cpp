@@ -4,19 +4,22 @@
 static double const MS_PER_UPDATE = 10.0;
 
 Game::Game() :
-	m_window(sf::VideoMode(1000, 650, 32), "ProjectO.R.B")
-	//m_currentGameState(GameState:://)
+	m_window(sf::VideoMode(1000, 650, 32), "ProjectO.R.B"),
+	m_currentGameState(GameState::License)
 
 {
+	if (!m_agentOrange.loadFromFile("./resources/images/AGENTORANGE.ttf"))
+	{
+		std::cout << "problem loading font" << std::endl;
+	}
 	
-	
-
+	m_licenseScreen = new License(*this, m_agentOrange);
 		
 }
 
 	Game::~Game()
 	{
-	
+		delete(m_licenseScreen);
 	}
 
 	
@@ -85,7 +88,18 @@ void Game::processGameEvents()
 /// <param name="time">update delta time</param>
 void Game::update(sf::Time time)
 {
-	
+	switch (m_currentGameState)
+	{
+	case GameState::None:
+		//	m_splashScreen->print(time);
+		std::cout << "no GameState" << std::endl;
+		break;
+	case GameState::License:
+		m_licenseScreen->update(time);
+		break;
+	default:
+		break;
+	}
 	
 }
 
@@ -98,7 +112,18 @@ void Game::update(sf::Time time)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	
+	switch (m_currentGameState)
+	{
+	case GameState::None:
+		//	m_splashScreen->print(time);
+		std::cout << "no GameState" << std::endl;
+		break;
+	case GameState::License:
+		m_licenseScreen->render(m_window);
+		break;
+	default:
+		break;
+	}
 	m_window.display();
 }
 

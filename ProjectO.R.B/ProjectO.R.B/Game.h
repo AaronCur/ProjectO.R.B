@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <iostream>
+#include "License.h"
 
 
 /// <summary>
@@ -10,12 +12,13 @@
 /// </summary>
 
 //each class is declared
-//class License;
+class License;
 
 enum class
 	GameState
 {
-//	None,
+	None,
+	License
 
 };
 
@@ -38,5 +41,9 @@ protected:
 
 	// main window
 	sf::RenderWindow m_window;
+
+	sf::Font m_agentOrange;//font 
+
+	License *m_licenseScreen;
 
 };
