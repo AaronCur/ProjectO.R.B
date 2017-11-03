@@ -1,5 +1,5 @@
-﻿  Splash.cpp
-c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(94): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(98): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  MainMenu.cpp
+c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
   ProjectO.R.B.vcxproj -> C:\College\Project\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.exe
   ProjectO.R.B.vcxproj -> C:\College\Project\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.pdb (Partial PDB)
