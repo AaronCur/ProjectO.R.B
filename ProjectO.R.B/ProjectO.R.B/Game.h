@@ -4,6 +4,8 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include "License.h"
+#include "Splash.h"
+#include "Xbox360Controller.h"
 
 
 /// <summary>
@@ -13,12 +15,14 @@
 
 //each class is declared
 class License;
+class Splash;
 
 enum class
 	GameState
 {
 	None,
-	License
+	License,
+	Splash
 
 };
 
@@ -43,7 +47,11 @@ protected:
 	sf::RenderWindow m_window;
 
 	sf::Font m_agentOrange;//font 
+	sf::Font m_meatLoaf;
+	sf::Font m_adventure;
 
 	License *m_licenseScreen;
+	Splash *m_splashScreen;
+	Xbox360Controller *controller;
 
 };

@@ -5,15 +5,25 @@ static double const MS_PER_UPDATE = 10.0;
 
 Game::Game() :
 	m_window(sf::VideoMode(1000, 650, 32), "ProjectO.R.B"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::Splash)
 
 {
 	if (!m_agentOrange.loadFromFile("./resources/images/AGENTORANGE.ttf"))
 	{
 		std::cout << "problem loading font" << std::endl;
 	}
+	if (!m_meatLoaf.loadFromFile("./resources/images/Meatloaf.ttf"))
+	{
+		std::cout << "problem loading font" << std::endl;
+	}
+	if (!m_adventure.loadFromFile("c:/windows/fonts/Adventure.otf"))
+	{
+		std::cout << "problem loading font" << std::endl;
+	}
 	
 	m_licenseScreen = new License(*this, m_agentOrange);
+	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
+	controller = new Xbox360Controller();
 		
 }
 
@@ -57,6 +67,25 @@ void Game::run()
 /// </summary>
 void Game::processEvents()
 {
+	sf::Event event;
+	while (m_window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			m_window.close();
+		}
+
+		//To check for the Akeypress to transition from splash screen to main menu
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)||controller->m_currentState.A == true && m_currentGameState == GameState::License)
+		{
+			m_splashScreen->checkButtonPress();
+		}
+		//if (m_mainMenu->close)
+		//{
+		//	m_window.close();
+		//}
+
+	}
 	
 }
 
@@ -77,7 +106,25 @@ void Game::setGameState(GameState gameState)
 /// <param name="event">system event</param>
 void Game::processGameEvents()
 {
+	sf::Event event;
+	while (m_window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			m_window.close();
+		}
 
+		//To check for the Akeypress to transition from splash screen to main menu
+		if (controller->m_currentState.A == true && m_currentGameState == GameState::License)
+		{
+			m_splashScreen->checkButtonPress();
+		}
+		//if (m_mainMenu->close)
+		//{
+		//	m_window.close();
+		//}
+
+	}
 
 
 }
@@ -96,6 +143,9 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::License:
 		m_licenseScreen->update(time);
+		break;
+	case GameState::Splash:
+		m_splashScreen->update(time);
 		break;
 	default:
 		break;
@@ -120,6 +170,9 @@ void Game::render()
 		break;
 	case GameState::License:
 		m_licenseScreen->render(m_window);
+		break;
+	case GameState::Splash:
+		m_splashScreen->render(m_window);
 		break;
 	default:
 		break;

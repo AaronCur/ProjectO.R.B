@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SPLASH
-#define SPLASH	
+#ifndef LICENSE
+#define LICENSE	
 #include <SFML\Graphics.hpp>
 #include "Game.h"
 //#include "Xbox360Controller.h"
@@ -34,4 +34,4 @@ private:
 	sf::Texture m_blankTexture;
 	sf::Sprite m_blankSprite;
 };
-#endif // !
+#endif // !License

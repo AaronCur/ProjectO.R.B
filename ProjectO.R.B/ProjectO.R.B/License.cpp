@@ -43,7 +43,7 @@ void License::update(sf::Time deltaTime)
 
 	if (m_cumulativeTime.asSeconds() > 8)
 	{
-		//m_game->setGameState(GameState::Splash);
+		m_game->setGameState(GameState::Splash);
 
 	}
 	if (m_globeSprite.getPosition().x < 500)
