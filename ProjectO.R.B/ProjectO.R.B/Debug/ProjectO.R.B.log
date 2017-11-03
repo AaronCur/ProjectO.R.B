@@ -1,5 +1,11 @@
-﻿  Splash.cpp
+﻿  main.cpp
+  Xbox360Controller.cpp
+  Splash.cpp
 c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(94): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\college\project\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(98): warning C4305: 'argument': truncation from 'double' to 'float'
+  License.cpp
+  Game.cpp
+  Generating Code...
+  LINK : C:\College\Project\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.exe not found or not built by the last incremental link; performing full link
   ProjectO.R.B.vcxproj -> C:\College\Project\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.exe
   ProjectO.R.B.vcxproj -> C:\College\Project\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.pdb (Partial PDB)
