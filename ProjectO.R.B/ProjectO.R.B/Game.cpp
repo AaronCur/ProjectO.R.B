@@ -23,6 +23,7 @@ Game::Game() :
 	
 	m_licenseScreen = new License(*this, m_agentOrange);
 	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
+	m_mainMenu = new MainMenu(*this, m_meatLoaf, m_agentOrange);
 	controller = new Xbox360Controller();
 		
 }
@@ -74,17 +75,17 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
-
+		//event.type == sf::Event::KeyPressed;
 		//To check for the Akeypress to transition from splash screen to main menu
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)||controller->m_currentState.A == true && m_currentGameState == GameState::License)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ||controller->m_currentState.A == true && m_currentGameState == GameState::License)
 		{
 			m_splashScreen->checkButtonPress();
 		}
-		//if (m_mainMenu->close)
-		//{
-		//	m_window.close();
-		//}
-
+		if (m_mainMenu->close)
+		{
+			m_window.close();
+		}
+		//sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
 	}
 	
 }
@@ -113,17 +114,17 @@ void Game::processGameEvents()
 		{
 			m_window.close();
 		}
-
+		//event.type == sf::Event::KeyPressed;
 		//To check for the Akeypress to transition from splash screen to main menu
-		if (controller->m_currentState.A == true && m_currentGameState == GameState::License)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || controller->m_currentState.A == true && m_currentGameState == GameState::License)
 		{
 			m_splashScreen->checkButtonPress();
 		}
-		//if (m_mainMenu->close)
-		//{
-		//	m_window.close();
-		//}
-
+		if (m_mainMenu->close)
+		{
+			m_window.close();
+		}
+		//sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
 	}
 
 
@@ -146,6 +147,9 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::Splash:
 		m_splashScreen->update(time);
+		break;
+	case GameState::MainMenu:
+		m_mainMenu->update(time, *controller);
 		break;
 	default:
 		break;
@@ -173,6 +177,9 @@ void Game::render()
 		break;
 	case GameState::Splash:
 		m_splashScreen->render(m_window);
+		break;
+	case GameState::MainMenu:
+		m_mainMenu->render(m_window);
 		break;
 	default:
 		break;

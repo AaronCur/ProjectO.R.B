@@ -60,7 +60,7 @@ void Splash::checkButtonPress()
 
 	if (m_cumulativeTime.asSeconds() >= 6.5)
 	{
-		m_game->setGameState(GameState::None);
+		m_game->setGameState(GameState::MainMenu);
 
 	}
 
