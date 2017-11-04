@@ -5,7 +5,9 @@
 #include <iostream>
 #include "License.h"
 #include "Splash.h"
+#include "GameScreen.h"
 #include "MainMenu.h"
+#include "Player.h"
 #include "Xbox360Controller.h"
 
 
@@ -17,6 +19,7 @@
 //each class is declared
 class License;
 class Splash;
+class GameScreen;
 class MainMenu;
 
 enum class
@@ -25,7 +28,8 @@ enum class
 	None,
 	License,
 	Splash,
-	MainMenu
+	MainMenu,
+	GameScreen
 
 };
 
@@ -56,6 +60,8 @@ protected:
 	License *m_licenseScreen;
 	Splash *m_splashScreen;
 	MainMenu *m_mainMenu;
+	GameScreen *m_GameScreen;
 	Xbox360Controller *controller;
+	Player m_player;
 
 };

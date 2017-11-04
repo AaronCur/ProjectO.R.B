@@ -1,4 +1,3 @@
-﻿  main.cpp
-  Game.cpp
-  Generating Code...
-sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: module machine type 'x86' conflicts with target machine type 'x64'
+﻿  Game.cpp
+  ProjectO.R.B.vcxproj -> C:\Users\Charlie Dalton\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+  ProjectO.R.B.vcxproj -> C:\Users\Charlie Dalton\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)

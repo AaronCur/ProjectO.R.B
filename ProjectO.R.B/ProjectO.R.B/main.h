@@ -14,16 +14,16 @@
 #pragma comment(lib,"sfml-system-d.lib") 
 #pragma comment(lib,"sfml-window-d.lib") 
 #pragma comment(lib,"sfml-audio-d.lib") 
-//#pragma comment(lib,"sfml-main-d.lib")
-//#pragma comment(lib,"sfml-network-d.lib") 
+#pragma comment(lib,"sfml-main-d.lib")
+#pragma comment(lib,"sfml-network-d.lib") 
 #define NO_RANDOM
 #else 
 #pragma comment(lib,"sfml-graphics.lib") 
 #pragma comment(lib,"sfml-system.lib") 
 #pragma comment(lib,"sfml-window.lib") 
 #pragma comment(lib,"sfml-audio.lib") 
-//#pragma comment(lib,"sfml-main.lib")
-//#pragma comment(lib,"sfml-network.lib") 
+#pragma comment(lib,"sfml-main.lib")
+#pragma comment(lib,"sfml-network.lib") 
 #endif //_DEBUG 
 #else
 #ifdef _DEBUG 
@@ -46,8 +46,8 @@
 #pragma comment(lib,"vorbis.lib")
 #pragma comment(lib,"openal32.lib")
 
-//#pragma comment(lib,"sfml-main-s-d.lib")
-//#pragma comment(lib,"sfml-network-s-d.lib") 
+#pragma comment(lib,"sfml-main-s-d.lib")
+#pragma comment(lib,"sfml-network-s-d.lib") 
 //#pragma comment(lib,"ws2_32.lib")
 #define NO_RANDOM
 #else 
@@ -69,8 +69,8 @@
 #pragma comment(lib,"openal32.lib")
 
 
-//#pragma comment(lib,"sfml-main-s.lib")
-//#pragma comment(lib,"sfml-network-s.lib") 
+#pragma comment(lib,"sfml-main-s.lib")
+#pragma comment(lib,"sfml-network-s.lib") 
 //#pragma comment(lib,"ws2_32.lib")
 
 #endif //_DEBUG 

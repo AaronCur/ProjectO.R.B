@@ -21,9 +21,11 @@ Game::Game() :
 		std::cout << "problem loading font" << std::endl;
 	}
 	
+	//initialsing screens
 	m_licenseScreen = new License(*this, m_agentOrange);
 	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
 	m_mainMenu = new MainMenu(*this, m_meatLoaf, m_agentOrange);
+	m_GameScreen = new GameScreen(*this, m_player);
 	controller = new Xbox360Controller();
 		
 }
@@ -151,6 +153,8 @@ void Game::update(sf::Time time)
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
 		break;
+	case GameState::GameScreen:
+		m_GameScreen->update(time, *controller);
 	default:
 		break;
 	}
@@ -181,6 +185,8 @@ void Game::render()
 	case GameState::MainMenu:
 		m_mainMenu->render(m_window);
 		break;
+	case GameState::GameScreen:
+		m_GameScreen->render(m_window);
 	default:
 		break;
 	}
