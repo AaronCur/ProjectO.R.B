@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />

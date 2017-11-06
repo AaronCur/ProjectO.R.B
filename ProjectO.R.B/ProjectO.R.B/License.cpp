@@ -4,13 +4,13 @@
 License::License(Game & game, sf::Font font) :
 	m_game(&game),
 	m_font(font),
-	m_globeText("Aaron & Jack ", m_font, 35),
-	m_presentText("Present", m_font,40)
+	m_globeText("Aaron & Jack ", m_font, 65),
+	m_presentText("Present", m_font,80)
 {
 	m_globeTexture.loadFromFile("./resources/images/globe.png");
 	m_globeSprite.setTexture(m_globeTexture);
-	m_globeSprite.setPosition(-250, 300);
-	m_globeText.setPosition(335, 200);
+	m_globeSprite.setPosition(-250, 500);
+	m_globeText.setPosition(700, 400);
 	m_globeText.setFont(m_font);
 	m_presentText.setFont(m_font);
 	m_presentText.setPosition(383, 300);

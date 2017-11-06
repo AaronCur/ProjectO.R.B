@@ -87,7 +87,7 @@ MainMenu::MainMenu(Game & game, sf::Font meatLoaf, sf::Font agentOrange) :
 
 MainMenu::~MainMenu()
 {
-	std::cout << "destructing Splash" << std::endl;
+	std::cout << "destructing MainMenu" << std::endl;
 	
 }
 
@@ -135,7 +135,9 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
 				buttonPress.play();
+				buttonOneSelected = false;
 				m_game->setGameState(GameState::GameScreen);
+				//~MainMenu();
 			}
 		
 	}

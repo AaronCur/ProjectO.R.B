@@ -4,7 +4,7 @@
 static double const MS_PER_UPDATE = 10.0;
 
 Game::Game() :
-	m_window(sf::VideoMode(1000, 650, 32), "ProjectO.R.B"),
+	m_window(sf::VideoMode(1920, 1080, 32), "ProjectO.R.B"),
 	m_currentGameState(GameState::License)
 
 {
@@ -60,9 +60,7 @@ void Game::run()
 	}
 }
 
-
-
-/// <summary>
+// <summary>
 /// @brief Check for events
 /// 
 /// Allows window to function and exit. 
@@ -77,9 +75,9 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
-		//event.type == sf::Event::KeyPressed;
+		event.type == sf::Event::KeyPressed;
 		//To check for the Akeypress to transition from splash screen to main menu
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ||controller->m_currentState.A == true && m_currentGameState == GameState::License)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_currentGameState == GameState::Splash)
 		{
 			m_splashScreen->checkButtonPress();
 		}
@@ -87,10 +85,12 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
-		//sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+		///sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
 	}
-	
+
 }
+
+
 
 /// <summary>
 /// sets the current game state 
@@ -107,31 +107,29 @@ void Game::setGameState(GameState gameState)
 /// Detect and handle keyboard input.
 /// </summary>
 /// <param name="event">system event</param>
-void Game::processGameEvents()
-{
-	sf::Event event;
-	while (m_window.pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed)
-		{
-			m_window.close();
-		}
+//{
+	//sf::Event event;
+	//while (m_window.pollEvent(event))
+	//{
+		//if (event.type == sf::Event::Closed)
+		//{
+		//	m_window.close();
+		//}
 		//event.type == sf::Event::KeyPressed;
 		//To check for the Akeypress to transition from splash screen to main menu
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || controller->m_currentState.A == true && m_currentGameState == GameState::License)
-		{
-			m_splashScreen->checkButtonPress();
-		}
-		if (m_mainMenu->close)
-		{
-			m_window.close();
-		}
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || controller->m_currentState.A == true && m_currentGameState == GameState::License)
+	  //  {
+		//	m_splashScreen->checkButtonPress();
+		//}
+		//if (m_mainMenu->close)
+		//{
+		//	m_window.close();
+		//}
 		//sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
-	}
+	//}
 
 
-}
-
+//
 /// <summary>
 /// Method to handle all game updates
 /// </summary>

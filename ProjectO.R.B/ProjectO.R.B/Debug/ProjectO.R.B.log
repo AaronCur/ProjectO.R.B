@@ -1,13 +1,1 @@
-﻿  Xbox360Controller.cpp
-  Splash.cpp
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(94): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(98): warning C4305: 'argument': truncation from 'double' to 'float'
-  MainMenu.cpp
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
-  main.cpp
-  License.cpp
-  Game.cpp
-  Generating Code...
-  LINK : C:\Users\Charlie Dalton\Desktop\project3-aaron-jack\ProjectO.R.B\Debug\ProjectO.R.B.exe not found or not built by the last incremental link; performing full link
-sfml-system-d.lib(sfml-system-d-2.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'x86'
+﻿sfml-system-d.lib(sfml-system-d-2.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'x86'
