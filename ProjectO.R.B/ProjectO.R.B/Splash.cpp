@@ -7,24 +7,24 @@ Splash::Splash(Game & game, sf::Font meatLoaf, sf::Font adventure) :
 	m_game(&game),
 	m_meatLoaf(meatLoaf), 
 	m_adventure(adventure),
-	m_project("project", m_adventure, 60),
-	m_ORB("O.R.B", m_meatLoaf, 220),
-	m_continue("Press A/Space To Continue", m_adventure, 25),
+	m_project("project", m_adventure, 114),
+	m_ORB("O.R.B", m_meatLoaf, 418),
+	m_continue("Press A/Space To Continue", m_adventure, 47.5),
 	alpha(0),
 	alpha2(0),
 	flip(false)
 
 {
 
-	m_project.setPosition(325.0f, -600.0f);
+	m_project.setPosition(617.5f, -600.0f);
 	m_project.setColor(sf::Color::Black);
 	//m_madTing.setFont(m_meatLoaf);
 
-	m_ORB.setPosition(375.0f, -100.0f);
+	m_ORB.setPosition(712.5f, -100.0f);
 	m_ORB.setColor(sf::Color(255, 255, 255, alpha));
 	//m_racing.setFont(m_adventure);
 
-	m_continue.setPosition(355.0f, 590.0f);
+	m_continue.setPosition(674.5f, 944.0f);
 	m_continue.setColor(sf::Color::Black);
 
 
@@ -77,30 +77,30 @@ void Splash::update(sf::Time deltaTime)
 	if (m_cumulativeTime.asSeconds() < 2.5)
 	{
 
-		m_project.move(0, 5);
+		m_project.move(0, 5.74);
 
 	}
 	else if (m_cumulativeTime.asSeconds() < 2.8)
 	{
-		m_project.move(0, -1);
+		m_project.move(0, -1.2);
 
 	}
 	else if (m_cumulativeTime.asSeconds() < 3.15)
 	{
-		m_project.move(0, 1);
+		m_project.move(0, 1.2);
 	}
 	else if (m_cumulativeTime.asSeconds() < 3.5)
 	{
-		m_project.move(0, -0.2);
+		m_project.move(0, -0.23);
 	}
 	else if (m_cumulativeTime.asSeconds() < 3.65)
 	{
-		m_project.move(0, 0.2);
+		m_project.move(0, 0.23);
 	}
 
 
 	//To translate "Project" down the screen 
-	if (m_ORB.getPosition().y < 90)
+	if (m_ORB.getPosition().y < 144)
 	{
 		m_ORB.move(0, 5);
 	}

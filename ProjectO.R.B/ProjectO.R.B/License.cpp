@@ -4,16 +4,16 @@
 License::License(Game & game, sf::Font font) :
 	m_game(&game),
 	m_font(font),
-	m_globeText("Aaron & Jack ", m_font, 65),
-	m_presentText("Present", m_font,80)
+	m_globeText("Aaron & Jack ", m_font, 66.5),
+	m_presentText("Present", m_font,76)
 {
 	m_globeTexture.loadFromFile("./resources/images/globe.png");
 	m_globeSprite.setTexture(m_globeTexture);
 	m_globeSprite.setPosition(-250, 500);
-	m_globeText.setPosition(700, 400);
+	m_globeText.setPosition(650, 320);
 	m_globeText.setFont(m_font);
 	m_presentText.setFont(m_font);
-	m_presentText.setPosition(383, 300);
+	m_presentText.setPosition(737, 480);
 
 	m_blankTexture.loadFromFile("./resources/images/blank.png");
 	m_blankSprite.setTexture(m_blankTexture);
@@ -46,16 +46,17 @@ void License::update(sf::Time deltaTime)
 		m_game->setGameState(GameState::Splash);
 
 	}
-	if (m_globeSprite.getPosition().x < 500)
+	if (m_globeSprite.getPosition().x < 960)
 	{
-		m_globeSprite.move(4, 0);
+		m_globeSprite.move(6, 0);
+		m_globeSprite.rotate(2);
 	}
 	if (m_cumulativeTime.asSeconds() > 5)
 	{
-		m_globeSprite.move(4, 0);
+		m_globeSprite.move(6, 0);
+		m_globeSprite.rotate(2);
 	}
-	m_globeSprite.rotate(2);
-	m_globeSprite.setOrigin(250, 250);
+	m_globeSprite.setOrigin(475, 475);
 
 }
 //Switches the gamestate when this method is called

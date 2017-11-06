@@ -4,7 +4,7 @@ uniform float time;
 // radius
 // float r = 0.25; 
 
-vec2 centre = vec2(0.5);
+vec2 centre = vec2(0.95);
 
 void main() {
 	// normalize position

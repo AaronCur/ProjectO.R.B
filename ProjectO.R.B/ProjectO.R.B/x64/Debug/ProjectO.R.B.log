@@ -1,3 +1,9 @@
-﻿  License.cpp
+﻿  Splash.cpp
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(17): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(80): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(85): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(90): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(94): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\college\project3-aaron-jack\projecto.r.b\projecto.r.b\splash.cpp(98): warning C4305: 'argument': truncation from 'double' to 'float'
   ProjectO.R.B.vcxproj -> C:\College\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
   ProjectO.R.B.vcxproj -> C:\College\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
