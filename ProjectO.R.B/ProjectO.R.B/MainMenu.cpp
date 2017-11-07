@@ -9,7 +9,7 @@ MainMenu::MainMenu(Game & game, sf::Font meatLoaf, sf::Font agentOrange) :
 	m_options("Options", m_agentOrange),
 	m_credits("Credits", m_agentOrange),
 	m_exit("Exit", m_agentOrange),
-	m_mainMenuTxt("Main Menu", m_meatLoaf, 70)
+	m_mainMenuTxt("Main Menu", m_meatLoaf, 120)
 {
 	if (!m_mainMenuTexture.loadFromFile("./resources/images/button.png"))
 	{
@@ -29,7 +29,7 @@ MainMenu::MainMenu(Game & game, sf::Font meatLoaf, sf::Font agentOrange) :
 		throw std::exception(main.c_str());
 	}
 	m_backgroundSprite.setTexture(m_backgroundTexture);
-	m_mainMenuTxt.setPosition(740, -10);
+	m_mainMenuTxt.setPosition(1500, -10);
 	if (!buffer.loadFromFile("./resources/images/button.wav"))
 	{
 		std::string main("Error Loading sound");
@@ -40,28 +40,28 @@ MainMenu::MainMenu(Game & game, sf::Font meatLoaf, sf::Font agentOrange) :
 
 
 	m_select.setTexture(m_selectTex);
-	m_select.setPosition(-11, 50);
+	m_select.setPosition(690, 230);
 	
 	m_selectUpgrade.setTexture(m_selectTex);
-	m_selectUpgrade.setPosition(381, 200);
+	m_selectUpgrade.setPosition(700, 400);
 
 	m_selectOptions.setTexture(m_selectTex);
-	m_selectOptions.setPosition(421, 350);
+	m_selectOptions.setPosition(720, 570);
 	
 	m_selectExit.setTexture(m_selectTex);
-	m_selectExit.setPosition(461, 500);
+	m_selectExit.setPosition(760, 730);
 
 	m_mainMenuSprite.setTexture(m_mainMenuTexture);
-	m_mainMenuSprite.setPosition(-10, 30);
+	m_mainMenuSprite.setPosition(710, 200);
 
 	m_mainMenuSpriteTwo.setTexture(m_mainMenuTexture);
-	m_mainMenuSpriteTwo.setPosition(590, 180);
+	m_mainMenuSpriteTwo.setPosition(730, 370);
 
 	m_mainMenuSpriteThree.setTexture(m_mainMenuTexture);
-	m_mainMenuSpriteThree.setPosition(-10, 330);
+	m_mainMenuSpriteThree.setPosition(750, 540);
 
 	m_mainMenuSpriteFour.setTexture(m_mainMenuTexture);
-	m_mainMenuSpriteFour.setPosition(590, 480);
+	m_mainMenuSpriteFour.setPosition(790, 710);
 
 	//m_play.setPosition(320, 55);
 	m_play.setColor(sf::Color::White);
@@ -77,7 +77,7 @@ MainMenu::MainMenu(Game & game, sf::Font meatLoaf, sf::Font agentOrange) :
 	}
 
 	m_shader.setParameter("time", 0);
-	m_shader.setParameter("resolution", 1000, 650);
+	m_shader.setParameter("resolution", 1920, 1080);
 
 	m_blankSprite.setPosition(0, 0);
 
@@ -137,7 +137,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 				buttonPress.play();
 				buttonOneSelected = false;
 				m_game->setGameState(GameState::GameScreen);
-				//~MainMenu();
+
 			}
 		
 	}
@@ -171,10 +171,10 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 
 	// Set position of text so it moves with button
-	m_play.setPosition(m_mainMenuSprite.getPosition().x + 130, 55);
-	m_options.setPosition(m_mainMenuSpriteTwo.getPosition().x + 120, 205);
-	m_credits.setPosition(m_mainMenuSpriteThree.getPosition().x + 120, 355);
-	m_exit.setPosition(m_mainMenuSpriteFour.getPosition().x + 140, 505);
+	m_play.setPosition(m_mainMenuSprite.getPosition().x + 170, 230);
+	m_options.setPosition(m_mainMenuSpriteTwo.getPosition().x + 180, 395);
+	m_credits.setPosition(m_mainMenuSpriteThree.getPosition().x + 160, 575);
+	m_exit.setPosition(m_mainMenuSpriteFour.getPosition().x + 170, 738);
 
 	if ( sf::Keyboard::isKeyPressed(sf::Keyboard::Up) == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Down) == false )
 	{
