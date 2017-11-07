@@ -41,4 +41,6 @@ private:
 	sf::Vector2f m_force;
 	sf::Vector2f m_maxForce;
 	sf::Vector2f m_groundLocation;
+	sf::Texture m_BGtexture;
+	sf::Sprite m_BGSprite;
 };

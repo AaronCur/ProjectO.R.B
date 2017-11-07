@@ -29,4 +29,6 @@ private:
 
 	sf::View follow;
 
+	sf::Texture m_BGtexture;
+	sf::Sprite m_BGsprite;
 };

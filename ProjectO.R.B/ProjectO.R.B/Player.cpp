@@ -1,13 +1,13 @@
 #include "Player.h"
 
 Player::Player() :
-	m_position(900, 800),
+	m_position(900, 0),
 	m_initialVelocity(1, 1),
 	m_gravity(0,.07*pixelsToMetres),
 	pixelsToMetres(7),
 	m_maxForce(15, 30),
 	m_force(15,-30),
-	m_groundLocation(0, 900),
+	m_groundLocation(0, 1000),
 	m_radius(30)
 {
 
@@ -96,7 +96,6 @@ void Player::keyHandler()
 
 void Player::render(sf::RenderWindow &window)
 {
-	window.clear();
 	sf::CircleShape player(m_radius);
 	player.setFillColor(sf::Color::Green);
 	player.setPosition(m_position);
