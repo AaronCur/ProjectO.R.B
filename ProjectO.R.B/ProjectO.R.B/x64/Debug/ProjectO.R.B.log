@@ -1,4 +1,5 @@
-﻿  main.cpp
-  Game.cpp
-  Generating Code...
-sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: module machine type 'x86' conflicts with target machine type 'x64'
+﻿  MainMenu.cpp
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\mainmenu.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
