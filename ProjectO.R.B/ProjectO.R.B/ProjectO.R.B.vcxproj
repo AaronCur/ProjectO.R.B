@@ -27,6 +27,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
+    <ClInclude Include="tmxLite.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +39,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="tmxLite.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -112,10 +114,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SFML_SDK)\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_SDK)\include;tmxlite\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;tmxlite\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
