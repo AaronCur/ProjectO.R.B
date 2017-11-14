@@ -1,7 +1,8 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Game &game, Player &player):
-m_player(player)
+GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap):
+m_player(player),
+m_tileMap(tileMap)
 {
 	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
 	follow.setSize(1920, 1080);
@@ -9,6 +10,7 @@ m_player(player)
 	m_BGtexture.loadFromFile("./resources/images/GameBackground.png");
 	m_BGsprite.setTexture(m_BGtexture);
 	m_BGsprite.setPosition(0, 0);
+
 	
 }
 
@@ -35,15 +37,16 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	{
 		follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
 	}
-	std::cout << m_player.m_position.x << std::endl;
+	//std::cout << m_player.m_position.x << std::endl;
 }
 
 void GameScreen::render(sf::RenderWindow &window)
 {
 	window.clear();
-	
 	window.setView(follow);
-	window.draw(m_BGsprite);
+	//window.draw(m_BGsprite);
+	m_tileMap.render(window);
 	m_player.render(window);
+
 	
 }
