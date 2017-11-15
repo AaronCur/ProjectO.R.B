@@ -64,7 +64,7 @@ public:
     {
         const auto& layers = map.getLayers();
         if (map.getOrientation() == tmx::Orientation::Orthogonal &&
-            idx < layers.size() && layers[idx]->getType() == tmx::Layer::Type::Tile)
+            idx < layers.size() && layers[idx]->getType() == tmx::Layer::Type::Tile|| layers[idx]->getType() == tmx::Layer::Type::Object)
         {
             //round the chunk size to the nearest tile
             const auto tileSize = map.getTileSize();
