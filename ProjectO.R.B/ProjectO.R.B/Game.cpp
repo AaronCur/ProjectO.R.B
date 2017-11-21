@@ -5,7 +5,7 @@ static double const MS_PER_UPDATE = 10.0;
 
 Game::Game() :
 	m_window(sf::VideoMode(1920, 1080, 32), "ProjectO.R.B"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::GameScreen)
 
 
 {
@@ -26,7 +26,7 @@ Game::Game() :
 	m_licenseScreen = new License(*this, m_agentOrange);
 	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
 	m_mainMenu = new MainMenu(*this, m_meatLoaf, m_agentOrange);
-	m_GameScreen = new GameScreen(*this, m_player);
+	m_GameScreen = new GameScreen(*this, m_player,m_tileMap);
 	controller = new Xbox360Controller();
 		
 }

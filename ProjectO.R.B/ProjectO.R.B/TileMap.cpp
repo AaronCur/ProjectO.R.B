@@ -1,11 +1,9 @@
 //#pragma comment(lib,"libtmxlite-s-d.lib") 
 
-#include <tmxlite\Map.hpp>
 #include <iostream>
-
-int main1()
+#include "TileMap.h"
+TileMap::TileMap()
 {
-	
 	tmx::Map map;
 
 	if (map.load("./resources/Map.tmx"))
@@ -14,6 +12,7 @@ int main1()
 
 		const auto& mapProperties = map.getProperties();
 		std::cout << "Map has " << mapProperties.size() << " properties" << std::endl;
+		map1.push_back(new MapLayer(map, 0));
 		for (const auto& prop : mapProperties)
 		{
 			std::cout << "Found property: " << prop.getName() << std::endl;
@@ -61,7 +60,17 @@ int main1()
 	}
 
 	std::cout << std::endl << "Press return to quit..." << std::endl;
-	std::cin.get();
+	//std::cin.get();
 
-	return 0;
+	//return 0;
+}
+
+
+TileMap::~TileMap()
+{
+}
+
+void TileMap::render(sf::RenderWindow &window)
+{
+	window.draw(*map1.at(0));
 }
