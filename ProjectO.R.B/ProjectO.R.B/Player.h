@@ -22,6 +22,7 @@ public:
 
 	bool jumped=false;
 	bool moveX = false;
+	bool gravity = true;
 	float pixelsToMetres;
 	float m_radius;
 	void update(sf::Time t);
@@ -31,7 +32,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void keyHandler();
-	void collision(TileMap& tileMap);
+	void collision();
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
@@ -46,4 +47,5 @@ private:
 	sf::Vector2f m_groundLocation;
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGSprite;
+	TileMap m_tileMap;
 };
