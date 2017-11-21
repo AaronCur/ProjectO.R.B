@@ -13,10 +13,16 @@ public:
 	TileMap();
 	~TileMap();
 	void render(sf::RenderWindow& window);
+	void update();
 
+
+	std::vector<sf::Vector2f> m_object_position;
+	std::vector<sf::Vector2f> m_object_WH;
 private:
 	std::vector<MapLayer *>map1;
+	
 	tmx::Map map;
 	sf::RenderWindow window;
+
 };
 #endif // !Tilemap

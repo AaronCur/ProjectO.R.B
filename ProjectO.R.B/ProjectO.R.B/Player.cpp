@@ -101,3 +101,4 @@ void Player::render(sf::RenderWindow &window)
 	player.setPosition(m_position);
 	window.draw(player);
 }
+

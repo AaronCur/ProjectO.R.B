@@ -9,8 +9,10 @@
 #include <string>
 #include <iostream>
 #include "Xbox360Controller.h"
+#include "TileMap.h"
 
 class Game;
+class TileMap;
 
 class Player
 {
@@ -29,6 +31,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void keyHandler();
+	void collision(TileMap& tileMap);
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
