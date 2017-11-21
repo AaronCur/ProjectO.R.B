@@ -7,6 +7,15 @@ Player::Player() :
 	pixelsToMetres(10)
 {
 
+	Animation animation(&playerTxt, sf::Vector2u(7, 4), 0.3f);
+
+	if (!playerTxt.loadFromFile("resources/images/sprite.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	playerSprite.setTexture(playerTxt);
+	playerSprite.setPosition(m_position);
 }
 	Player::~Player()
 {
@@ -54,6 +63,8 @@ void Player::update(sf::Time t)
 	 }
 	 else
 		 jumped = false;
+
+	 playerSprite.setPosition(m_position);
 }
 
 void Player::applyForce(sf::Vector2f force)
@@ -74,8 +85,9 @@ void Player::applyForce(sf::Vector2f force)
 void Player::render(sf::RenderWindow &window)
 {
 	window.clear();
-	sf::CircleShape player(30);
+	/*sf::CircleShape player(30);
 	player.setFillColor(sf::Color::Green);
 	player.setPosition(m_position);
-	window.draw(player);
+	window.draw(player);*/
+	window.draw(playerSprite);
 }

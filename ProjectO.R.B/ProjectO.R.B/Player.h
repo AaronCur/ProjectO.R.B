@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include "Xbox360Controller.h"
+#include "Animation.h"
 
 class Game;
 
@@ -26,10 +27,18 @@ public:
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
+
+
+
 	
 
 private:
 	sf::CircleShape player;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_gravity;
+	sf::Texture playerTxt;
+	sf::Sprite playerSprite;
+
+
+	
 };
