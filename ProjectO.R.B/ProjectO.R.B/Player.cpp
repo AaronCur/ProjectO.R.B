@@ -7,7 +7,7 @@ Player::Player() :
 	pixelsToMetres(7),
 	m_maxForce(15, 30),
 	m_force(15,-30),
-	m_groundLocation(0, 2500),
+	m_groundLocation(0, 1500),
 	m_radius(30)
 {
 
