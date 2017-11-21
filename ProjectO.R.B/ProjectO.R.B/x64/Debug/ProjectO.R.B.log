@@ -1,2 +1,32 @@
-﻿  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+﻿  main.cpp
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(148): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(151): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(157): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(158): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Game.cpp
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(148): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(151): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(157): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(158): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\game.cpp(79): warning C4553: '==': operator has no effect; did you intend '='?
+  Generating Code...
+  Compiling...
+  TileMap.cpp
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(148): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(151): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(157): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(158): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Splash.cpp
+  MainMenu.cpp
+  License.cpp
+  GameScreen.cpp
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
   ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
