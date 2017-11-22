@@ -10,6 +10,7 @@ time spent: 7 hours
 #include "Game.h"
 #include "Xbox360Controller.h"
 
+
 class Game;
 
 class GameScreen
@@ -25,5 +26,7 @@ private:
 	sf::CircleShape test;
 	Player &m_player;
 	Game *m_game;
+	
+
 
 };

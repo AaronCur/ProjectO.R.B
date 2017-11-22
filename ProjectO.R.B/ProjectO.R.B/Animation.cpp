@@ -17,10 +17,10 @@ Animation::~Animation()
 
 }
 
-void Animation::Update(int row, float dt)
+void Animation::Update(int row, sf::Time dt)
 {
 	image.y = row;
-	totalTime += dt;
+	totalTime += dt.asMilliseconds();
 	if (totalTime >= changeTime)
 	{
 		totalTime -= changeTime;

@@ -9,6 +9,7 @@
 #include "MainMenu.h"
 #include "Player.h"
 #include "Xbox360Controller.h"
+#include "Animation.h"
 
 
 /// <summary>
@@ -63,5 +64,4 @@ protected:
 	GameScreen *m_GameScreen;
 	Xbox360Controller *controller;
 	Player m_player;
-
 };

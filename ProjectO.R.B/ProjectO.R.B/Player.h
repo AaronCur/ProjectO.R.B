@@ -12,6 +12,7 @@
 #include "Animation.h"
 
 class Game;
+class Animation;
 
 class Player
 {
@@ -27,6 +28,7 @@ public:
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
+	sf::Vector2u textureSize;
 
 
 
@@ -37,7 +39,8 @@ private:
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_gravity;
 	sf::Texture playerTxt;
-	sf::Sprite playerSprite;
+	sf::RectangleShape playerRect;
+	Animation animation;
 
 
 	

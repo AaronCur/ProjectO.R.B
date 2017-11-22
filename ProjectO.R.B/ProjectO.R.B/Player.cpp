@@ -4,18 +4,21 @@ Player::Player() :
 	m_position(500, 0),
 	m_initialVelocity(1, 1),
 	m_gravity(0,.098*pixelsToMetres),
-	pixelsToMetres(10)
+	pixelsToMetres(10),
+	playerRect(sf::Vector2f(100.0f,100.0f)),
+	animation(&playerTxt, sf::Vector2u(7, 4), 0.3f)
 {
-
-	Animation animation(&playerTxt, sf::Vector2u(7, 4), 0.3f);
 
 	if (!playerTxt.loadFromFile("resources/images/sprite.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	playerSprite.setTexture(playerTxt);
-	playerSprite.setPosition(m_position);
+	
+	playerRect.setTexture(&playerTxt);
+	playerRect.setTextureRect(animation.uvRect);
+	animation = Animation(&playerTxt, sf::Vector2u(7, 4), 0.3f);
+
 }
 	Player::~Player()
 {
@@ -32,6 +35,8 @@ void Player::update(sf::Time t)
 		{
 			applyForce(sf::Vector2f(-5, 0));
 			m_position.x = m_position.x + m_velocity.x;
+			animation.Update(1, t);
+			playerRect.setRotation(180);
 		}
 		
 	}
@@ -42,6 +47,7 @@ void Player::update(sf::Time t)
 		{
 			applyForce(sf::Vector2f(5, 0));
 			m_position.x = m_position.x + m_velocity.x;
+			animation.Update(1, t);
 		}
 
 	}
@@ -64,7 +70,9 @@ void Player::update(sf::Time t)
 	 else
 		 jumped = false;
 
-	 playerSprite.setPosition(m_position);
+	 playerRect.setTextureRect(animation.uvRect);
+	 playerRect.setPosition(m_position);
+	 
 }
 
 void Player::applyForce(sf::Vector2f force)
@@ -85,9 +93,6 @@ void Player::applyForce(sf::Vector2f force)
 void Player::render(sf::RenderWindow &window)
 {
 	window.clear();
-	/*sf::CircleShape player(30);
-	player.setFillColor(sf::Color::Green);
-	player.setPosition(m_position);
-	window.draw(player);*/
-	window.draw(playerSprite);
+	
+	window.draw(playerRect);
 }
