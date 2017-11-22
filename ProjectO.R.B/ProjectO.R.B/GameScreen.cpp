@@ -5,7 +5,7 @@ m_player(player),
 m_tileMap(tileMap)
 {
 	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
-	follow.setSize(3480, 2160);
+	follow.setSize(1920, 1080);
 	follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
 	m_BGtexture.loadFromFile("./resources/images/BG.png");
 	m_BGsprite.setTexture(m_BGtexture);
