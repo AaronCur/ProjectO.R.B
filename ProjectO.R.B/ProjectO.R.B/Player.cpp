@@ -36,7 +36,7 @@ void Player::update(sf::Time t)
 			applyForce(sf::Vector2f(-5, 0));
 			m_position.x = m_position.x + m_velocity.x;
 			animation.Update(1, t);
-			playerRect.setRotation(180);
+			playerRect.setScale(-1.f,1.f);
 		}
 		
 	}
@@ -48,6 +48,8 @@ void Player::update(sf::Time t)
 			applyForce(sf::Vector2f(5, 0));
 			m_position.x = m_position.x + m_velocity.x;
 			animation.Update(1, t);
+			playerRect.setScale(1.f, 1.f);
+
 		}
 
 	}
