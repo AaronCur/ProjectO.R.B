@@ -63,6 +63,7 @@ void Player::jump()
 void Player::keyHandler()
 {
 	collision();
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
 	{
 		m_velocity.x = 0;
@@ -71,15 +72,13 @@ void Player::keyHandler()
 	{
 		jump();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && moveX == false)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) )
 	{
-		
-	
+
 		moveLeft();
 		
-		
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true )
+	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)  )
 	{
 		moveRight();
 	}
@@ -95,45 +94,29 @@ void Player::collision()
 	for (int i = 0; i < m_tileMap.m_object_position.size(); i++)
 	{	
 		//Top of the onject 
-		if (m_position.y + m_radius >= m_tileMap.m_object_position.at(i).y && m_position.y + m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y
+		if (m_position.y + m_radius + 10 >= m_tileMap.m_object_position.at(i).y && m_position.y + m_radius + 10 <= m_tileMap.m_object_position.at(i).y + 40
 		&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
 			gravity = false;
 			m_velocity.y = 0;
-			if (m_position.x + m_radius >= m_tileMap.m_object_position.at(i).x && m_position.x + m_radius <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).y)
-			{
-				moveX = true;
-				m_velocity.x = 0;
-
-			}
-			else if (m_position.x + m_radius <= m_tileMap.m_object_position.at(i).x + && m_position.x + m_radius <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).y)
-			{
-				moveX = false;
-				m_velocity.x = 0;
-
-			}
+			m_position.y = m_tileMap.m_object_position.at(i).y - m_radius - 10;
+	
 			
 		}
 		else
 		{
 			gravity = true;
 		}
-		//Right of the object
-		
-	//	else if (m_position.x + m_radius <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x && m_position.x + m_radius <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).y)
-		//{
-			//moveX = false;
-			//m_velocity.x = 0;
-
-		//}
-		//Left of the object
-	/*	else if (m_position.y > m_tileMap.m_object_position.at(i).y && m_position.y < m_tileMap.m_object_position.at(i).y + 70
-			&& m_position.x - 70 >= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x - 20 && m_position.x - 70 <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+		/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
+			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
-			moveX = false;
-			m_velocity.x = 0;
+			
+			m_velocity.y = 0;
+			
 
-		}*/
+
+		}
+		std::cout << gravity << std::endl;*/
 		
 	}
 }

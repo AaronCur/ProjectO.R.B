@@ -21,7 +21,7 @@ public:
 	~Player();
 
 	bool jumped=false;
-	bool moveX = false;
+	bool moveX = true;
 	bool gravity = true;
 	float pixelsToMetres;
 	float m_radius;
