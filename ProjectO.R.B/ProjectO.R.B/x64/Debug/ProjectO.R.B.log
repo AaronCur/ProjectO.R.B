@@ -1,5 +1,5 @@
 ﻿  Player.cpp
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(10): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\charlie dalton\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  ProjectO.R.B.vcxproj -> C:\Users\Charlie Dalton\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
-  ProjectO.R.B.vcxproj -> C:\Users\Charlie Dalton\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(10): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(62): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\Project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)

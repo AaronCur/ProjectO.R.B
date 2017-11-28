@@ -5,8 +5,8 @@ Player::Player() :
 	m_initialVelocity(1, 1),
 	m_gravity(0,.098*pixelsToMetres),
 	pixelsToMetres(10),
-	playerRect(sf::Vector2f(100.0f,100.0f)),
-	animation(&playerTxt, sf::Vector2u(7, 4), 0.3f)
+	playerRect(sf::Vector2f(200.0f,200.0f)),
+	animation(&playerTxt, sf::Vector2u(12, 4), 0.3f)
 {
 
 	if (!playerTxt.loadFromFile("resources/images/sprite.png"))
@@ -17,7 +17,7 @@ Player::Player() :
 	
 	playerRect.setTexture(&playerTxt);
 	playerRect.setTextureRect(animation.uvRect);
-	animation = Animation(&playerTxt, sf::Vector2u(7, 4), 0.3f);
+	animation = Animation(&playerTxt, sf::Vector2u(12, 4), 0.3f);
 
 }
 	Player::~Player()
@@ -27,7 +27,6 @@ Player::Player() :
 
 void Player::update(sf::Time t)
 {
-	
 
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -36,7 +35,7 @@ void Player::update(sf::Time t)
 			applyForce(sf::Vector2f(-5, 0));
 			m_position.x = m_position.x + m_velocity.x;
 			animation.Update(1, t);
-			playerRect.setScale(-1.f,1.f);
+			
 		}
 		
 	}
@@ -47,8 +46,8 @@ void Player::update(sf::Time t)
 		{
 			applyForce(sf::Vector2f(5, 0));
 			m_position.x = m_position.x + m_velocity.x;
-			animation.Update(1, t);
-			playerRect.setScale(1.f, 1.f);
+			animation.Update(2, t);
+		
 
 		}
 
@@ -58,7 +57,7 @@ void Player::update(sf::Time t)
 	{
 		if (m_position.y <400)
 		{
-			applyForce(sf::Vector2f(0, 10));
+			applyForce(sf::Vector2f(1, 10));
 			jumped = true;
 			m_position.y = m_position.y - m_velocity.y*pixelsToMetres+.5*m_gravity.y;
 			std::cout << "jump" << std::endl;
