@@ -20,7 +20,8 @@ Player::Player() :
 
 	playerRect.setTexture(&playerTxt);
 	playerRect.setTextureRect(animation.uvRect);
-	animation = Animation(&playerTxt, sf::Vector2u(12, 4), 0.3f);
+	animation = Animation(&playerTxt, sf::Vector2u(11, 4), 0.3f);
+	animation.Update(3, 0.f);
 }
 	Player::~Player()
 {
@@ -35,8 +36,13 @@ void Player::update(sf::Time t)
 		m_velocity.y += m_gravity.y*pixelsToMetres;
 
 	}
+	if (m_velocity.y < 1)
+	{
+		animation.Update(2, 50.0f);
 
+	}
 
+	
 	playerRect.setTextureRect(animation.uvRect);
 	playerRect.setPosition(m_position);
 
@@ -60,7 +66,7 @@ void Player::moveRight()
 	if (m_velocity.x < m_maxForce.x)
 	{
 		m_velocity.x = + m_force.x;
-		animation.Update(2, 0.3f);
+		animation.Update(0, 0.3f);
 	}
 
 
@@ -70,6 +76,7 @@ void Player::jump()
 	if (m_velocity.y == 0 && m_velocity.y < m_maxForce.y)
 	{
 		m_velocity.y = m_velocity.y - 40;
+		
 	}
 
 	
@@ -109,18 +116,20 @@ void Player::collision()
 	for (int i = 0; i < m_tileMap.m_object_position.size(); i++)
 	{	
 		//Top of the onject 
-		if (m_position.y + m_radius + 10 >= m_tileMap.m_object_position.at(i).y && m_position.y + m_radius + 10 <= m_tileMap.m_object_position.at(i).y + 40
+		if (m_position.y + animation.uvRect.height  >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height  <= m_tileMap.m_object_position.at(i).y + 40
 		&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
 			gravity = false;
 			m_velocity.y = 0;
-			m_position.y = m_tileMap.m_object_position.at(i).y - m_radius - 10;
+			m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height ;
+			jumped = false;
 	
 			
 		}
 		else
 		{
 			gravity = true;
+			jumped = true;
 		}
 		/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
 			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)

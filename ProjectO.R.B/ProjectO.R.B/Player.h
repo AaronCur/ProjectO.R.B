@@ -21,7 +21,7 @@ public:
 	Player();
 	~Player();
 
-	bool jumped=false;
+	//bool jumped=false;
 	bool moveX = true;
 	bool gravity = true;
 	float pixelsToMetres;
@@ -52,4 +52,5 @@ private:
 	sf::RectangleShape playerRect;
 	Animation animation;
 	TileMap m_tileMap;
+	bool jumped;
 };
