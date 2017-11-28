@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Xbox360Controller.h"
 #include "TileMap.h"
+#include "Animation.h"
 
 class Game;
 class TileMap;
@@ -47,5 +48,8 @@ private:
 	sf::Vector2f m_groundLocation;
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGSprite;
+	sf::Texture playerTxt;
+	sf::RectangleShape playerRect;
+	Animation animation;
 	TileMap m_tileMap;
 };

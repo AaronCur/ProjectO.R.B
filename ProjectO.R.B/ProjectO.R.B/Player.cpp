@@ -2,15 +2,25 @@
 Player::Player() :
 	m_position(2000, 1000),
 	m_initialVelocity(1, 1),
-	m_gravity(0,.07*pixelsToMetres),
+	m_gravity(0, .07*pixelsToMetres),
 	pixelsToMetres(7),
 	m_maxForce(15, 30),
-	m_force(15,-30),
+	m_force(15, -30),
 	m_groundLocation(0, 1500),
-	m_radius(15)
+	m_radius(15),
+	playerRect(sf::Vector2f(100.f, 100.f)),
+	animation(&playerTxt, sf::Vector2u(12,4),0.3f)
 	//m_tileMap(tileMap)
 {
+	if (!playerTxt.loadFromFile("resources/images/sprite.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
 
+	playerRect.setTexture(&playerTxt);
+	playerRect.setTextureRect(animation.uvRect);
+	animation = Animation(&playerTxt, sf::Vector2u(12, 4), 0.3f);
 }
 	Player::~Player()
 {
@@ -27,7 +37,8 @@ void Player::update(sf::Time t)
 	}
 
 
-
+	playerRect.setTextureRect(animation.uvRect);
+	playerRect.setPosition(m_position);
 
 	 keyHandler();
 
@@ -39,6 +50,7 @@ void Player::moveLeft()
 	if (m_velocity.x < m_maxForce.x)
 	{
 		m_velocity.x = - m_force.x;
+		animation.Update(1, 0.3f);
 	}
 	
 	
@@ -48,6 +60,7 @@ void Player::moveRight()
 	if (m_velocity.x < m_maxForce.x)
 	{
 		m_velocity.x = + m_force.x;
+		animation.Update(2, 0.3f);
 	}
 
 
@@ -58,6 +71,8 @@ void Player::jump()
 	{
 		m_velocity.y = m_velocity.y - 40;
 	}
+
+	
 }
 
 void Player::keyHandler()
@@ -123,9 +138,7 @@ void Player::collision()
 
 void Player::render(sf::RenderWindow &window)
 {
-	sf::CircleShape player(m_radius);
-	player.setFillColor(sf::Color::Green);
-	player.setPosition(m_position);
-	window.draw(player);
+	//window.clear();
+	window.draw(playerRect);
 }
 

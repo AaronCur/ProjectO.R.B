@@ -1,14 +1,2 @@
-﻿  Player.cpp
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(148): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(151): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(157): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(158): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\documents\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(12): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Xbox360Controller.cpp
-  KeyHandler.cpp
-  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Documents\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
-  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Documents\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
+﻿  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
