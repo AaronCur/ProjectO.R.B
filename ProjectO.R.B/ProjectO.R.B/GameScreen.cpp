@@ -25,6 +25,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 
 	if (m_player.m_position.x > 2865)
 	{
+		//follow.setCenter(2865, m_player.m_position.y - 200);
 		follow.setCenter(2865, m_player.m_position.y - 200);
 	}
 
@@ -35,7 +36,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	}
 	else
 	{
-		follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
+		follow.setCenter(m_player.m_position.x, 1300);
 	}
 	//std::cout << m_player.m_position.x << std::endl;
 }
