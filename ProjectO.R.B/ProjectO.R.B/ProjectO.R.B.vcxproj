@@ -22,6 +22,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Highscore.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
