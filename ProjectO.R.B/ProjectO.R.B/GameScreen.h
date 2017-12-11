@@ -24,6 +24,7 @@ public:
 	void update(sf::Time t, Xbox360Controller &controller);
 	void render(sf::RenderWindow &window);
 	void offScreenDetection();
+	void updateScroll();
 	bool m_gameOver = false;
 	
 private:
