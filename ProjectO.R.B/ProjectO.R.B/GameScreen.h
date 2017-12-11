@@ -23,6 +23,8 @@ public:
 
 	void update(sf::Time t, Xbox360Controller &controller);
 	void render(sf::RenderWindow &window);
+	void offScreenDetection();
+	bool m_gameOver = false;
 	
 private:
 	sf::CircleShape test;
@@ -34,4 +36,7 @@ private:
 
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGsprite;
+
+	sf::Texture m_GOtexture;
+	sf::Sprite m_GOsprite;
 };
