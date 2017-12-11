@@ -2,10 +2,10 @@
 Player::Player() :
 	m_position(500, 800),
 	m_initialVelocity(1, 1),
-	m_gravity(0, .06*pixelsToMetres),
+	m_gravity(0, .07*pixelsToMetres),
 	pixelsToMetres(5),
 	m_maxForce(15, 30),
-	m_force(23, -30),
+	m_force(12.5, -30),
 	m_groundLocation(0, 1500),
 	m_radius(15),
 	playerRect(sf::Vector2f(100.f, 100.f)),
