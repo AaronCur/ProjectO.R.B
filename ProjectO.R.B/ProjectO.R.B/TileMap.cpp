@@ -35,8 +35,17 @@ TileMap::TileMap()
 				for (const auto& object : objects)
 				{
 					std::cout << "Object " << object.getName() << std::endl;
-					m_object_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
-					m_object_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					
+					if (object.getName() == "Wall")
+					{
+						m_wall_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+						m_wall_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					}
+					else
+					{
+						m_object_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+						m_object_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					}
 					const auto& properties = object.getProperties();
 					std::cout << "Object has " << properties.size() << " properties" << std::endl;
 					for (const auto& prop : properties)

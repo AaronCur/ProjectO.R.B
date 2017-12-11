@@ -18,6 +18,8 @@ public:
 
 	std::vector<sf::Vector2f> m_object_position;
 	std::vector<sf::Vector2f> m_object_WH;
+	std::vector<sf::Vector2f> m_wall_position;
+	std::vector<sf::Vector2f> m_wall_WH;
 private:
 	std::vector<MapLayer *>map1;
 	

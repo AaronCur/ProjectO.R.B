@@ -1,11 +1,11 @@
 #include "Player.h"
 Player::Player() :
-	m_position(2000, 1000),
+	m_position(500, 800),
 	m_initialVelocity(1, 1),
 	m_gravity(0, .06*pixelsToMetres),
-	pixelsToMetres(7),
+	pixelsToMetres(5),
 	m_maxForce(15, 30),
-	m_force(15, -30),
+	m_force(23, -30),
 	m_groundLocation(0, 1500),
 	m_radius(15),
 	playerRect(sf::Vector2f(100.f, 100.f)),
@@ -77,7 +77,7 @@ void Player::jump()
 {
 	if (m_velocity.y == 0 && m_velocity.y < m_maxForce.y)
 	{
-		m_velocity.y = m_velocity.y - 40;
+		m_velocity.y = m_velocity.y - 30;
 	}
 
 	
@@ -86,22 +86,23 @@ void Player::jump()
 void Player::keyHandler()
 {
 	collision();
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
-	{
-		m_velocity.x = 0;
-	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		jump();
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
+	{
+		m_velocity.x = 0;
+	}
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) )
 	{
 
 		moveLeft();
 		
 	}
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)  )
+	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true )
 	{
 		moveRight();
 	}
@@ -120,10 +121,14 @@ void Player::collision()
 		if (m_position.y + animation.uvRect.height  >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height  <= m_tileMap.m_object_position.at(i).y + 40
 		&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
-			gravity = false;
-			m_velocity.y = 0;
-			m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height ;
-			jumped = false;
+			if (m_velocity.y > 0)
+			{
+				gravity = false;
+				m_velocity.y = 0;
+				m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
+				jumped = false;
+			}
+			
 	
 			
 		}
@@ -142,6 +147,28 @@ void Player::collision()
 
 		}
 		std::cout << gravity << std::endl;*/
+		
+	}
+	for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+	{
+		//Top of the onject 
+		
+		//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+			//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+		if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+			&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+		{
+			moveX = false;
+			m_velocity.x = 0;
+
+			
+
+
+		}
+		else
+		{
+			moveX = true;
+		}
 		
 	}
 }
