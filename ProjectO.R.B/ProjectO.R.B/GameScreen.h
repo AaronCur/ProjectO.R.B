@@ -30,6 +30,11 @@ public:
 	bool m_gameOver = false;
 	float _highScore;
 	float _score;
+	std::string _Name;
+	sf::Text tableName;
+	sf::Text yourScore;
+	sf::Text tableScore;
+	std::string s_tableName;
 //	std::vector<std::string> m_highscoreData;
 	
 private:
@@ -37,6 +42,9 @@ private:
 	Player &m_player;
 	TileMap &m_tileMap;
 	Game *m_game;
+	sf::Font Font;
+	std::stringstream m_s_score;
+	std::stringstream m_s_Highscore;
 	
 	sf::View follow;
 
