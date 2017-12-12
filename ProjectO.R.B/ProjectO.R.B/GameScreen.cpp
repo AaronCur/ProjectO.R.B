@@ -20,7 +20,16 @@ m_tileMap(tileMap)
 	follow.setCenter(960, m_player.m_position.y - 300);
 	getHighscore();
 
+	if (!Font.loadFromFile("resources/images/Adventure.otf"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
 
+	GoalReached.setFont(Font);
+	GoalReached.setColor(sf::Color(255, 233, 0));
+	GoalReached.setCharacterSize(100);
+	GoalReached.setString("You reached the Goal!!");
 }
 
 GameScreen::~GameScreen()
@@ -178,7 +187,15 @@ void GameScreen::render(sf::RenderWindow &window)
 		window.draw(m_GOsprite);
 		m_TableSprite.setPosition(follow.getCenter().x-200, follow.getCenter().y-200);
 		window.draw(m_TableSprite);
+	}
 
+	if (m_player.goalreached == true)
+	{
+		window.draw(m_GOsprite);
+ 		GoalReached.setPosition(follow.getCenter().x-250, follow.getCenter().y-300);
+		m_TableSprite.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 200);
+		window.draw(m_TableSprite);
+		window.draw(GoalReached);
 
 	}
 	

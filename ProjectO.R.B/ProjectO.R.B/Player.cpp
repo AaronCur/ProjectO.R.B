@@ -65,14 +65,19 @@ void Player::update(sf::Time t)
 
 	 keyHandler();
 
-	 m_position = m_position + m_velocity;
-	 distToGoal = 13930 - m_position.x;
-	 std::cout << "distance: "<< distToGoal << std::endl;
-	 distance.setString("Distance to goal");
-	 distString.str("");
-	 distString << distToGoal;
-	 
-	 metresToGoal.setString(distString.str());
+	 if (goalreached == false)
+	 {
+		 m_position = m_position + m_velocity;
+		 distToGoal = 13930 - m_position.x;
+		 distance.setString("Distance to goal");
+		 distString.str("");
+		 distString << distToGoal;
+
+		 metresToGoal.setString(distString.str());
+	 }
+	 else
+		 distToGoal = 0;
+
 }
 void Player::moveLeft()
 {
@@ -194,10 +199,7 @@ void Player::collision()
 
 	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
 	{
-		//Top of the onject 
-
-		//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
-		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+		
 		if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
 			&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
 		{
@@ -209,8 +211,11 @@ void Player::collision()
 
 void Player::render(sf::RenderWindow &window)
 {
-	
-	window.draw(playerRect);
+	if (goalreached == false)
+	{
+		window.draw(playerRect);
+		 
+	}
 	window.draw(distance);
 	window.draw(metresToGoal);
 
