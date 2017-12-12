@@ -157,9 +157,9 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		{
 			m_player.m_position.x = 500;
 			m_player.m_position.y = 800;
-			
-				follow.setCenter(960, 500);
-			
+
+			follow.setCenter(960, 500);
+
 			m_gameOver = false;
 
 		}
@@ -244,6 +244,17 @@ void GameScreen::render(sf::RenderWindow &window)
 		m_TableSprite.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 200);
 		window.draw(m_TableSprite);
 		window.draw(GoalReached);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+			m_player.m_position.x = 500;
+			m_player.m_position.y = 800;
+
+			follow.setCenter(960, 500);
+
+			m_player.goalreached = false;
+
+		}
 
 	}
 	
