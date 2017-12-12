@@ -1,22 +1,2 @@
-﻿  Player.cpp
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(148): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(151): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(157): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(158): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\tmxlite\include\tmxlite\sfmlorthogonallayer.hpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(14): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\gameuser\desktop\project3-aaron-jack\projecto.r.b\projecto.r.b\player.cpp(69): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-     Creating library C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.lib and object C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exp
-libtmxlite-s-d.lib(pugixml.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(pugixml.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(FreeFuncs.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(FreeFuncs.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(ImageLayer.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(ImageLayer.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(Map.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(Map.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(miniz.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(miniz.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(Object.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(Object.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(ObjectGroup.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(ObjectGroup.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(Property.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(Property.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(TileLayer.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(TileLayer.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-libtmxlite-s-d.lib(Tileset.obj) : warning LNK4099: PDB 'tmxlite.pdb' was not found with 'libtmxlite-s-d.lib(Tileset.obj)' or at 'C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\tmxlite.pdb'; linking object as if no debug info
-  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
+﻿  ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.exe
   ProjectO.R.B.vcxproj -> C:\Users\gameuser\Desktop\project3-aaron-jack\ProjectO.R.B\x64\Debug\ProjectO.R.B.pdb (Partial PDB)
