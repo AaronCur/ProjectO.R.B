@@ -27,7 +27,9 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 	{
 		follow.setCenter(m_player.m_position.x, m_player.m_position.y - 300);
-		//follow.setCenter(2865, m_player.m_position.y - 200);
+		m_player.distance.setPosition(follow.getCenter().x, 100);
+		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
+		
 	}
 
 	//else if (m_player.m_position.x < 990)
@@ -44,8 +46,13 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040 )
 	{
 		follow.setCenter(follow.getCenter().x, 510);
+		m_player.distance.setPosition(follow.getCenter().x, 100);
+		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
+
 		follow.move(5, 0);
 	}
+
+	
 		
 	
 }
@@ -55,6 +62,7 @@ void GameScreen::render(sf::RenderWindow &window)
 
 	window.clear(sf::Color(208,244,247));
 	window.setView(follow);
+	window.draw(m_player.distance);
 	window.draw(m_BGsprite);
 	m_tileMap.render(window);
 	m_player.render(window);
