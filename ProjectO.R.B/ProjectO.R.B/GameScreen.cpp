@@ -16,6 +16,8 @@ m_tileMap(tileMap)
 	m_GOsprite.setPosition(0, 0);
 
 	follow.setCenter(960, m_player.m_position.y - 300);
+	getHighscore();
+
 
 }
 
@@ -134,6 +136,38 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	
 }
 
+void GameScreen::getHighscore()
+{
+	std::ifstream readFile;
+	readFile.open("./resources/HighScore.txt");
+
+	if (readFile.is_open())
+	{
+		while (!readFile.eof())
+		{
+			readFile >> _highScore;
+			//std::cout << "Highscores:" + _highScore << std::endl;
+			m_highscoreData.push_back(_highScore);
+			std::cout << "Data" + _highScore << std::endl;
+		}
+		//std::cout << "Highscores:" + _highScore << std::endl;
+	}
+	
+	readFile.close();
+
+	//std::ofstream writeFile("./resources/HighScore.txt");
+
+	//if (writeFile.is_open())
+	//{
+		//if (_score > _highScore)
+		//{
+		//	_highScore = _score;
+		//
+		//}
+		//writeFile << _highScore << endl;
+	//}
+	//writeFile.close();
+}
 void GameScreen::render(sf::RenderWindow &window)
 {
 	window.clear(sf::Color(208, 244, 247));

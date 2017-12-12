@@ -10,7 +10,8 @@ time spent: 7 hours
 #include "Game.h"
 #include "TileMap.h"
 #include "Xbox360Controller.h"
-
+#include <iostream>
+#include <fstream>
 class Game;
 class Player;
 class TileMap;
@@ -25,7 +26,11 @@ public:
 	void render(sf::RenderWindow &window);
 	void offScreenDetection();
 	void updateScroll();
+	void getHighscore();
 	bool m_gameOver = false;
+	std::string _highScore;
+	std::string _score;
+	std::vector<std::string> m_highscoreData;
 	
 private:
 	sf::CircleShape test;
