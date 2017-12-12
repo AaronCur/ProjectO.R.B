@@ -27,7 +27,8 @@ GameScreen::~GameScreen()
 }
 void GameScreen::offScreenDetection()
 {
-	if ((follow.getCenter().x - (1920 / 2)) >= m_player.m_position.x + 90 )
+	if ((follow.getCenter().x - (1920 / 2)) >= m_player.m_position.x + 100
+		|| (follow.getCenter().y + (1080/2)) <= m_player.m_position.y-30)
 	{
 		if (m_player.m_position.x > 1475)
 		{
