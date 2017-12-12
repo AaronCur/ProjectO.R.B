@@ -14,6 +14,8 @@ m_tileMap(tileMap)
 	m_GOtexture.loadFromFile("./resources/images/gameoverbg.png");
 	m_GOsprite.setTexture(m_GOtexture);
 	m_GOsprite.setPosition(0, 0);
+	m_tableTxt.loadFromFile("./resources/table.png");
+	m_TableSprite.setTexture(m_tableTxt);
 
 	follow.setCenter(960, m_player.m_position.y - 300);
 	getHighscore();
@@ -54,6 +56,8 @@ void GameScreen::updateScroll()
 	{
 		follow.move(8.7, 0);
 
+		
+		
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 2)&& follow.getCenter().x < 1475 +(1392 * 3))
 	{
@@ -104,18 +108,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
 			follow.setCenter(m_player.m_position.x, m_player.m_position.y - 300);
-			//follow.setCenter(2865, m_player.m_position.y - 200);
 		}
-
-		//else if (m_player.m_position.x < 990)
-		//{
-
-		//follow.setCenter(990, m_player.m_position.y - 200);
-		//}
-		//else
-		//{
-		//	follow.setCenter(m_player.m_position.x, 1300);
-		//}
 
 
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
@@ -123,16 +116,14 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 			follow.setCenter(follow.getCenter().x, 510);
 			updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920/2) , follow.getCenter().y - (1080 /2));
+			
 
 		}
-	}
-	
-	////else
-	//{
-	//	follow.move(0, 0);
+		m_player.distance.setPosition(follow.getCenter().x, 100);
+		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
+		_score = 14000 - m_player.distToGoal;
 
-	//}
-	
+	}
 		
 	
 }
@@ -148,31 +139,33 @@ void GameScreen::getHighscore()
 		{
 			readFile >> _highScore;
 			//std::cout << "Highscores:" + _highScore << std::endl;
-			m_highscoreData.push_back(_highScore);
-			std::cout << "Data" + _highScore << std::endl;
 		}
 		//std::cout << "Highscores:" + _highScore << std::endl;
 	}
+
+	
+	
+
 	
 	readFile.close();
 
-	//std::ofstream writeFile("./resources/HighScore.txt");
+	std::ofstream writeFile("./resources/HighScore.txt");
 
-	//if (writeFile.is_open())
-	//{
-		//if (_score > _highScore)
-		//{
-		//	_highScore = _score;
-		//
-		//}
-		//writeFile << _highScore << endl;
-	//}
-	//writeFile.close();
+	if (writeFile.is_open())
+	{
+		if (_score > _highScore)
+		{
+			_highScore = _score;
+		}
+		writeFile << _highScore ;
+	}
+	writeFile.close();
 }
 void GameScreen::render(sf::RenderWindow &window)
 {
 	window.clear(sf::Color(208, 244, 247));
 	window.setView(follow);
+	window.draw(m_player.distance);
 	window.draw(m_BGsprite);
 	m_tileMap.render(window);
 	m_player.render(window);
@@ -180,7 +173,13 @@ void GameScreen::render(sf::RenderWindow &window)
 
 	if (m_gameOver == true)
 	{
+		getHighscore();
+	
 		window.draw(m_GOsprite);
+		m_TableSprite.setPosition(follow.getCenter().x-200, follow.getCenter().y-200);
+		window.draw(m_TableSprite);
+
+
 	}
 	
 	

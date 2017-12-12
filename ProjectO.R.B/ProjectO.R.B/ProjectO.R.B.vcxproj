@@ -49,6 +49,7 @@
   <ItemGroup>
     <Image Include="resources\BackGround.png" />
     <Image Include="resources\images\sprite.png" />
+    <Image Include="resources\table.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

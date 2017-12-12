@@ -18,10 +18,27 @@ Player::Player() :
 		throw std::exception(s.c_str());
 	}
 
+	if (!Font.loadFromFile("resources/images/Adventure.otf"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+
 	playerRect.setTexture(&playerTxt);
 	playerRect.setTextureRect(animation.uvRect);
 	animation = Animation(&playerTxt, sf::Vector2u(11, 4), 10.f);
 	//animation.Update(3, 0.f);
+
+	distance.setFont(Font);
+	distance.setCharacterSize(36);
+	distance.setColor(sf::Color::Black);
+	distance.setPosition(960, 100);
+
+	metresToGoal.setFont(Font);
+	metresToGoal.setCharacterSize(36);
+	metresToGoal.setColor(sf::Color::Black);
+	metresToGoal.setPosition(1200, 100);
+	
 }
 	Player::~Player()
 {
@@ -49,7 +66,13 @@ void Player::update(sf::Time t)
 	 keyHandler();
 
 	 m_position = m_position + m_velocity;
-
+	 distToGoal = 13930 - m_position.x;
+	 std::cout << "distance: "<< distToGoal << std::endl;
+	 distance.setString("Distance to goal");
+	 distString.str("");
+	 distString << distToGoal;
+	 
+	 metresToGoal.setString(distString.str());
 }
 void Player::moveLeft()
 {
@@ -161,9 +184,6 @@ void Player::collision()
 			moveX = false;
 			m_velocity.x = 0;
 
-			
-
-
 		}
 		else
 		{
@@ -171,11 +191,28 @@ void Player::collision()
 		}
 		
 	}
+
+	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
+	{
+		//Top of the onject 
+
+		//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+		if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
+			&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
+		{
+			goalreached = true;
+
+		}
+	}
 }
 
 void Player::render(sf::RenderWindow &window)
 {
-	//window.clear();
+	
 	window.draw(playerRect);
+	window.draw(distance);
+	window.draw(metresToGoal);
+
 }
 

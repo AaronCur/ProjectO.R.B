@@ -97,5 +97,8 @@
     <Image Include="resources\images\sprite.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\table.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

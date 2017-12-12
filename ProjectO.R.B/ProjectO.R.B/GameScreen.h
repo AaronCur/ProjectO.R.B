@@ -28,9 +28,9 @@ public:
 	void updateScroll();
 	void getHighscore();
 	bool m_gameOver = false;
-	std::string _highScore;
-	std::string _score;
-	std::vector<std::string> m_highscoreData;
+	float _highScore;
+	float _score;
+//	std::vector<std::string> m_highscoreData;
 	
 private:
 	sf::CircleShape test;
@@ -45,4 +45,7 @@ private:
 
 	sf::Texture m_GOtexture;
 	sf::Sprite m_GOsprite;
+
+	sf::Texture m_tableTxt;
+	sf::Sprite m_TableSprite;
 };

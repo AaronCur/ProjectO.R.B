@@ -11,6 +11,7 @@
 #include "Xbox360Controller.h"
 #include "TileMap.h"
 #include "Animation.h"
+#include <sstream>
 
 class Game;
 class TileMap;
@@ -21,11 +22,13 @@ public:
 	Player();
 	~Player();
 
-	//bool jumped=false;
+	bool goalreached = false;
 	bool moveX = true;
 	bool gravity = true;
 	float pixelsToMetres;
 	float m_radius;
+	int distToGoal;
+
 	void update(sf::Time t);
 	void render(sf::RenderWindow &window);
 	void applyForce(sf::Vector2f force);
@@ -34,6 +37,9 @@ public:
 	void moveRight();
 	void keyHandler();
 	void collision();
+	sf::Text distance;
+	sf::Text metresToGoal;
+	std::stringstream distString;
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
@@ -50,6 +56,7 @@ private:
 	sf::Sprite m_BGSprite;
 	sf::Texture playerTxt;
 	sf::RectangleShape playerRect;
+	sf::Font Font;
 	Animation animation;
 	TileMap m_tileMap;
 	bool jumped;
