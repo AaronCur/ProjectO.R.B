@@ -132,7 +132,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
-			follow.setCenter(m_player.m_position.x, m_player.m_position.y - 300);
+			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
 
 
@@ -150,6 +150,19 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_s_score.str("");
 		m_s_score << _score;
 
+	}
+	else
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+			m_player.m_position.x = 500;
+			m_player.m_position.y = 800;
+			
+				follow.setCenter(960, 500);
+			
+			m_gameOver = false;
+
+		}
 	}
 		
 	

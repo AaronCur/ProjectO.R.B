@@ -48,7 +48,6 @@ private:
 	
 	sf::View follow;
 	sf::Text GoalReached;
-	sf::Font Font;
 
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGsprite;
