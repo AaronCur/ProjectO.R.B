@@ -5,6 +5,12 @@ m_player(player),
 m_tileMap(tileMap)
 
 {
+	if (!Font.loadFromFile("resources/images/Adventure.otf"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+
 	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
 	follow.setSize(1920, 1080);
 	follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
@@ -18,18 +24,28 @@ m_tileMap(tileMap)
 	m_TableSprite.setTexture(m_tableTxt);
 
 	follow.setCenter(960, m_player.m_position.y - 300);
-	getHighscore();
+	
+	yourScore.setFont(Font);
+	yourScore.setCharacterSize(60);
+	yourScore.setColor(sf::Color::Black);
 
-	if (!Font.loadFromFile("resources/images/Adventure.otf"))
-	{
-		std::string s("error loading texture from file");
-		throw std::exception(s.c_str());
-	}
 
 	GoalReached.setFont(Font);
 	GoalReached.setColor(sf::Color(255, 233, 0));
 	GoalReached.setCharacterSize(100);
 	GoalReached.setString("You reached the Goal!!");
+
+	tableScore.setFont(Font);
+	tableScore.setCharacterSize(45);
+	tableScore.setColor(sf::Color::Black);
+
+	tableName.setFont(Font);
+	tableName.setCharacterSize(45);
+	tableName.setColor(sf::Color::Black);
+	
+	m_s_score << 0;
+	m_s_Highscore << 0;
+
 }
 
 GameScreen::~GameScreen()
@@ -131,6 +147,8 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_player.distance.setPosition(follow.getCenter().x, 100);
 		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
 		_score = 14000 - m_player.distToGoal;
+		m_s_score.str("");
+		m_s_score << _score;
 
 	}
 		
@@ -141,14 +159,18 @@ void GameScreen::getHighscore()
 {
 	std::ifstream readFile;
 	readFile.open("./resources/HighScore.txt");
+	yourScore.setString(m_s_score.str()+" m");
 
 	if (readFile.is_open())
 	{
 		while (!readFile.eof())
 		{
 			readFile >> _highScore;
+			readFile >> _Name;
 			//std::cout << "Highscores:" + _highScore << std::endl;
 		}
+		m_s_Highscore.str("");
+		m_s_Highscore << _highScore;
 		//std::cout << "Highscores:" + _highScore << std::endl;
 	}
 
@@ -165,10 +187,17 @@ void GameScreen::getHighscore()
 		if (_score > _highScore)
 		{
 			_highScore = _score;
+			m_s_Highscore.str("");
+			m_s_Highscore << _highScore;
+			std::cout << " NEW HIGHSCORE! Enter your name Below :" << std::endl;
+			std::cin >> _Name;
 		}
-		writeFile << _highScore ;
+		writeFile << _highScore << "\n" ;
+		writeFile << _Name;
 	}
 	writeFile.close();
+	tableScore.setString(m_s_Highscore.str() + " m");
+	tableName.setString(_Name);
 }
 void GameScreen::render(sf::RenderWindow &window)
 {
@@ -182,11 +211,17 @@ void GameScreen::render(sf::RenderWindow &window)
 
 	if (m_gameOver == true)
 	{
-		getHighscore();
-	
+		
 		window.draw(m_GOsprite);
 		m_TableSprite.setPosition(follow.getCenter().x-200, follow.getCenter().y-200);
 		window.draw(m_TableSprite);
+		getHighscore();
+		yourScore.setPosition(follow.getCenter().x + 100, follow.getCenter().y + 100);
+		window.draw(yourScore);
+		tableScore.setPosition(follow.getCenter().x + 350, follow.getCenter().y );
+		window.draw(tableScore);
+		tableName.setPosition(follow.getCenter().x , follow.getCenter().y);
+		window.draw(tableName);
 	}
 
 	if (m_player.goalreached == true)
