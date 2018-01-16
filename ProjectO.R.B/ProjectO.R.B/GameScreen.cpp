@@ -23,6 +23,19 @@ m_tileMap(tileMap)
 	m_tableTxt.loadFromFile("./resources/table.png");
 	m_TableSprite.setTexture(m_tableTxt);
 
+	m_snowTexture.loadFromFile("./resources/blank.jpg");
+	m_snowSprite.setTexture(m_snowTexture);
+
+	if (!m_snowShader.loadFromFile("./resources/snowShader.frag", sf::Shader::Fragment))
+	{
+		std::cout << "Shader is not available" << std::endl;
+	}
+
+	m_snowShader.setParameter("time", 0);
+	m_snowShader.setParameter("resolution", 1920, 1080);
+
+	m_snowSprite.setPosition(0, 0);
+
 	follow.setCenter(960, m_player.m_position.y - 300);
 	
 	yourScore.setFont(Font);
@@ -127,6 +140,11 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
 	if (m_gameOver == false)
 	{
+		m_cumulativeTime += t;
+		updateShader = m_cumulativeTime.asSeconds();
+
+		m_snowShader.setParameter("time", updateShader);
+		
 		m_player.update(t);
 		offScreenDetection();
 
@@ -149,6 +167,8 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		_score = 14000 - m_player.distToGoal;
 		m_s_score.str("");
 		m_s_score << _score;
+
+		m_snowSprite.setPosition(follow.getCenter().x - (700), follow.getCenter().y - (1080 / 2));
 
 	}
 	else
@@ -257,7 +277,7 @@ void GameScreen::render(sf::RenderWindow &window)
 		}
 
 	}
-	
+	window.draw(m_snowSprite, &m_snowShader);
 	
 
 	

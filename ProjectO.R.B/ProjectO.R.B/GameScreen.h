@@ -38,6 +38,7 @@ public:
 //	std::vector<std::string> m_highscoreData;
 	
 private:
+	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
 	TileMap &m_tileMap;
@@ -57,4 +58,10 @@ private:
 
 	sf::Texture m_tableTxt;
 	sf::Sprite m_TableSprite;
+
+	sf::Shader m_snowShader;
+	float updateShader = 0;
+	sf::Texture m_snowTexture;
+	sf::Sprite m_snowSprite;
+	sf::Time time;
 };
