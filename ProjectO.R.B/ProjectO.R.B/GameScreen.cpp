@@ -16,14 +16,14 @@ m_tileMap(tileMap)
 	follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
 	m_BGtexture.loadFromFile("./resources/images/BG.png");
 	m_BGsprite.setTexture(m_BGtexture);
-	m_BGsprite.setPosition(0, 0);
+	m_BGsprite.setPosition(0, -40);
 	m_GOtexture.loadFromFile("./resources/images/gameoverbg.png");
 	m_GOsprite.setTexture(m_GOtexture);
 	m_GOsprite.setPosition(0, 0);
 	m_tableTxt.loadFromFile("./resources/table.png");
 	m_TableSprite.setTexture(m_tableTxt);
 
-	m_snowTexture.loadFromFile("./resources/blank.jpg");
+	m_snowTexture.loadFromFile("./resources/snowtexture.png");
 	m_snowSprite.setTexture(m_snowTexture);
 
 	if (!m_snowShader.loadFromFile("./resources/snowShader.frag", sf::Shader::Fragment))
@@ -168,7 +168,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_s_score.str("");
 		m_s_score << _score;
 
-		m_snowSprite.setPosition(follow.getCenter().x - (700), follow.getCenter().y - (1080 / 2));
+	//	m_snowSprite.setPosition(follow.getCenter().x - (700), follow.getCenter().y - (1080 / 2));
 
 	}
 	else
@@ -277,7 +277,7 @@ void GameScreen::render(sf::RenderWindow &window)
 		}
 
 	}
-	window.draw(m_snowSprite, &m_snowShader);
+	window.draw(m_BGsprite, &m_snowShader);
 	
 
 	
