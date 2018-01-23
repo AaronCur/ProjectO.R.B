@@ -150,12 +150,15 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_Enemy.update(t);
 		offScreenDetection();
 
+
+
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
 			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
-		else if (m_player.m_position.x > 1470)
+		else if (m_player.m_position.x > 1470  && follow.getCenter().x < 13040)
 		{
+			m_Enemy.m_velocity.x = 6;
 			if (m_player.m_position.x >= m_Enemy.m_position.x)
 			{
 				follow.setCenter(m_player.m_position.x, follow.getCenter().y);

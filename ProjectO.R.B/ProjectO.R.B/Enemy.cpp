@@ -1,9 +1,9 @@
 #include "Enemy.h"
 Enemy::Enemy() :
-	m_position(500, 800),
-	m_velocity(1, 0),
+	m_position(1470, 800),
+	m_velocity(0, 0),
 	m_maxForce(15, 3),
-	m_force(6, -30),
+	m_force(0, -30),
 	enemyRect(sf::Vector2f(100.f, 100.f)),
 	animation(&enemyTxt, sf::Vector2u(12, 4), 10.f)
 	//m_tileMap(tileMap)
@@ -30,13 +30,15 @@ Enemy::~Enemy()
 void Enemy::update(sf::Time t)
 {
 
-
-	if (m_velocity.x < m_maxForce.x)
-	{
-		m_velocity.x = +m_force.x;
-		if (m_velocity.y >= 0)
+	  if (m_velocity.x > 0)
+		{
 			animation.Update(0, 5.f);
-	}
+		}
+	  else
+	  {
+		  animation.Update(0, 0.f);
+	  }
+			
 
 	enemyRect.setTextureRect(animation.uvRect);
 	enemyRect.setPosition(m_position);
