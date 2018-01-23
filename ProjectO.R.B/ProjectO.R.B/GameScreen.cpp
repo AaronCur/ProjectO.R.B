@@ -1,7 +1,8 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap):
+GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
 m_player(player),
+m_Enemy(enemy),
 m_tileMap(tileMap)
 
 {
@@ -85,7 +86,7 @@ void GameScreen::offScreenDetection()
 }
 void GameScreen::updateScroll()
 {
-	if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
+	/*if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
 	{
 		follow.move(8, 0);
 
@@ -114,24 +115,24 @@ void GameScreen::updateScroll()
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 5) && follow.getCenter().x < 1475 + (1392 * 6))
 	{
-		follow.move(11.4, 0);
+		follow.move(13, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 6) && follow.getCenter().x < 1475 + (1392 * 7))
 	{
-		follow.move(12.1, 0);
+		follow.move(14, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 7) && follow.getCenter().x < 1475 + (1392 * 8))
 	{
-		follow.move(12.8, 0);
+		follow.move(16, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 8) && follow.getCenter().x < 1475 + (1392 * 9))
 	{
-		follow.move(13.5, 0);
+		follow.move(19, 0);
 
-	}
+	}*/
 
 
 }
@@ -146,18 +147,30 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_snowShader.setParameter("time", updateShader);
 		
 		m_player.update(t);
+		m_Enemy.update(t);
 		offScreenDetection();
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
 			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
+		else if (m_player.m_position.x > 1470)
+		{
+			if (m_player.m_position.x >= m_Enemy.m_position.x)
+			{
+				follow.setCenter(m_player.m_position.x, follow.getCenter().y);
+			}
+			else if (m_Enemy.m_position.x >= m_player.m_position.x)
+			{
+				follow.setCenter(m_Enemy.m_position.x, follow.getCenter().y);
+			}
+		}
 
 
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
 			follow.setCenter(follow.getCenter().x, 510);
-			updateScroll();
+			//updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920/2) , follow.getCenter().y - (1080 /2));
 			
 
@@ -240,6 +253,7 @@ void GameScreen::render(sf::RenderWindow &window)
 	window.draw(m_BGsprite);
 	m_tileMap.render(window);
 	m_player.render(window);
+	m_Enemy.render(window);
 
 
 	if (m_gameOver == true)

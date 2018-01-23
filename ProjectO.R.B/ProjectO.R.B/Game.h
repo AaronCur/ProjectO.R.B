@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Xbox360Controller.h"
 #include "TileMap.h"
+#include "Enemy.h"
 
 
 /// <summary>
@@ -65,5 +66,6 @@ protected:
 	Xbox360Controller *controller;
 	Player m_player;
 	TileMap m_tileMap;
+	Enemy m_enemy;
 
 };

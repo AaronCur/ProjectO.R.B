@@ -26,7 +26,7 @@ Game::Game() :
 	m_licenseScreen = new License(*this, m_agentOrange);
 	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
 	m_mainMenu = new MainMenu(*this, m_meatLoaf, m_agentOrange);
-	m_GameScreen = new GameScreen(*this, m_player,m_tileMap);
+	m_GameScreen = new GameScreen(*this, m_player,m_tileMap,m_enemy);
 	controller = new Xbox360Controller();
 		
 }

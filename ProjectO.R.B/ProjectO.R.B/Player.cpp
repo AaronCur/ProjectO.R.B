@@ -152,7 +152,7 @@ void Player::collision()
 	{	
 		//Top of the onject 
 		if (m_position.y + animation.uvRect.height  >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height  <= m_tileMap.m_object_position.at(i).y  + m_tileMap.m_object_WH.at(i).y
-		&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+		&& m_position.x >= m_tileMap.m_object_position.at(i).x -animation.uvRect.width && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
 			if (m_velocity.y > 0)
 			{

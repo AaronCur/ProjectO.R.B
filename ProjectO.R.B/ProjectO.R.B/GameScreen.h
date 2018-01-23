@@ -7,6 +7,7 @@ time spent: 7 hours
 
 #pragma once
 #include "Player.h"
+#include "Enemy.h"
 #include "Game.h"
 #include "TileMap.h"
 #include "Xbox360Controller.h"
@@ -15,11 +16,12 @@ time spent: 7 hours
 class Game;
 class Player;
 class TileMap;
+class Enemy;
 
 class GameScreen
 {
 public:
-	GameScreen(Game &game, Player &player,TileMap &tileMap);
+	GameScreen(Game &game, Player &player,TileMap &tileMap, Enemy &enemy);
 	~GameScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
@@ -41,6 +43,7 @@ private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
+	Enemy &m_Enemy;
 	TileMap &m_tileMap;
 	Game *m_game;
 	sf::Font Font;
