@@ -11,10 +11,12 @@
 #include "Xbox360Controller.h"
 #include "TileMap.h"
 #include "Animation.h"
+#include "Health.h"
 #include <sstream>
 
 class Game;
 class TileMap;
+class Health;
 
 class Player
 {

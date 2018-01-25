@@ -23,6 +23,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="License.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="License.cpp" />

@@ -10,6 +10,7 @@ time spent: 7 hours
 #include "Enemy.h"
 #include "Game.h"
 #include "TileMap.h"
+#include "Health.h"
 #include "Xbox360Controller.h"
 #include <iostream>
 #include <fstream>
@@ -17,11 +18,12 @@ class Game;
 class Player;
 class TileMap;
 class Enemy;
+class Health;
 
 class GameScreen
 {
 public:
-	GameScreen(Game &game, Player &player,TileMap &tileMap, Enemy &enemy);
+	GameScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy, Health &health);
 	~GameScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
@@ -44,6 +46,7 @@ private:
 	sf::CircleShape test;
 	Player &m_player;
 	Enemy &m_Enemy;
+	Health &m_health;
 	TileMap &m_tileMap;
 	Game *m_game;
 	sf::Font Font;

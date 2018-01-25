@@ -1,39 +1,39 @@
 #include "Health.h"
 Health::Health() :
 	m_position(1470, 800),
-	m_health(3.0f)
+	m_health(0.0f)
 {
-	if (!health3_0Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health3_0Txt.loadFromFile("resources/images/health3_0.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health2_5Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health2_5Txt.loadFromFile("resources/images/health2_5.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health2_0Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health2_0Txt.loadFromFile("resources/images/health2_0.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health1_5Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health1_5Txt.loadFromFile("resources/images/health1_5.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health1_0Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health1_0Txt.loadFromFile("resources/images/health1_0.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health0_5Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health0_5Txt.loadFromFile("resources/images/health0_5.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-	if (!health0_0Txt.loadFromFile("resources/images/enemy.png"))
+	if (!health0_0Txt.loadFromFile("resources/images/health0_0.png"))
 	{
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
@@ -49,28 +49,34 @@ Health::~Health()
 
 }
 
-void Health::update(sf::Time t)
+void Health::update()
 {
 
 	healthSprite.setPosition(m_position);
 
 	switch (m_health)
 	{
+	case 6:
+		healthSprite.setTexture(health3_0Txt);
+		break;
 	case 5:
-		//	m_splashScreen->print(time);
-		std::cout << "no GameState" << std::endl;
+		healthSprite.setTexture(health2_5Txt);
 		break;
 	case 4:
-		m_licenseScreen->update(time);
+		healthSprite.setTexture(health2_0Txt);
 		break;
-	case GameState::Splash:
-		m_splashScreen->update(time);
+	case 3:
+		healthSprite.setTexture(health1_5Txt);
 		break;
-	case GameState::MainMenu:
-		m_mainMenu->update(time, *controller);
+	case 2:
+		healthSprite.setTexture(health1_0Txt);
 		break;
-	case GameState::GameScreen:
-		m_GameScreen->update(time, *controller);
+	case 1:
+		healthSprite.setTexture(health0_5Txt);
+		break;
+	case 0:
+		healthSprite.setTexture(health0_0Txt);
+		break;
 	default:
 		break;
 	}

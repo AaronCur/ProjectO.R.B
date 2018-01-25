@@ -82,7 +82,7 @@ void Player::update(sf::Time t)
 		 distString.str("");
 		 distString << distToGoal;
 	 }
-		
+	
 
 }
 void Player::moveLeft()
@@ -224,6 +224,5 @@ void Player::render(sf::RenderWindow &window)
 	}
 	window.draw(distance);
 	window.draw(metresToGoal);
-
 }
 

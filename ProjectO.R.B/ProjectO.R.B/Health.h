@@ -21,10 +21,11 @@ public:
 	~Health();
 
 	bool dead = false;
-	void update(sf::Time t);
+	void update();
 	void render(sf::RenderWindow &window);
 	sf::Vector2f m_position;
 	int m_health;
+	sf::Sprite healthSprite;
 
 private:
 	sf::Texture health3_0Txt;
@@ -34,6 +35,4 @@ private:
 	sf::Texture health1_0Txt;
 	sf::Texture health0_5Txt;
 	sf::Texture health0_0Txt;
-	sf::Sprite healthSprite;
-	Player *m_player;
 };

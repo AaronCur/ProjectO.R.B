@@ -1,9 +1,10 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
+GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy, Health &health):
 m_player(player),
 m_Enemy(enemy),
-m_tileMap(tileMap)
+m_tileMap(tileMap),
+m_health(health)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -139,6 +140,7 @@ void GameScreen::updateScroll()
 
 void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
+	m_health.update();
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
 
@@ -297,6 +299,8 @@ void GameScreen::render(sf::RenderWindow &window)
 
 	}
 	window.draw(m_BGsprite, &m_snowShader);
+	m_health.healthSprite.setPosition(follow.getCenter().x -700, follow.getCenter().y - 500);
+	m_health.render(window);
 	
 
 	
