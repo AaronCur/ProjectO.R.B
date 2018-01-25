@@ -139,12 +139,14 @@ void GameScreen::updateScroll()
 
 void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
+	m_cumulativeTime += t;
+	updateShader = m_cumulativeTime.asSeconds();
+
+	m_snowShader.setParameter("time", updateShader);
+
 	if (m_gameOver == false)
 	{
-		m_cumulativeTime += t;
-		updateShader = m_cumulativeTime.asSeconds();
-
-		m_snowShader.setParameter("time", updateShader);
+		
 		
 		m_player.update(t);
 		m_Enemy.update(t);

@@ -28,6 +28,7 @@ public:
 	float pixelsToMetres;
 	float m_radius;
 	int distToGoal;
+	float m_health;
 
 	void update(sf::Time t);
 	void render(sf::RenderWindow &window);

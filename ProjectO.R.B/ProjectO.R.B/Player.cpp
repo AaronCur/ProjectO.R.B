@@ -1,6 +1,7 @@
 #include "Player.h"
 Player::Player() :
 	m_position(500, 800),
+	m_health(3),
 	m_initialVelocity(1, 1),
 	m_gravity(0, .07*pixelsToMetres),
 	pixelsToMetres(5),
