@@ -1,9 +1,10 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
+GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy, Torch &torch):
 m_player(player),
 m_Enemy(enemy),
-m_tileMap(tileMap)
+m_tileMap(tileMap),
+m_torch(torch)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -139,22 +140,28 @@ void GameScreen::updateScroll()
 
 void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
+
+	m_cumulativeTime += t;
+	updateShader = m_cumulativeTime.asSeconds();
+
+	m_snowShader.setParameter("time", updateShader);
 	if (m_gameOver == false)
 	{
-		m_cumulativeTime += t;
-		updateShader = m_cumulativeTime.asSeconds();
-
-		m_snowShader.setParameter("time", updateShader);
+		
+	
 		
 		m_player.update(t);
 		m_Enemy.update(t);
+		m_torch.update(t);
 		offScreenDetection();
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
 			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
-		else if (m_player.m_position.x > 1470)
+		else if (m_player.m_position.x > 1470
+			
+			 )
 		{
 			if (m_player.m_position.x >= m_Enemy.m_position.x)
 			{
@@ -254,6 +261,7 @@ void GameScreen::render(sf::RenderWindow &window)
 	m_tileMap.render(window);
 	m_player.render(window);
 	m_Enemy.render(window);
+	m_torch.render(window);
 
 
 	if (m_gameOver == true)

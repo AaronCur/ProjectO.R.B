@@ -31,6 +31,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="torch.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="torch.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>

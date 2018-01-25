@@ -67,5 +67,6 @@ protected:
 	Player m_player;
 	TileMap m_tileMap;
 	Enemy m_enemy;
+	Torch m_torch;
 
 };

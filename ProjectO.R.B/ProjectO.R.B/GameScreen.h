@@ -11,17 +11,19 @@ time spent: 7 hours
 #include "Game.h"
 #include "TileMap.h"
 #include "Xbox360Controller.h"
+#include "torch.h"
 #include <iostream>
 #include <fstream>
 class Game;
 class Player;
 class TileMap;
 class Enemy;
+class Torch;
 
 class GameScreen
 {
 public:
-	GameScreen(Game &game, Player &player,TileMap &tileMap, Enemy &enemy);
+	GameScreen(Game &game, Player &player,TileMap &tileMap, Enemy &enemy, Torch &torch);
 	~GameScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
@@ -44,6 +46,7 @@ private:
 	sf::CircleShape test;
 	Player &m_player;
 	Enemy &m_Enemy;
+	Torch &m_torch;
 	TileMap &m_tileMap;
 	Game *m_game;
 	sf::Font Font;
