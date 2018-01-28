@@ -12,19 +12,18 @@
 #include <iostream>
 #include "Xbox360Controller.h"
 #include <sstream>
-#include "Player.h"
 
-class Health
+class Health 
 {
 public:
 	Health();
 	~Health();
 
 	bool dead = false;
-	void update();
+	void update(float x, float y);
 	void render(sf::RenderWindow &window);
 	sf::Vector2f m_position;
-	int m_health;
+	int m_healthValue;
 	sf::Sprite healthSprite;
 
 private:

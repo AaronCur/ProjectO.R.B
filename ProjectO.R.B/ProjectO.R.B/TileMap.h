@@ -22,6 +22,8 @@ public:
 	std::vector<sf::Vector2f> m_wall_WH;
 	std::vector<sf::Vector2f> m_goal_WH;
 	std::vector<sf::Vector2f> m_goal_position;
+	std::vector<sf::Vector2f> m_checkpoint_position;
+	bool parse = true;
 private:
 	std::vector<MapLayer *>map1;
 	

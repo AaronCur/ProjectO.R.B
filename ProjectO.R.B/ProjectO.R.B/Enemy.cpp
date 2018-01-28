@@ -26,7 +26,12 @@ Enemy::~Enemy()
 {
 
 }
-
+void Enemy::respawn()
+{
+	m_position.x = 1470;
+	m_position.y = 800;
+	m_velocity.x = 0;
+}
 void Enemy::update(sf::Time t)
 {
 

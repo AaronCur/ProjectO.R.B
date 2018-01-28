@@ -28,6 +28,7 @@ public:
 	void update(sf::Time t);
 	void render(sf::RenderWindow &window);
 	void collision();
+	void respawn();
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 

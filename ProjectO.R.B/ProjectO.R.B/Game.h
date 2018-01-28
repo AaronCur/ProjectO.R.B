@@ -11,7 +11,6 @@
 #include "Xbox360Controller.h"
 #include "TileMap.h"
 #include "Enemy.h"
-#include "Health.h"
 
 
 /// <summary>
@@ -68,6 +67,5 @@ protected:
 	Player m_player;
 	TileMap m_tileMap;
 	Enemy m_enemy;
-	Health m_health;
 
 };

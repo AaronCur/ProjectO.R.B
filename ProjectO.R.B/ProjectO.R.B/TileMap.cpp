@@ -35,6 +35,20 @@ TileMap::TileMap()
 				for (const auto& object : objects)
 				{
 					std::cout << "Object " << object.getName() << std::endl;
+
+
+					if(parse == true)
+					{
+						m_checkpoint_position.push_back(sf::Vector2f(500, 800));
+						m_checkpoint_position.push_back(sf::Vector2f(2000, 800));
+						m_checkpoint_position.push_back(sf::Vector2f(4000, 300));
+						m_checkpoint_position.push_back(sf::Vector2f(8000, 300));
+						m_checkpoint_position.push_back(sf::Vector2f(10000, 300));
+						m_checkpoint_position.push_back(sf::Vector2f(12000, 300));
+
+						parse = false;
+					}
+				
 					
 					if (object.getName() == "Wall")
 					{

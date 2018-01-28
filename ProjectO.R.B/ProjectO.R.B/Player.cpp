@@ -1,7 +1,6 @@
 #include "Player.h"
 Player::Player() :
 	m_position(500, 800),
-	m_health(3),
 	m_initialVelocity(1, 1),
 	m_gravity(0, .07*pixelsToMetres),
 	pixelsToMetres(5),
@@ -39,6 +38,7 @@ Player::Player() :
 	metresToGoal.setCharacterSize(36);
 	metresToGoal.setColor(sf::Color::Black);
 	metresToGoal.setPosition(1200, 100);
+
 	
 }
 	Player::~Player()
@@ -46,8 +46,9 @@ Player::Player() :
 
 }
 
-void Player::update(sf::Time t)
+void Player::update(sf::Time t, float x, float y)
 {
+	m_health.update(x,y);
 	
 	if (gravity == true)
 	{
@@ -109,9 +110,22 @@ void Player::moveRight()
 }
 void Player::jump()
 {
-	if (m_velocity.y == 0 && m_velocity.y < m_maxForce.y)
+	if (m_velocity.y < m_maxForce.y && jumpPress == false)
 	{
-		m_velocity.y = m_velocity.y - 30;
+		jumpCount++;
+
+		if (jumpCount <= 1)
+		{
+			m_velocity.y = m_velocity.y - 30;
+			jumpPress = true;
+		}
+		else if (jumpCount <= 2)
+		{
+			m_velocity.y = m_velocity.y - 30;
+			jumpPress = true;
+		}
+		
+		
 	}
 
 	
@@ -124,6 +138,10 @@ void Player::keyHandler()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		jump();
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false)
+	{
+		jumpPress = false;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
 	{
@@ -161,6 +179,8 @@ void Player::collision()
 				m_velocity.y = 0;
 				m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
 				jumped = false;
+				jumpCount = 0;
+				
 			}
 			
 	
@@ -214,6 +234,12 @@ void Player::collision()
 		}
 	}
 }
+void Player::respawn(float x, float y)
+{
+	m_health.m_healthValue--;
+	m_position.x = x;
+	m_position.y = 800;
+}
 
 void Player::render(sf::RenderWindow &window)
 {
@@ -224,5 +250,6 @@ void Player::render(sf::RenderWindow &window)
 	}
 	window.draw(distance);
 	window.draw(metresToGoal);
+	m_health.render(window);
 }
 

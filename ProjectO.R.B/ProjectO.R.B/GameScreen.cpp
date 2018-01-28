@@ -1,10 +1,9 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy, Health &health):
+GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
 m_player(player),
 m_Enemy(enemy),
-m_tileMap(tileMap),
-m_health(health)
+m_tileMap(tileMap)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -74,7 +73,22 @@ void GameScreen::offScreenDetection()
 	{
 		if (m_player.m_position.x > 1475)
 		{
-			m_gameOver = true;
+
+			int temp = 0;
+
+			for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
+			{
+				if (m_tileMap.m_checkpoint_position[i].x > temp && m_tileMap.m_checkpoint_position[i].x < m_player.m_position.x)
+				{
+					temp = m_tileMap.m_checkpoint_position[i].x;
+				}
+			}
+
+			m_player.respawn(temp, 20);
+			m_Enemy.respawn();
+			follow.setCenter(960, m_player.m_position.y - 300);
+
+
 		}
 		
 	}
@@ -140,7 +154,6 @@ void GameScreen::updateScroll()
 
 void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
-	m_health.update();
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
 
@@ -150,7 +163,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 	{
 		
 		
-		m_player.update(t);
+		m_player.update(t, follow.getCenter().x,follow.getCenter().y);
 		m_Enemy.update(t);
 		offScreenDetection();
 
@@ -188,7 +201,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		m_s_score.str("");
 		m_s_score << _score;
 
-	//	m_snowSprite.setPosition(follow.getCenter().x - (700), follow.getCenter().y - (1080 / 2));
+		m_player.m_health.healthSprite.setPosition(follow.getCenter().x - 800, follow.getCenter().y - 500);
 
 	}
 	else
@@ -204,7 +217,6 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 
 		}
 	}
-		
 	
 }
 
@@ -298,9 +310,8 @@ void GameScreen::render(sf::RenderWindow &window)
 		}
 
 	}
-	window.draw(m_BGsprite, &m_snowShader);
-	m_health.healthSprite.setPosition(follow.getCenter().x -700, follow.getCenter().y - 500);
-	m_health.render(window);
+	//window.draw(m_BGsprite, &m_snowShader);
+	//m_health.render(window);
 	
 
 	

@@ -18,7 +18,7 @@ class Game;
 class TileMap;
 class Health;
 
-class Player
+class Player 
 {
 public:
 	Player();
@@ -30,9 +30,8 @@ public:
 	float pixelsToMetres;
 	float m_radius;
 	int distToGoal;
-	float m_health;
 
-	void update(sf::Time t);
+	void update(sf::Time t, float x, float y);
 	void render(sf::RenderWindow &window);
 	void applyForce(sf::Vector2f force);
 	void jump();
@@ -40,12 +39,16 @@ public:
 	void moveRight();
 	void keyHandler();
 	void collision();
+	void respawn(float x, float y);
 	sf::Text distance;
 	sf::Text metresToGoal;
 	std::stringstream distString;
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_initialVelocity;
+	Health m_health;
+	int jumpCount = 0;
+	bool jumpPress = false;
 	
 
 private:

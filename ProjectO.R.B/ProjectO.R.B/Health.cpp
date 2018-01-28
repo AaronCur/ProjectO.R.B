@@ -1,7 +1,7 @@
 #include "Health.h"
 Health::Health() :
-	m_position(1470, 800),
-	m_health(0.0f)
+	m_position(700, 550),
+	m_healthValue(6.0f)
 {
 	if (!health3_0Txt.loadFromFile("resources/images/health3_0.png"))
 	{
@@ -41,6 +41,8 @@ Health::Health() :
 
 
 	healthSprite.setTexture(health3_0Txt);
+	healthSprite.setPosition(m_position);
+
 
 }
 
@@ -48,13 +50,10 @@ Health::~Health()
 {
 
 }
-
-void Health::update()
+void Health::update(float x, float y)
 {
 
-	healthSprite.setPosition(m_position);
-
-	switch (m_health)
+	switch (m_healthValue)
 	{
 	case 6:
 		healthSprite.setTexture(health3_0Txt);
@@ -80,7 +79,6 @@ void Health::update()
 	default:
 		break;
 	}
-
 
 
 }
