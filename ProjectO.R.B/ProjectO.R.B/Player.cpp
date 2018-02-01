@@ -38,7 +38,6 @@ Player::Player() :
 	metresToGoal.setCharacterSize(36);
 	metresToGoal.setColor(sf::Color::Black);
 	metresToGoal.setPosition(1200, 100);
-
 	
 }
 	Player::~Player()

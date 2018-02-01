@@ -11,14 +11,21 @@ time spent: 7 hours
 #include "Game.h"
 #include "TileMap.h"
 #include "Xbox360Controller.h"
+#include "torch.h"
 #include <iostream>
 #include <fstream>
 class Game;
 
+class Player;
+class TileMap;
+class Enemy;
+class Torch;
+
+
 class GameScreen
 {
 public:
-	GameScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy);
+	GameScreen(Game &game, Player &player,TileMap &tileMap, Enemy &enemy);
 	~GameScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
@@ -35,12 +42,12 @@ public:
 	sf::Text tableScore;
 	std::string s_tableName;
 //	std::vector<std::string> m_highscoreData;
+	std::vector<Torch *> checkpoints;
 	
 private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
-	Player &m_player2;
 	Enemy &m_Enemy;
 	TileMap &m_tileMap;
 	Game *m_game;

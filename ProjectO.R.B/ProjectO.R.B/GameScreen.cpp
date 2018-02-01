@@ -3,9 +3,7 @@
 GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
 m_player(player),
 m_Enemy(enemy),
-m_tileMap(tileMap),
-m_player2(player)
-
+m_tileMap(tileMap)
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
 	{
@@ -33,6 +31,11 @@ m_player2(player)
 		std::cout << "Shader is not available" << std::endl;
 	}
 
+	for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
+	{
+	checkpoints.push_back(new Torch(m_tileMap.m_checkpoint_position[i].x, m_tileMap.m_checkpoint_position[i].y));
+	}
+
 	m_snowShader.setParameter("time", 0);
 	m_snowShader.setParameter("resolution", 1920, 1080);
 
@@ -58,10 +61,9 @@ m_player2(player)
 	tableName.setCharacterSize(45);
 	tableName.setColor(sf::Color::Black);
 	
-	m_s_score << 0;
-	m_s_Highscore << 0;
 
-	m_player2.state = 1;
+	m_s_score << 0;
+m_s_Highscore << 0;
 
 
 }
@@ -73,7 +75,7 @@ GameScreen::~GameScreen()
 void GameScreen::offScreenDetection()
 {
 	if ((follow.getCenter().x - (1920 / 2)) >= m_player.m_position.x + 100
-		|| (follow.getCenter().y + (1080/2)) <= m_player.m_position.y-30)
+		|| (follow.getCenter().y + (1080 / 2)) <= m_player.m_position.y - 30)
 	{
 		if (m_player.m_position.x > 1475)
 		{
@@ -94,7 +96,7 @@ void GameScreen::offScreenDetection()
 
 
 		}
-		
+
 	}
 	else
 	{
@@ -114,8 +116,8 @@ void GameScreen::updateScroll()
 	{
 		follow.move(8.7, 0);
 
-		
-		
+
+
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 2)&& follow.getCenter().x < 1475 +(1392 * 3))
 	{
@@ -160,7 +162,14 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
-
+	for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
+	{
+		checkpoints[i]->update(t);
+		if (m_player.m_position.x >checkpoints[i]->m_position.x)
+		{
+			checkpoints[i]->checkpoint = true;
+		}
+	}
 	m_snowShader.setParameter("time", updateShader);
 
 	if (m_gameOver == false)
@@ -177,6 +186,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		{
 			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
+
 		else if (m_player.m_position.x > 1470  && follow.getCenter().x < 13040)
 		{
 			m_Enemy.m_velocity.x = 6;
@@ -277,6 +287,10 @@ void GameScreen::render(sf::RenderWindow &window)
 	m_tileMap.render(window);
 	m_player.render(window);
 	m_Enemy.render(window);
+	for (int i = 0; i < checkpoints.size();i++)
+	{
+		checkpoints[i]->render(window);
+	}
 
 
 	if (m_gameOver == true)
@@ -313,10 +327,9 @@ void GameScreen::render(sf::RenderWindow &window)
 
 		}
 
+		
+
 	}
 	window.draw(m_BGsprite, &m_snowShader);
-	//m_health.render(window);
-	
 
-	
 }

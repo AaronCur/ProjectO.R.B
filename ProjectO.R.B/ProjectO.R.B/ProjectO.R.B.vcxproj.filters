@@ -54,10 +54,14 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="coopscreen.h">
+=======
+    <ClInclude Include="torch.h">
+>>>>>>> checkpoints
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,10 +105,14 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Health.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="coopscreen.cpp">
+=======
+    <ClCompile Include="torch.cpp">
+>>>>>>> checkpoints
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
