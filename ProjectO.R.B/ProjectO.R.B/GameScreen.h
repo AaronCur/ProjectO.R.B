@@ -40,7 +40,6 @@ private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
-	Player &m_player2;
 	Enemy &m_Enemy;
 	TileMap &m_tileMap;
 	Game *m_game;

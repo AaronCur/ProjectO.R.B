@@ -9,11 +9,11 @@
 #include <fstream>
 class Game;
 
-class coopscreen
+class CoopScreen
 {
 public:
-	coopscreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy);
-	~coopscreen();
+	CoopScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy, Player&player2);
+	~CoopScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
 	void render(sf::RenderWindow &window);

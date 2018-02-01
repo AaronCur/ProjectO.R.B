@@ -1,8 +1,8 @@
-#include "coopscreen.h"
-coopscreen::coopscreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy) :
+#include "CoopScreen.h"
+CoopScreen::CoopScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy, Player &player2) :
 	m_player(player),
 	m_tileMap(tileMap),
-	m_player2(player)
+	m_player2(player2)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -59,16 +59,15 @@ coopscreen::coopscreen(Game &game, Player &player, TileMap &tileMap, Enemy &enem
 	m_s_score << 0;
 	m_s_Highscore << 0;
 
-	m_player2.state = 1;
-
+	m_player2.state = 0;
 
 }
 
-coopscreen::~coopscreen()
+CoopScreen::~CoopScreen()
 {
 
 }
-void coopscreen::offScreenDetection()
+void CoopScreen::offScreenDetection()
 {
 	if ((follow.getCenter().x - (1920 / 2)) >= m_player.m_position.x + 100
 		|| (follow.getCenter().y + (1080 / 2)) <= m_player.m_position.y - 30)
@@ -101,7 +100,7 @@ void coopscreen::offScreenDetection()
 
 
 }
-void coopscreen::updateScroll()
+void CoopScreen::updateScroll()
 {
 	/*if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
 	{
@@ -154,7 +153,7 @@ void coopscreen::updateScroll()
 
 }
 
-void coopscreen::update(sf::Time t, Xbox360Controller &controller)
+void CoopScreen::update(sf::Time t, Xbox360Controller &controller)
 {
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
@@ -222,7 +221,7 @@ void coopscreen::update(sf::Time t, Xbox360Controller &controller)
 
 }
 
-void coopscreen::getHighscore()
+void CoopScreen::getHighscore()
 {
 	std::ifstream readFile;
 	readFile.open("./resources/HighScore.txt");
@@ -266,7 +265,7 @@ void coopscreen::getHighscore()
 	tableScore.setString(m_s_Highscore.str() + " m");
 	tableName.setString(_Name);
 }
-void coopscreen::render(sf::RenderWindow &window)
+void CoopScreen::render(sf::RenderWindow &window)
 {
 	window.clear(sf::Color(208, 244, 247));
 	window.setView(follow);

@@ -3,8 +3,7 @@
 GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
 m_player(player),
 m_Enemy(enemy),
-m_tileMap(tileMap),
-m_player2(player)
+m_tileMap(tileMap)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -61,7 +60,6 @@ m_player2(player)
 	m_s_score << 0;
 	m_s_Highscore << 0;
 
-	m_player2.state = 1;
 
 
 }

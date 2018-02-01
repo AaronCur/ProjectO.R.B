@@ -7,6 +7,7 @@
 #include "Splash.h"
 #include "GameScreen.h"
 #include "MainMenu.h"
+#include "coopscreen.h"
 #include "Player.h"
 #include "Xbox360Controller.h"
 #include "TileMap.h"
@@ -23,6 +24,7 @@ class License;
 class Splash;
 class GameScreen;
 class MainMenu;
+class CoopScreen;
 
 enum class
 	GameState
@@ -31,7 +33,8 @@ enum class
 	License,
 	Splash,
 	MainMenu,
-	GameScreen
+	GameScreen,
+	CoopScreen
 
 };
 
@@ -63,8 +66,10 @@ protected:
 	Splash *m_splashScreen;
 	MainMenu *m_mainMenu;
 	GameScreen *m_GameScreen;
+	CoopScreen *m_CoopScreen;
 	Xbox360Controller *controller;
 	Player m_player;
+	Player m_player2;
 	TileMap m_tileMap;
 	Enemy m_enemy;
 
