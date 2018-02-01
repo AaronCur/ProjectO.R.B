@@ -135,29 +135,60 @@ void Player::keyHandler()
 {
 	collision();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		jump();
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false)
-	{
-		jumpPress = false;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
-	{
-		m_velocity.x = 0;
-	}
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) )
+	if (state == 0)
 	{
 
-		moveLeft();
-		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			jump();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false)
+		{
+			jumpPress = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::D) == false)
+		{
+			m_velocity.x = 0;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+
+			moveLeft();
+
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && moveX == true)
+		{
+			moveRight();
+		}
 	}
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true )
+	else
 	{
-		moveRight();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+		{
+			jump();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) == false)
+		{
+			jumpPress = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
+		{
+			m_velocity.x = 0;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+
+			moveLeft();
+
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true)
+		{
+			moveRight();
+		}
 	}
+
 
 	
 

@@ -1,10 +1,8 @@
-#include "GameScreen.h"
-
-GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
-m_player(player),
-m_Enemy(enemy),
-m_tileMap(tileMap),
-m_player2(player)
+#include "coopscreen.h"
+coopscreen::coopscreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy) :
+	m_player(player),
+	m_tileMap(tileMap),
+	m_player2(player)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -39,7 +37,7 @@ m_player2(player)
 	m_snowSprite.setPosition(0, 0);
 
 	follow.setCenter(960, m_player.m_position.y - 300);
-	
+
 	yourScore.setFont(Font);
 	yourScore.setCharacterSize(60);
 	yourScore.setColor(sf::Color::Black);
@@ -57,7 +55,7 @@ m_player2(player)
 	tableName.setFont(Font);
 	tableName.setCharacterSize(45);
 	tableName.setColor(sf::Color::Black);
-	
+
 	m_s_score << 0;
 	m_s_Highscore << 0;
 
@@ -66,14 +64,14 @@ m_player2(player)
 
 }
 
-GameScreen::~GameScreen()
+coopscreen::~coopscreen()
 {
 
 }
-void GameScreen::offScreenDetection()
+void coopscreen::offScreenDetection()
 {
 	if ((follow.getCenter().x - (1920 / 2)) >= m_player.m_position.x + 100
-		|| (follow.getCenter().y + (1080/2)) <= m_player.m_position.y-30)
+		|| (follow.getCenter().y + (1080 / 2)) <= m_player.m_position.y - 30)
 	{
 		if (m_player.m_position.x > 1475)
 		{
@@ -89,12 +87,12 @@ void GameScreen::offScreenDetection()
 			}
 
 			m_player.respawn(temp, 20);
-			m_Enemy.respawn();
+			m_player2.respawn(temp,20);
 			follow.setCenter(960, m_player.m_position.y - 300);
 
 
 		}
-		
+
 	}
 	else
 	{
@@ -103,60 +101,60 @@ void GameScreen::offScreenDetection()
 
 
 }
-void GameScreen::updateScroll()
+void coopscreen::updateScroll()
 {
 	/*if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
 	{
-		follow.move(8, 0);
+	follow.move(8, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + 1392 && follow.getCenter().x < 1475 + (1392 * 2))
 	{
-		follow.move(8.7, 0);
+	follow.move(8.7, 0);
 
-		
-		
+
+
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 2)&& follow.getCenter().x < 1475 +(1392 * 3))
 	{
-		follow.move(9.4, 0);
+	follow.move(9.4, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 3) && follow.getCenter().x < 1475 + (1392 * 4))
 	{
-		follow.move(10.1, 0);
+	follow.move(10.1, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 4) && follow.getCenter().x < 1475 + (1392 * 5))
 	{
-		follow.move(10.8, 0);
+	follow.move(10.8, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 5) && follow.getCenter().x < 1475 + (1392 * 6))
 	{
-		follow.move(13, 0);
+	follow.move(13, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 6) && follow.getCenter().x < 1475 + (1392 * 7))
 	{
-		follow.move(14, 0);
+	follow.move(14, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 7) && follow.getCenter().x < 1475 + (1392 * 8))
 	{
-		follow.move(16, 0);
+	follow.move(16, 0);
 
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 8) && follow.getCenter().x < 1475 + (1392 * 9))
 	{
-		follow.move(19, 0);
+	follow.move(19, 0);
 
 	}*/
 
 
 }
 
-void GameScreen::update(sf::Time t, Xbox360Controller &controller)
+void coopscreen::update(sf::Time t, Xbox360Controller &controller)
 {
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
@@ -165,10 +163,10 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 
 	if (m_gameOver == false)
 	{
-		
-		
-		m_player.update(t, follow.getCenter().x,follow.getCenter().y);
-		m_Enemy.update(t);
+
+
+		m_player.update(t, follow.getCenter().x, follow.getCenter().y);
+		m_player2.update(t, follow.getCenter().x, follow.getCenter().y);
 		offScreenDetection();
 
 
@@ -177,16 +175,16 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		{
 			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 		}
-		else if (m_player.m_position.x > 1470  && follow.getCenter().x < 13040)
+		else if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
-			m_Enemy.m_velocity.x = 6;
-			if (m_player.m_position.x >= m_Enemy.m_position.x)
+			//m_player2.m_velocity.x = 6;
+			if (m_player.m_position.x >= m_player2.m_position.x)
 			{
 				follow.setCenter(m_player.m_position.x, follow.getCenter().y);
 			}
-			else if (m_Enemy.m_position.x >= m_player.m_position.x)
+			else if (m_player2.m_position.x >= m_player.m_position.x)
 			{
-				follow.setCenter(m_Enemy.m_position.x, follow.getCenter().y);
+				follow.setCenter(m_player2.m_position.x, follow.getCenter().y);
 			}
 		}
 
@@ -195,8 +193,8 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		{
 			follow.setCenter(follow.getCenter().x, 510);
 			//updateScroll();
-			m_GOsprite.setPosition(follow.getCenter().x - (1920/2) , follow.getCenter().y - (1080 /2));
-			
+			m_GOsprite.setPosition(follow.getCenter().x - (1920 / 2), follow.getCenter().y - (1080 / 2));
+
 
 		}
 		m_player.distance.setPosition(follow.getCenter().x, 100);
@@ -221,14 +219,14 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 
 		}
 	}
-	
+
 }
 
-void GameScreen::getHighscore()
+void coopscreen::getHighscore()
 {
 	std::ifstream readFile;
 	readFile.open("./resources/HighScore.txt");
-	yourScore.setString(m_s_score.str()+" m");
+	yourScore.setString(m_s_score.str() + " m");
 
 	if (readFile.is_open())
 	{
@@ -243,10 +241,10 @@ void GameScreen::getHighscore()
 		//std::cout << "Highscores:" + _highScore << std::endl;
 	}
 
-	
-	
 
-	
+
+
+
 	readFile.close();
 
 	std::ofstream writeFile("./resources/HighScore.txt");
@@ -261,14 +259,14 @@ void GameScreen::getHighscore()
 			std::cout << " NEW HIGHSCORE! Enter your name Below :" << std::endl;
 			std::cin >> _Name;
 		}
-		writeFile << _highScore << "\n" ;
+		writeFile << _highScore << "\n";
 		writeFile << _Name;
 	}
 	writeFile.close();
 	tableScore.setString(m_s_Highscore.str() + " m");
 	tableName.setString(_Name);
 }
-void GameScreen::render(sf::RenderWindow &window)
+void coopscreen::render(sf::RenderWindow &window)
 {
 	window.clear(sf::Color(208, 244, 247));
 	window.setView(follow);
@@ -276,28 +274,28 @@ void GameScreen::render(sf::RenderWindow &window)
 	window.draw(m_BGsprite);
 	m_tileMap.render(window);
 	m_player.render(window);
-	m_Enemy.render(window);
+	m_player2.render(window);
 
 
 	if (m_gameOver == true)
 	{
-		
+
 		window.draw(m_GOsprite);
-		m_TableSprite.setPosition(follow.getCenter().x-200, follow.getCenter().y-200);
+		m_TableSprite.setPosition(follow.getCenter().x - 200, follow.getCenter().y - 200);
 		window.draw(m_TableSprite);
 		getHighscore();
 		yourScore.setPosition(follow.getCenter().x + 100, follow.getCenter().y + 100);
 		window.draw(yourScore);
-		tableScore.setPosition(follow.getCenter().x + 350, follow.getCenter().y );
+		tableScore.setPosition(follow.getCenter().x + 350, follow.getCenter().y);
 		window.draw(tableScore);
-		tableName.setPosition(follow.getCenter().x , follow.getCenter().y);
+		tableName.setPosition(follow.getCenter().x, follow.getCenter().y);
 		window.draw(tableName);
 	}
 
 	if (m_player.goalreached == true)
 	{
 		window.draw(m_GOsprite);
- 		GoalReached.setPosition(follow.getCenter().x-250, follow.getCenter().y-300);
+		GoalReached.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 300);
 		m_TableSprite.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 200);
 		window.draw(m_TableSprite);
 		window.draw(GoalReached);
@@ -316,7 +314,7 @@ void GameScreen::render(sf::RenderWindow &window)
 	}
 	window.draw(m_BGsprite, &m_snowShader);
 	//m_health.render(window);
-	
 
-	
+
+
 }

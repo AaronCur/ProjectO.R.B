@@ -49,6 +49,7 @@ public:
 	Health m_health;
 	int jumpCount = 0;
 	bool jumpPress = false;
+	int state = 0;
 	
 
 private:
