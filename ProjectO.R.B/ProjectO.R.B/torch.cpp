@@ -1,7 +1,8 @@
 #include "torch.h"
 
-Torch::Torch():
-	m_position(550,750)
+Torch::Torch(Player &player) :
+	m_position(550, 750),
+	m_player(player)
 {
 	if (!torchTxt.loadFromFile("resources/images/torch.png"))
 	{
@@ -36,7 +37,7 @@ void Torch::update(sf::Time t)
 	m_cumulativeTime = t;
 	updateShader = m_cumulativeTime.asSeconds();
 	torchShader.setParameter("time", updateShader);
-	if (m_player->m_position.x == m_position.x)
+	if (m_player.m_position.x>= m_position.x)
 	{
 		checkpoint = true;
 	}

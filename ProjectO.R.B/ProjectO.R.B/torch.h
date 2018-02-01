@@ -8,10 +8,12 @@
 #include "Animation.h"
 #include <sstream>
 
+class Player;
+
 class Torch
 {
 public:
-	Torch();
+	Torch(Player &Player);
 	~Torch();
 
 	bool checkpoint = false;
@@ -22,7 +24,7 @@ public:
 	
 private:
 	sf::Texture torchTxt;
-	Player *m_player;
+	Player &m_player;
 	sf::Shader torchShader;
 	float updateShader = 0;
 	sf::Texture m_shaderTexture;
