@@ -12,6 +12,7 @@
 #include "Xbox360Controller.h"
 #include "TileMap.h"
 #include "Enemy.h"
+#include "Player2.h"
 
 
 /// <summary>
@@ -69,7 +70,7 @@ protected:
 	CoopScreen *m_CoopScreen;
 	Xbox360Controller *controller;
 	Player m_player;
-	Player m_player2;
+	Player2 m_player2;
 	TileMap m_tileMap;
 	Enemy m_enemy;
 

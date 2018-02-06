@@ -76,17 +76,19 @@ void GameScreen::offScreenDetection()
 		if (m_player.m_position.x > 1475)
 		{
 
-			int temp = 0;
+			int tempx = 0;
+			int tempy = 0;
 
 			for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
 			{
-				if (m_tileMap.m_checkpoint_position[i].x > temp && m_tileMap.m_checkpoint_position[i].x < m_player.m_position.x)
+				if (m_tileMap.m_checkpoint_position[i].x > tempx && m_tileMap.m_checkpoint_position[i].x < m_player.m_position.x)
 				{
-					temp = m_tileMap.m_checkpoint_position[i].x;
+					tempx = m_tileMap.m_checkpoint_position[i].x;
+					tempx = m_tileMap.m_checkpoint_position[i].y;
 				}
 			}
 
-			m_player.respawn(temp, 20);
+			m_player.respawn(tempx, tempy);
 			m_Enemy.respawn();
 			follow.setCenter(960, m_player.m_position.y - 300);
 
