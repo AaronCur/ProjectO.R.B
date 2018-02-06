@@ -1,50 +1,54 @@
 #include "torch.h"
 
 Torch::Torch(float x, float y) :
-	m_position(x, y)
+	m_position(x , y-15),
+	animation(&torchTxt, sf::Vector2u(2,1), 10.f),
+	torchRect(sf::Vector2f(50.f,50.f))
 {
-	if (!torchTxt.loadFromFile("./resources/images/torch.png"))
+	if (!torchTxt.loadFromFile("resources/images/TorchFlame.png"))
 	{
-		std::string s("error loading torch texture from file");
+		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
 
-	torchSprite.setTexture(torchTxt);
-	torchSprite.setPosition(300, 500);
+	torchRect.setTexture(&torchTxt);
+	torchRect.setTextureRect(animation.uvRect);
+	animation = Animation(&torchTxt, sf::Vector2u(2,1), 10.f);
 
-	m_shaderTexture.loadFromFile("./resources/torchTexture.png");
-	m_shaderSprite.setTexture(m_shaderTexture);
-
-	if (!torchShader.loadFromFile("./resources/torch.frag", sf::Shader::Fragment))
-	{
-		std::cout << "Torch shader not available" << std::endl;
-	}
-	m_shaderSprite.setPosition(m_position);
-	torchShader.setParameter("time", 0);
-	torchShader.setParameter("resolution", 1920, 1080);
 }
 
 Torch::~Torch()
 {
-
+	
 }
 
-void Torch::update(sf::Time t)
+void Torch::collision(Player &e)
 {
-	m_cumulativeTime = t;
-	updateShader = m_cumulativeTime.asSeconds();
-	torchShader.setParameter("time", updateShader);
-	/*if (m_player.m_position.x>= m_position.x)
+	if ((m_position.x < e.m_position.x + e.playerRect.getSize().x) &&
+		(m_position.x + m_tilemap.m_checkpoint_WH.data()->x) &&
+		(m_position.y + m_tilemap.m_checkpoint_WH.data()->y > e.m_position.y) &&
+		(m_position.y < e.m_position.y + e.playerRect.getSize().y))
 	{
 		checkpoint = true;
-	}*/
+	}
+}
+
+void Torch::update(sf::Time t, Player &e)
+{
+	torchRect.setTextureRect(animation.uvRect);
+	torchRect.setPosition(m_position.x, m_position.y-15);
+	m_cumulativeTime = t;
+	collision(e);
+	if (checkpoint ==true)
+	{
+		animation.Update(0, 1.f);
+	}
 }
 
 void Torch::render(sf::RenderWindow &window)
-{
-	window.draw(torchSprite);
+{	
 	if (checkpoint == true)
 	{
-		window.draw(m_shaderSprite, &torchShader);
+	window.draw(torchRect);
 	}
 }

@@ -37,17 +37,7 @@ TileMap::TileMap()
 					std::cout << "Object " << object.getName() << std::endl;
 
 
-					if(parse == true)
-					{
-						m_checkpoint_position.push_back(sf::Vector2f(500, 800));
-						m_checkpoint_position.push_back(sf::Vector2f(2000, 800));
-						m_checkpoint_position.push_back(sf::Vector2f(4000, 300));
-						m_checkpoint_position.push_back(sf::Vector2f(8000, 300));
-						m_checkpoint_position.push_back(sf::Vector2f(10000, 300));
-						m_checkpoint_position.push_back(sf::Vector2f(12000, 300));
-
-						parse = false;
-					}
+					
 				
 					
 					if (object.getName() == "Wall")
@@ -59,6 +49,11 @@ TileMap::TileMap()
 					{
 						m_goal_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_goal_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					}
+					else if (object.getName() == "Checkpoint")
+					{
+						m_checkpoint_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+						m_checkpoint_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
 					else
 					{

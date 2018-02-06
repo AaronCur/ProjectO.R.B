@@ -268,7 +268,7 @@ void Player::respawn(float x, float y)
 {
 	m_health.m_healthValue--;
 	m_position.x = x;
-	m_position.y = 800;
+	m_position.y = y;
 }
 
 void Player::render(sf::RenderWindow &window)

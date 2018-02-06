@@ -50,6 +50,7 @@ public:
 	int jumpCount = 0;
 	bool jumpPress = false;
 	int state = 0;
+	sf::RectangleShape playerRect;
 	
 
 private:
@@ -62,7 +63,7 @@ private:
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGSprite;
 	sf::Texture playerTxt;
-	sf::RectangleShape playerRect;
+
 	sf::Font Font;
 	Animation animation;
 	TileMap m_tileMap;

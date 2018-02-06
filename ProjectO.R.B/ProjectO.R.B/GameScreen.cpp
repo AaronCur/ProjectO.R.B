@@ -80,19 +80,20 @@ void GameScreen::offScreenDetection()
 		if (m_player.m_position.x > 1475)
 		{
 
-			int temp = 0;
+			int tempX = 0;
+			int tempY = 0;
 
-			for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
+			for (int i = 0; i < checkpoints.size(); i++)
 			{
-				if (m_tileMap.m_checkpoint_position[i].x > temp && m_tileMap.m_checkpoint_position[i].x < m_player.m_position.x)
+				if (checkpoints[i]->m_position.x> tempX && checkpoints[i]->m_position.x < m_player.m_position.x && checkpoints[i]->checkpoint == true)
 				{
-					temp = m_tileMap.m_checkpoint_position[i].x;
+					tempX = checkpoints[i]->m_position.x;
+					tempY = checkpoints[i]->m_position.y;
 				}
 			}
 
-			m_player.respawn(temp, 20);
+			m_player.respawn(tempX, tempY);
 			m_Enemy.respawn();
-			follow.setCenter(960, m_player.m_position.y - 300);
 
 
 		}
@@ -162,13 +163,9 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 {
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
-	for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
+	for (int i = 0; i < checkpoints.size(); i++)
 	{
-		checkpoints[i]->update(t);
-		if (m_player.m_position.x >checkpoints[i]->m_position.x)
-		{
-			checkpoints[i]->checkpoint = true;
-		}
+		checkpoints[i]->update(t, m_player);
 	}
 	m_snowShader.setParameter("time", updateShader);
 
@@ -285,12 +282,13 @@ void GameScreen::render(sf::RenderWindow &window)
 	window.draw(m_player.distance);
 	window.draw(m_BGsprite);
 	m_tileMap.render(window);
-	m_player.render(window);
-	m_Enemy.render(window);
-	for (int i = 0; i < checkpoints.size();i++)
+	for (int i = 0; i < checkpoints.size(); i++)
 	{
 		checkpoints[i]->render(window);
 	}
+	m_player.render(window);
+	m_Enemy.render(window);
+	
 
 
 	if (m_gameOver == true)
