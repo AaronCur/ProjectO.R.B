@@ -48,7 +48,8 @@ Player::Player() :
 void Player::update(sf::Time t, float x, float y)
 {
 	m_health.update(x,y);
-	
+	playerColWidth = animation.uvRect.width;
+	playerColHeight = animation.uvRect.height;
 	if (gravity == true)
 	{
 		m_velocity.y += m_gravity.y*pixelsToMetres;

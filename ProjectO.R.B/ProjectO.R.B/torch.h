@@ -28,12 +28,14 @@ public:
 	
 private:
 	TileMap m_tilemap;
-	sf::Texture torchTxt;
+	sf::Texture torchLit;
+	sf::Texture torchUnlit;
 	sf::Shader torchShader;
 	float updateShader = 0;
 	sf::Texture m_shaderTexture;
 	sf::Sprite m_shaderSprite;
 	sf::Sprite torchSprite;
+	sf::Sprite torchHolder;
 	sf::Time time;
 	sf::Time m_cumulativeTime;
 	Animation animation;
