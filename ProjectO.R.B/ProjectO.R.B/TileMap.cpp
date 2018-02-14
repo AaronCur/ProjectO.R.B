@@ -6,13 +6,17 @@ TileMap::TileMap()
 {
 	tmx::Map map;
 
-	if (map.load("./resources/Map.tmx"))
+	if (map.load("./resources/Map3.tmx"))
 	{
 		std::cout << "Loaded Map version: " << map.getVersion().upper << ", " << map.getVersion().lower << std::endl;
 
 		const auto& mapProperties = map.getProperties();
 		std::cout << "Map has " << mapProperties.size() << " properties" << std::endl;
 		map1.push_back(new MapLayer(map, 0));
+		map1.push_back(new MapLayer(map, 1));
+		map1.push_back(new MapLayer(map, 2));
+		
+
 		for (const auto& prop : mapProperties)
 		{
 			std::cout << "Found property: " << prop.getName() << std::endl;
@@ -55,6 +59,12 @@ TileMap::TileMap()
 						m_checkpoint_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_checkpoint_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
+					else if (object.getName() == "Trap")
+					{
+						m_trap_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+						m_trap_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					}
+
 					else
 					{
 						m_object_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
@@ -135,5 +145,6 @@ TileMap::~TileMap()
 
 void TileMap::render(sf::RenderWindow &window)
 {
-	window.draw(*map1.at(0));
+	for(int i =0; i<map1.size();i++)
+	window.draw(*map1.at(i));
 }

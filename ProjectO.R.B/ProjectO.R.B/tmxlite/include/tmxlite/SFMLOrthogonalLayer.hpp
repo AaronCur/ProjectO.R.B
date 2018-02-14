@@ -92,7 +92,7 @@ public:
 
 private:
 
-    sf::Vector2f m_chunkSize = sf::Vector2f(14000.f, 1080.f);
+    sf::Vector2f m_chunkSize = sf::Vector2f(14000.f, 3150.f);
     sf::Vector2u m_chunkCount;
     sf::FloatRect m_globalBounds;
 
