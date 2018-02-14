@@ -105,7 +105,7 @@ void GameScreen::offScreenDetection()
 }
 void GameScreen::updateScroll()
 {
-	/*if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
+	if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 +1392)
 	{
 		follow.move(8, 0);
 
@@ -151,7 +151,7 @@ void GameScreen::updateScroll()
 	{
 		follow.move(19, 0);
 
-	}*/
+	}
 
 
 }
@@ -194,7 +194,7 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
 			follow.setCenter(follow.getCenter().x, 510);
-			//updateScroll();
+			updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920/2) , follow.getCenter().y - (1080 /2));
 			
 
