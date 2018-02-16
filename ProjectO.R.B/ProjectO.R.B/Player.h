@@ -65,7 +65,7 @@ private:
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGSprite;
 	bool dirLeft = true ;
-	bool dirRight = false;
+	bool dirRight = true;
 
 	sf::Font Font;
 	Animation animation;
