@@ -64,6 +64,9 @@
 >>>>>>> checkpoints
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -113,6 +116,9 @@
 =======
     <ClCompile Include="torch.cpp">
 >>>>>>> checkpoints
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
