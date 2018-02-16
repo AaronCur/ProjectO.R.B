@@ -49,6 +49,7 @@ TileMap::TileMap()
 						m_wall_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_wall_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
+
 					else if (object.getName() == "Goal")
 					{
 						m_goal_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
@@ -64,6 +65,8 @@ TileMap::TileMap()
 						m_trap_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_trap_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
+
+				
 
 					else
 					{

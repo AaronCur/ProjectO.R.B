@@ -93,6 +93,8 @@ void Player::moveLeft()
 		m_velocity.x = - m_force.x;
 		if(m_velocity.y>=0&& jumped == true)
 		animation.Update(1, 5.f);
+		dirLeft = true;
+		dirRight = false;
 	}
 	
 	
@@ -104,6 +106,8 @@ void Player::moveRight()
 		m_velocity.x = + m_force.x;
 		if (m_velocity.y>=0 && jumped ==true)
 			animation.Update(0, 5.f);
+		dirRight = true;
+		dirLeft = false;
 	}
 
 
@@ -151,7 +155,7 @@ void Player::keyHandler()
 			m_velocity.x = 0;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && dirLeft == true)
 		{
 
 			moveLeft();
@@ -160,6 +164,7 @@ void Player::keyHandler()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && moveX == true)
 		{
 			moveRight();
+			dirRight = true;
 		}
 	}
 	else
@@ -177,16 +182,18 @@ void Player::keyHandler()
 			m_velocity.x = 0;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && dirLeft==true)
 		{
 
 			moveLeft();
+
 
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true)
 		{
 			moveRight();
 		}
+		
 	}
 
 
@@ -211,17 +218,16 @@ void Player::collision()
 				m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
 				jumped = false;
 				jumpCount = 0;
-				
 			}
-			
-	
-			
 		}
+
 		else
 		{
 			gravity = true;
 			jumped = true; 
 		}
+
+
 		/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
 			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
@@ -234,25 +240,81 @@ void Player::collision()
 		std::cout << gravity << std::endl;*/
 		
 	}
-	for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
-	{
-		//Top of the onject 
-		
-		//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
-			//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
-		if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
-			&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
-		{
-			moveX = false;
-			m_velocity.x = 0;
+	//for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+	//{
+	//	//Top of the onject 
+	//	
+	//	//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+	//		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+	//	if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+	//		&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+	//	{
+	//		moveX = false;
+	//		m_velocity.x = 0;
 
-		}
-		else
-		{
-			moveX = true;
-		}
+
+	//	}
+	//	else
+	//	{
+	//		moveX = true;
+	//	}
+	//	
+	//}
+
+	//
+	
 		
-	}
+			for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+			{
+				//Top of the onject 
+
+				//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+				//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+
+
+				if (m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x && m_position.x > m_tileMap.m_wall_position.at(i).x
+					&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+				{
+					m_velocity.x = 0;
+					dirLeft = false;
+					m_position.x += 10;
+				
+				}
+				else
+				{
+					dirLeft = true;
+					
+				}
+
+				if (dirRight==true)
+				{
+					if (m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+						&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+					{
+						moveX = false;
+						m_velocity.x = 0;
+						m_position.x -= 10;
+
+
+					}
+
+
+					else
+					{
+						moveX = true;
+					}
+				}
+
+				
+			}
+		
+
+		
+		
+			
+		
+
+			
 
 	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
 	{

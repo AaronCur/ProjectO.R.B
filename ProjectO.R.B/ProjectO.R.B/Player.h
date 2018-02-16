@@ -64,7 +64,8 @@ private:
 	sf::Vector2f m_groundLocation;
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGSprite;
-	
+	bool dirLeft = true ;
+	bool dirRight = false;
 
 	sf::Font Font;
 	Animation animation;

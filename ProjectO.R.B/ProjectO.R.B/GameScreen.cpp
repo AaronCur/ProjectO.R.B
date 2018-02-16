@@ -175,13 +175,13 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 		
 		m_player.update(t, follow.getCenter().x,follow.getCenter().y);
 		m_Enemy.update(t);
-		offScreenDetection();
+		//doffScreenDetection();
 
 
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
-			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
+			follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		}
 
 		else if (m_player.m_position.x > 1470  && follow.getCenter().x < 13040)
@@ -189,18 +189,18 @@ void GameScreen::update(sf::Time t, Xbox360Controller &controller)
 			m_Enemy.m_velocity.x = 6;
 			if (m_player.m_position.x >= m_Enemy.m_position.x)
 			{
-				follow.setCenter(m_player.m_position.x, follow.getCenter().y);
+				//follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 			}
 			else if (m_Enemy.m_position.x >= m_player.m_position.x)
 			{
-				follow.setCenter(m_Enemy.m_position.x, follow.getCenter().y);
+			//	follow.setCenter(m_Enemy.m_position.x, m_player.m_position.y);
 			}
 		}
 
-
+		follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
-			follow.setCenter(follow.getCenter().x, 510);
+			//follow.setCenter(follow.getCenter().x, 510);
 			//updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920/2) , follow.getCenter().y - (1080 /2));
 			
