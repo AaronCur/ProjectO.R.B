@@ -39,6 +39,7 @@ public:
 	void moveRight();
 	void keyHandler();
 	void collision();
+	bool goalCollision();
 	void respawn(float x, float y);
 	sf::Text distance;
 	sf::Text metresToGoal;

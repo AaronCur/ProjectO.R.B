@@ -224,13 +224,19 @@ void Player::collision()
 		
 	}
 
+}
+bool Player::goalCollision()
+{
+
 	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
 	{
-		
+
 		if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
 			&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
 		{
-			goalreached = true;
+			//goalreached = true;
+
+			return true;
 
 		}
 	}

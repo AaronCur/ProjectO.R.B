@@ -1,141 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="License.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Splash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Xbox360Controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Highscore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Health.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="coopscreen.h">
-=======
-    <ClInclude Include="torch.h">
->>>>>>> checkpoints
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="License.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="Xbox360Controller.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Highscore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Health.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="coopscreen.cpp">
-=======
     <ClCompile Include="torch.cpp">
->>>>>>> checkpoints
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Splash.cpp">
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="Player2.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="License.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyHandler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="coopscreen.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Highscore.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\BackGround.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="resources\images\sprite.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="resources\table.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClInclude Include="Animation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="coopscreen.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Highscore.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyHandler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="License.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Splash.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="torch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Xbox360Controller.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\snowShader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
+    <Image Include="resources\BackGround.png" />
+    <Image Include="resources\images\sprite.png" />
+    <Image Include="resources\table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\snowShader.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{2cb4b80e-7bfb-4f23-b9aa-618bf232a01d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{63719c2e-5aad-4808-8214-d4fba14607e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

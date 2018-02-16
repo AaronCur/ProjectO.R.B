@@ -27,6 +27,7 @@
     <ClInclude Include="Health.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="KeyHandler.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
