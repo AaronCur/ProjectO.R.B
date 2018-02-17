@@ -1,9 +1,11 @@
 #include "Level1.h"
+#include <stdio.h>
 
 Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy) :
 	m_player(player),
 	m_Enemy(enemy),
-	m_tileMap(tileMap)
+	m_tileMap(tileMap),
+	m_gameScreen(&gameScreen)
 
 {
 	if (!Font.loadFromFile("resources/images/Adventure.otf"))
@@ -49,10 +51,10 @@ Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	yourScore.setColor(sf::Color::Black);
 
 
-	GoalReached.setFont(Font);
-	GoalReached.setColor(sf::Color(255, 233, 0));
-	GoalReached.setCharacterSize(100);
-	GoalReached.setString("You reached the Goal!!");
+	placement.setFont(Font);
+	placement.setColor(sf::Color(20, 20, 20));
+	placement.setCharacterSize(55);
+
 
 	tableScore.setFont(Font);
 	tableScore.setCharacterSize(45);
@@ -62,10 +64,22 @@ Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	tableName.setCharacterSize(45);
 	tableName.setColor(sf::Color::Black);
 
+	nameTable.setFont(Font);
+	nameTable.setCharacterSize(50);
+	nameTable.setColor(sf::Color::Black);
+
+	scoreTable.setFont(Font);
+	scoreTable.setCharacterSize(50);
+	scoreTable.setColor(sf::Color::Black);
+
+	Reset.setFont(Font);
+	Reset.setCharacterSize(50);
+	Reset.setColor(sf::Color(20, 20, 20));
+
+
+
 	m_s_score << 0;
 	m_s_Highscore << 0;
-
-
 
 }
 
@@ -233,50 +247,70 @@ void Level1::update(sf::Time t)
 	}
 
 }
-
 void Level1::getHighscore()
 {
 	std::ifstream readFile;
 	readFile.open("./resources/HighScore.txt");
 	yourScore.setString(m_s_score.str() + " m");
 
+	std::string Name;
+	int score;
+	//Read in the file and assign it to a map using the score as the key
 	if (readFile.is_open())
 	{
-		while (!readFile.eof())
+		while (readFile >> Name >> score)
 		{
-			readFile >> _highScore;
-			readFile >> _Name;
-			//std::cout << "Highscores:" + _highScore << std::endl;
+			m_highscoreTable[score] = std::string(Name);
 		}
-		m_s_Highscore.str("");
-		m_s_Highscore << _highScore;
-		//std::cout << "Highscores:" + _highScore << std::endl;
+	}
+	readFile.close();
+
+	if (gettable == true)
+	{
+		std::cout << "PLEASE ENTER YOUR NAME" << std::endl;
+		std::cin >> inputName;
+
+		//GO through the string and remove blank space
+		std::string::iterator end_pos = std::remove(inputName.begin(), inputName.end(), ' ');
+		inputName.erase(end_pos, inputName.end());
+
+		m_highscoreTable[_score] = std::string(inputName);
+		gettable = false;
 	}
 
-
-
-
-
-	readFile.close();
 
 	std::ofstream writeFile("./resources/HighScore.txt");
 
+	// write back to the file with the new score
 	if (writeFile.is_open())
 	{
-		if (_score > _highScore)
+		for (auto const& x : m_highscoreTable)
 		{
-			_highScore = _score;
-			m_s_Highscore.str("");
-			m_s_Highscore << _highScore;
-			std::cout << " NEW HIGHSCORE! Enter your name Below :" << std::endl;
-			std::cin >> _Name;
+			writeFile << x.second<<" " << x.first << "\n";
+				
 		}
-		writeFile << _highScore << "\n";
-		writeFile << _Name;
+	
 	}
 	writeFile.close();
-	tableScore.setString(m_s_Highscore.str() + " m");
-	tableName.setString(_Name);
+	
+}
+// method to reset level and stats when called
+void Level1::reset()
+{
+
+	m_player.m_position.x = 500;
+	m_player.m_position.y = 800;
+
+	follow.setCenter(960, 500);
+
+	m_player.goalreached = false;
+	for (int i = 0; i < checkpoints.size(); i++)
+	{
+		checkpoints[i]->checkpoint = false;
+	}
+	m_gameOver = false;
+	gettable = true;
+	m_player.m_health.m_healthValue = 6;
 }
 
 void Level1::render(sf::RenderWindow &window)
@@ -300,40 +334,106 @@ void Level1::render(sf::RenderWindow &window)
 	{
 
 		window.draw(m_GOsprite);
-		m_TableSprite.setPosition(follow.getCenter().x - 200, follow.getCenter().y - 200);
+		m_TableSprite.setPosition(follow.getCenter().x - 530, follow.getCenter().y - 390);
 		window.draw(m_TableSprite);
-		getHighscore();
-		yourScore.setPosition(follow.getCenter().x + 100, follow.getCenter().y + 100);
-		window.draw(yourScore);
 		tableScore.setPosition(follow.getCenter().x + 350, follow.getCenter().y);
 		window.draw(tableScore);
 		tableName.setPosition(follow.getCenter().x, follow.getCenter().y);
 		window.draw(tableName);
 	}
 
-	if (m_player.goalCollision() == true)
+	if (m_player.goalreached== true)
 	{
-		m_gameScreen->setLevelState(LevelState::Level2);
-		window.draw(m_GOsprite);
-		GoalReached.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 300);
-		m_TableSprite.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 200);
-		window.draw(m_TableSprite);
-		window.draw(GoalReached);
+		m_gameOver = true;
+		getHighscore();
+		
+		int temp = 0;
+		//Reverse iterate through the map to get values in decending order
+		for (auto iter = m_highscoreTable.rbegin(); iter != m_highscoreTable.rend(); ++iter)
+		{
+			temp++;
+			//only display top 7 results
+			if (temp <= 7)
+			{
+				nameTable.setString(iter->second);
+				nameTable.setPosition(follow.getCenter().x - 350, (follow.getCenter().y - 540) + (100* temp) + 180);
+				scoreTable.setString(std::to_string(iter->first));
+				scoreTable.setPosition(follow.getCenter().x + 200, (follow.getCenter().y - 540) + (100 * temp) + 180);
 
+				window.draw(scoreTable);
+				window.draw(nameTable);
+			}
+			//to find what positon you are in all entries even outside top 7
+			//if player finished outside top 7 they can see where they finished
+			if (iter->second == inputName)
+			{
+				placement.setString("You placed " + std::to_string(temp) + "/" +std::to_string(m_highscoreTable.size()));
+			}
+			
+
+		}
+		placement.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 450);
+		window.draw(placement);
+		Reset.setPosition(follow.getCenter().x - 500, follow.getCenter().y + 450);
+		Reset.setString("Press 'R' to replay or 'Space' to continue");
+		window.draw(Reset);
+	
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			m_player.m_position.x = 500;
-			m_player.m_position.y = 800;
-
-			follow.setCenter(960, 500);
-
-			m_player.goalreached = false;
-
+			
+			reset();
+		}
+		//go to next level
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			m_gameScreen->setLevelState(LevelState::Level2);
 		}
 
 
 
 	}
+
+	if (m_player.m_health.m_healthValue == 0)
+	{
+
+		m_gameOver = true;
+		placement.setPosition(follow.getCenter().x - 250, follow.getCenter().y - 450);
+		window.draw(placement);
+		window.draw(Reset);
+		Reset.setPosition(follow.getCenter().x - 300, follow.getCenter().y + 450);
+		Reset.setString("Press 'R' to replay");
+		getHighscore();
+		int temp = 0;
+		//Reverse iterate through the map to get values in decending order
+		for (auto iter = m_highscoreTable.rbegin(); iter != m_highscoreTable.rend(); ++iter)
+		{
+			temp++;
+			if (temp <= 7)
+			{
+				nameTable.setString(iter->second);
+				nameTable.setPosition(follow.getCenter().x - 350, (follow.getCenter().y - 540) + (100 * temp) + 180);
+				scoreTable.setString(std::to_string(iter->first));
+				scoreTable.setPosition(follow.getCenter().x + 200, (follow.getCenter().y - 540) + (100 * temp) + 180);
+
+				window.draw(scoreTable);
+				window.draw(nameTable);
+			}
+			if (iter->second == inputName)
+			{
+				placement.setString("You placed " + std::to_string(temp) + "/" + std::to_string(m_highscoreTable.size()));
+			}
+
+
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+
+			reset();
+
+		}
+	}
+	
 	window.draw(m_BGsprite, &m_snowShader);
 
 }

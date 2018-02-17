@@ -1,7 +1,7 @@
 #include "GameScreen.h"
 
 GameScreen::GameScreen(Game &game, Player &player, TileMap &tileMap,Enemy &enemy):
-m_currentLevelState(LevelState::Level2)
+m_currentLevelState(LevelState::Level1)
 
 {
 	m_level1 = new Level1(*this,m_player,m_tileMap,m_enemy);

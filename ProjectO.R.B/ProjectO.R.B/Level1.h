@@ -1,6 +1,7 @@
 #pragma once
 /*
 Author: Aaron Curry
+Time taken: 12 hours
 */
 
 #pragma once
@@ -10,6 +11,8 @@ Author: Aaron Curry
 #include "TileMap.h"
 #include "Xbox360Controller.h"
 #include "torch.h"
+#include <algorithm>
+#include <string>
 #include <iostream>
 #include <fstream>
 class GameScreen;
@@ -30,6 +33,7 @@ public:
 	void render(sf::RenderWindow &window);
 	void offScreenDetection();
 	void updateScroll();
+	void reset();
 	void getHighscore();
 	bool m_gameOver = false;
 	float _highScore;
@@ -43,6 +47,8 @@ public:
 	std::vector<Torch *> checkpoints;
 
 private:
+	std::map<int, std::string> m_highscoreTable;
+	std::map<sf::Text, sf::Text> m_highscoreTableDisplay;;
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
@@ -54,7 +60,10 @@ private:
 	std::stringstream m_s_Highscore;
 
 	sf::View follow;
-	sf::Text GoalReached;
+	sf::Text placement;
+
+	sf::Text nameTable;
+	sf::Text scoreTable;
 
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGsprite;
@@ -70,4 +79,8 @@ private:
 	sf::Texture m_snowTexture;
 	sf::Sprite m_snowSprite;
 	sf::Time time;
+	std::string inputName;
+	bool gettable = true;
+
+	sf::Text Reset;
 };

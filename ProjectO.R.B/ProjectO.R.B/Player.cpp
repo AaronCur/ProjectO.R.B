@@ -169,10 +169,10 @@ void Player::collision()
 {
 
 	for (int i = 0; i < m_tileMap.m_object_position.size(); i++)
-	{	
+	{
 		//Top of the onject 
-		if (m_position.y + animation.uvRect.height  >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height  <= m_tileMap.m_object_position.at(i).y  + m_tileMap.m_object_WH.at(i).y
-		&& m_position.x >= m_tileMap.m_object_position.at(i).x -animation.uvRect.width && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+		if (m_position.y + animation.uvRect.height >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y
+			&& m_position.x >= m_tileMap.m_object_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
 			if (m_velocity.y > 0)
 			{
@@ -181,36 +181,36 @@ void Player::collision()
 				m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
 				jumped = false;
 				jumpCount = 0;
-				
+
 			}
-			
-	
-			
+
+
+
 		}
 		else
 		{
 			gravity = true;
-			jumped = true; 
+			jumped = true;
 		}
 		/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
 			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
 		{
-			
+
 			m_velocity.y = 0;
-			
+
 
 
 		}
 		std::cout << gravity << std::endl;*/
-		
+
 	}
 	for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
 	{
 		//Top of the onject 
-		
+
 		//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
 			//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
-		if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+		if (m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
 			&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
 		{
 			moveX = false;
@@ -221,29 +221,27 @@ void Player::collision()
 		{
 			moveX = true;
 		}
-		
+
 	}
-
-}
-bool Player::goalCollision()
-{
-
 	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
 	{
 
 		if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
 			&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
 		{
-			//goalreached = true;
+			goalreached = true;
 
-			return true;
+
+
 
 		}
+
 	}
 }
+
 void Player::respawn(float x, float y)
 {
-	m_health.m_healthValue--;
+	m_health.m_healthValue-=2;
 	m_position.x = x;
 	m_position.y = y - 50;
 }
