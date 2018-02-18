@@ -119,7 +119,7 @@ void Player::jump()
 			m_velocity.y = m_velocity.y - 30;
 			jumpPress = true;
 		}
-		else if (jumpCount <= 2)
+		else if (jumpCount <= 2 && m_velocity.y >=0)
 		{
 			m_velocity.y = m_velocity.y - 30;
 			jumpPress = true;
@@ -146,18 +146,18 @@ void Player::keyHandler()
 		{
 			jumpPress = false;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::D) == false)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
 		{
 			m_velocity.x = 0;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 
 			moveLeft();
 
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && moveX == true)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true)
 		{
 			moveRight();
 		}
@@ -244,6 +244,7 @@ void Player::respawn(float x, float y)
 	m_health.m_healthValue-=2;
 	m_position.x = x;
 	m_position.y = y - 50;
+	m_heartscore -= 0.2;
 }
 
 void Player::render(sf::RenderWindow &window)
@@ -253,8 +254,7 @@ void Player::render(sf::RenderWindow &window)
 		window.draw(playerRect);
 		 
 	}
-	window.draw(distance);
-	window.draw(metresToGoal);
+
 	m_health.render(window);
 }
 

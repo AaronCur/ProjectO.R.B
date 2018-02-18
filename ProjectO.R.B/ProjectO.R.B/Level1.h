@@ -15,12 +15,14 @@ Time taken: 12 hours
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "Gem.h"
 class GameScreen;
 
 class Player;
 class TileMap;
 class Enemy;
 class Torch;
+class Gem;
 
 class Level1
 {
@@ -45,6 +47,7 @@ public:
 	std::string s_tableName;
 	//	std::vector<std::string> m_highscoreData;
 	std::vector<Torch *> checkpoints;
+	std::vector<Gem *> gems;
 
 private:
 	std::map<int, std::string> m_highscoreTable;
@@ -68,6 +71,9 @@ private:
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGsprite;
 
+	sf::Texture m_gemHUD;
+	sf::Sprite m_gemHUDSprite;
+
 	sf::Texture m_GOtexture;
 	sf::Sprite m_GOsprite;
 
@@ -83,4 +89,9 @@ private:
 	bool gettable = true;
 
 	sf::Text Reset;
+
+	sf::Text gemText;
+	sf::Text gemText2;
+	int gemCount = 0;
+	sf::Text scoreHUD;
 };

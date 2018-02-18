@@ -55,6 +55,10 @@ TileMap::TileMap()
 						m_checkpoint_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_checkpoint_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
+					else if (object.getName() == "Gem")
+					{
+						m_gem_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+					}
 					else
 					{
 						m_object_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));

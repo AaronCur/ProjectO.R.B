@@ -24,6 +24,7 @@ public:
 	std::vector<sf::Vector2f> m_goal_position;
 	std::vector<sf::Vector2f> m_checkpoint_position;
 	std::vector<sf::Vector2f> m_checkpoint_WH;
+	std::vector<sf::Vector2f> m_gem_position;
 	bool parse = true;
 private:
 	std::vector<MapLayer *>map1;

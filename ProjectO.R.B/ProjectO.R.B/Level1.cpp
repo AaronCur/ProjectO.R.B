@@ -34,9 +34,21 @@ Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 		std::cout << "Shader is not available" << std::endl;
 	}
 
+	if (!m_gemHUD.loadFromFile("resources/gemHUD.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	m_gemHUDSprite.setTexture(m_gemHUD);
+
 	for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
 	{
 		checkpoints.push_back(new Torch(m_tileMap.m_checkpoint_position[i].x, m_tileMap.m_checkpoint_position[i].y));
+	}
+
+	for (int i = 0; i < m_tileMap.m_gem_position.size(); i++)
+	{
+		gems.push_back(new Gem(m_tileMap.m_gem_position[i].x, m_tileMap.m_gem_position[i].y));
 	}
 
 	m_snowShader.setParameter("time", 0);
@@ -54,6 +66,10 @@ Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	placement.setFont(Font);
 	placement.setColor(sf::Color(20, 20, 20));
 	placement.setCharacterSize(55);
+
+	gemText.setFont(Font);
+	gemText.setColor(sf::Color(206, 0, 0));
+	gemText.setCharacterSize(55);
 
 
 	tableScore.setFont(Font);
@@ -76,10 +92,15 @@ Level1::Level1(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	Reset.setCharacterSize(50);
 	Reset.setColor(sf::Color(20, 20, 20));
 
+	scoreHUD.setFont(Font);
+	scoreHUD.setCharacterSize(50);
+	scoreHUD.setColor(sf::Color(20, 20, 20));
+
 
 
 	m_s_score << 0;
 	m_s_Highscore << 0;
+
 
 }
 
@@ -109,7 +130,7 @@ void Level1::offScreenDetection()
 			}
 
 			m_player.respawn(tempX, tempY);
-			m_Enemy.respawn();
+			follow.setCenter(tempX, tempY);
 
 
 		}
@@ -168,7 +189,7 @@ void Level1::updateScroll()
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 8) && follow.getCenter().x < 1475 + (1392 * 9))
 	{
-		follow.move(19, 0);
+		follow.move(18, 0);
 
 	}
 
@@ -184,6 +205,10 @@ void Level1::update(sf::Time t)
 	{
 		checkpoints[i]->update(t, m_player);
 	}
+	for (int i = 0; i < gems.size(); i++)
+	{
+		gems[i]->update(t, m_player);
+	}
 	m_snowShader.setParameter("time", updateShader);
 
 	if (m_gameOver == false)
@@ -191,29 +216,8 @@ void Level1::update(sf::Time t)
 
 
 		m_player.update(t, follow.getCenter().x, follow.getCenter().y);
-		m_Enemy.update(t);
+		//m_Enemy.update(t);
 		offScreenDetection();
-
-
-
-		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
-		{
-			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
-		}
-
-		else if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
-		{
-			m_Enemy.m_velocity.x = 6;
-			if (m_player.m_position.x >= m_Enemy.m_position.x)
-			{
-				follow.setCenter(m_player.m_position.x, follow.getCenter().y);
-			}
-			else if (m_Enemy.m_position.x >= m_player.m_position.x)
-			{
-				follow.setCenter(m_Enemy.m_position.x, follow.getCenter().y);
-			}
-		}
-
 
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
@@ -223,11 +227,13 @@ void Level1::update(sf::Time t)
 
 
 		}
-		m_player.distance.setPosition(follow.getCenter().x, 100);
-		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
-		_score = 14000 - m_player.distToGoal;
+		//m_player.distance.setPosition(follow.getCenter().x, 100);
+		//m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
+		_score = static_cast<int> (((14000 - m_player.distToGoal) - (m_cumulativeTime.asSeconds() * 50) * m_player.m_heartscore));
 		m_s_score.str("");
 		m_s_score << _score;
+		scoreHUD.setString("Score: " +m_s_score.str());
+		scoreHUD.setPosition(follow.getCenter().x - 200, follow.getCenter().y - 500);
 
 		m_player.m_health.healthSprite.setPosition(follow.getCenter().x - 800, follow.getCenter().y - 500);
 
@@ -245,6 +251,8 @@ void Level1::update(sf::Time t)
 
 		}
 	}
+
+	m_gemHUDSprite.setPosition(follow.getCenter().x + 600, follow.getCenter().y - 500);
 
 }
 void Level1::getHighscore()
@@ -325,10 +333,21 @@ void Level1::render(sf::RenderWindow &window)
 	{
 		checkpoints[i]->render(window);
 	}
+	for (int i = 0; i < gems.size(); i++)
+	{
+		gems[i]->render(window);
+		
+
+	}
 	m_player.render(window);
 	m_Enemy.render(window);
+	gemText.setPosition(follow.getCenter().x + 700, follow.getCenter().y - 500);
+	window.draw(m_gemHUDSprite);
+	gemText.setString(std::to_string(m_player.gemCount) + " / " + std::to_string(gems.size()));
+	window.draw(gemText);
+	window.draw(scoreHUD);
 
-
+	
 
 	if (m_gameOver == true)
 	{

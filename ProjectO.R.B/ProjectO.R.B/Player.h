@@ -28,6 +28,8 @@ public:
 	bool moveX = true;
 	bool gravity = true;
 	float pixelsToMetres;
+	float score = 1.0f;
+	float m_heartscore = 1.0f;
 	float m_radius;
 	int distToGoal;
 
@@ -55,6 +57,7 @@ public:
 	sf::Texture playerTxt;
 	float playerColWidth;
 	float playerColHeight;
+	int gemCount = 0;
 
 private:
 	sf::CircleShape player;
@@ -71,4 +74,5 @@ private:
 	Animation animation;
 	TileMap m_tileMap;
 	bool jumped;
+
 };

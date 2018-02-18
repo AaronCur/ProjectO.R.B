@@ -9,7 +9,7 @@ Splash::Splash(Game & game, sf::Font meatLoaf, sf::Font adventure) :
 	m_adventure(adventure),
 	m_project("project", m_adventure, 114),
 	m_ORB("O.R.B", m_meatLoaf, 418),
-	m_continue("Press A/Space To Continue", m_adventure, 47.5),
+	m_continue("Press Space To Continue", m_adventure, 47.5),
 	alpha(0),
 	alpha2(0),
 	flip(false)

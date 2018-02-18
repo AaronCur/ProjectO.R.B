@@ -55,6 +55,9 @@
     <ClCompile Include="Level1.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="Gem.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -109,6 +112,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Level1.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Gem.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
