@@ -1,7 +1,7 @@
 #include "Level2.h"
 #include <stdio.h>
 
-Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy) :
+Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, ScrollEnemy &enemy) :
 	m_player(player),
 	m_Enemy(enemy),
 	m_tileMap(tileMap),
@@ -16,7 +16,7 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	m_player.m_position.x -= 200;
 	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
 	follow.setSize(1920, 1080);
-	follow.setCenter(m_player.m_position.x, m_player.m_position.y-200);
+	follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 	m_BGtexture.loadFromFile("./resources/images/BG.png");
 	m_BGsprite.setTexture(m_BGtexture);
 	m_BGsprite.setPosition(0, -40);
@@ -44,7 +44,7 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 
 	m_snowSprite.setPosition(0, 0);
 
-	follow.setCenter(960, m_player.m_position.y-300);
+	follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 
 	yourScore.setFont(Font);
 	yourScore.setCharacterSize(60);
@@ -109,7 +109,7 @@ void Level2::offScreenDetection()
 			}
 
 			m_player.respawn(tempX, tempY);
-			m_Enemy.respawn();
+			follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 
 
 		}
@@ -144,8 +144,6 @@ void Level2::TrapCollision()
 
 			m_player.trapCollided = false;
 			m_player.respawn(tempX, tempY);
-			m_Enemy.respawn();
-
 
 
 		}
@@ -157,62 +155,69 @@ void Level2::TrapCollision()
 	}
 }
 
+
+void Level2::ScrollCollision()
+{
+	if ((m_Enemy.m_position.x - m_player.m_position.x) < 60)
+	{
+		int tempX = 0;
+		int tempY = 0;
+
+		for (int i = 0; i < checkpoints.size(); i++)
+		{
+			if (checkpoints[i]->m_position.x> tempX && checkpoints[i]->m_position.x < m_player.m_position.x && checkpoints[i]->checkpoint == true)
+			{
+				tempX = checkpoints[i]->m_position.x;
+				tempY = checkpoints[i]->m_position.y;
+			}
+		}
+
+		m_player.trapCollided = false;
+		m_player.respawn(tempX, tempY);
+	}
+}
+
 void Level2::updateScroll()
 {
 	if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 + 1392)
 	{
 		follow.move(8, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + 1392 && follow.getCenter().x < 1475 + (1392 * 2))
 	{
 		follow.move(8.7, 0);
-
-
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 2) && follow.getCenter().x < 1475 + (1392 * 3))
 	{
 		follow.move(9.4, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 3) && follow.getCenter().x < 1475 + (1392 * 4))
 	{
 		follow.move(10.1, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 4) && follow.getCenter().x < 1475 + (1392 * 5))
 	{
 		follow.move(10.8, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 5) && follow.getCenter().x < 1475 + (1392 * 6))
 	{
 		follow.move(13, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 6) && follow.getCenter().x < 1475 + (1392 * 7))
 	{
 		follow.move(14, 0);
-
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 7) && follow.getCenter().x < 1475 + (1392 * 8))
 	{
-		follow.move(16, 0);
-
+		follow.move(15, 0);
 	}
-	else if (follow.getCenter().x >= 1475 + (1392 * 8) && follow.getCenter().x < 1475 + (1392 * 9))
-	{
-		follow.move(19, 0);
-
-	}
-
+	
 
 }
 
 void Level2::update(sf::Time t)
 {
-	updateScroll();
+	ScrollCollision();
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
 	for (int i = 0; i < checkpoints.size(); i++)
@@ -226,26 +231,17 @@ void Level2::update(sf::Time t)
 
 
 		m_player.update(t, follow.getCenter().x, follow.getCenter().y);
-		//m_Enemy.update(t);
-		//offScreenDetection();
+		m_Enemy.update(t);
+		offScreenDetection();
 		TrapCollision();
 
-
+		
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
 			follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		}
 
-		else if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
-		{
-			m_Enemy.m_velocity.x = 6;
-			if (m_player.m_position.x >= m_Enemy.m_position.x)
-			{
-				//follow.setCenter(m_player.m_position.x, m_player.m_position.y);
-			}
-		
-		}
 
 		follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
@@ -349,7 +345,7 @@ void Level2::reset()
 void Level2::render(sf::RenderWindow &window)
 {
 
-	window.clear(sf::Color(208, 244, 247));
+	window.clear(sf::Color(125,125,125));
 	window.setView(follow);
 	window.draw(m_player.distance);
 	window.draw(m_BGsprite);
@@ -463,6 +459,6 @@ void Level2::render(sf::RenderWindow &window)
 		}
 	}
 
-	window.draw(m_BGsprite, &m_snowShader);
+	//window.draw(m_BGsprite, &m_snowShader);
 
 }

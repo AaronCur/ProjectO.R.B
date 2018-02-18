@@ -17,6 +17,7 @@
 class Game;
 class TileMap;
 class Health;
+class Enemy;
 
 class Player 
 {

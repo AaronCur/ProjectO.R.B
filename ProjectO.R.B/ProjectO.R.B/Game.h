@@ -13,6 +13,7 @@
 #include "TileMap.h"
 #include "Enemy.h"
 #include "Player2.h"
+#include "ScrollEnemy.h"
 
 
 /// <summary>
@@ -73,5 +74,5 @@ protected:
 	Player2 m_player2;
 	TileMap m_tileMap;
 	Enemy m_enemy;
-
+	ScrollEnemy scEnemy;
 };

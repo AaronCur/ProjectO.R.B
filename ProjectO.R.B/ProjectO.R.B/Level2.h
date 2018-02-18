@@ -4,7 +4,7 @@
 */
 
 #include "Player.h"
-#include "Enemy.h"
+#include "ScrollEnemy.h"
 #include "GameScreen.h"
 #include "TileMap.h"
 #include "Xbox360Controller.h"
@@ -17,13 +17,13 @@ class GameScreen;
 
 class Player;
 class TileMap;
-class Enemy;
+class ScrollEnemy;
 class Torch;
 
 class Level2
 {
 public:
-	Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy);
+	Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, ScrollEnemy &enemy);
 	~Level2();
 
 
@@ -32,6 +32,7 @@ public:
 	void offScreenDetection();
 	void TrapCollision();
 	void updateScroll();
+	void ScrollCollision();
 	void reset();
 	void getHighscore();
 	bool m_gameOver = false;
@@ -51,7 +52,7 @@ private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
-	Enemy &m_Enemy;
+	ScrollEnemy &m_Enemy;
 	TileMap &m_tileMap;
 	GameScreen *m_gameScreen;
 	sf::Font Font;

@@ -33,6 +33,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player2.h" />
+    <ClInclude Include="ScrollEnemy.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="torch.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player2.cpp" />
+    <ClCompile Include="ScrollEnemy.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="torch.cpp" />

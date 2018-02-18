@@ -14,6 +14,7 @@ time spent: 7 hours
 #include "TileMap.h"
 #include "Enemy.h"
 #include "Player2.h"
+#include "ScrollEnemy.h"
 class Game;
 class Level1;
 class Level2;
@@ -31,7 +32,7 @@ enum class
 class GameScreen
 {
 public:
-	GameScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy);
+	GameScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy, ScrollEnemy &scEnemy);
 	~GameScreen();
 
 	LevelState m_currentLevelState;
