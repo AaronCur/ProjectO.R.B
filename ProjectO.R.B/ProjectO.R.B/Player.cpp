@@ -38,6 +38,11 @@ Player::Player() :
 	metresToGoal.setCharacterSize(36);
 	metresToGoal.setColor(sf::Color::Black);
 	metresToGoal.setPosition(1200, 100);
+
+	jumpsound.openFromFile("./resources/swoosh.wav");
+	item.openFromFile("./resources/Goal.wav");
+	wall.openFromFile("./resources/Drop.wav");
+	die.openFromFile("./resources/rocks.wav");
 	
 }
 	Player::~Player()
@@ -112,6 +117,7 @@ void Player::jump()
 {
 	if (m_velocity.y < m_maxForce.y && jumpPress == false)
 	{
+		jumpsound.play();
 		jumpCount++;
 
 		if (jumpCount <= 1)
@@ -215,6 +221,7 @@ void Player::collision()
 		{
 			moveX = false;
 			m_velocity.x = 0;
+			wall.play();
 
 		}
 		else
@@ -231,6 +238,7 @@ void Player::collision()
 		{
 			goalreached = true;
 
+			item.play();
 
 
 
@@ -245,6 +253,8 @@ void Player::respawn(float x, float y)
 	m_position.x = x;
 	m_position.y = y - 50;
 	m_heartscore -= 0.2;
+	die.play();
+
 }
 
 void Player::render(sf::RenderWindow &window)

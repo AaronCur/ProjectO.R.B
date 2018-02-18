@@ -14,6 +14,7 @@ Gem::Gem(float x, float y) :
 	gemRect.setTexture(&gemTexture);
 	gemRect.setTextureRect(animation.uvRect);
 	animation = Animation(&gemTexture, sf::Vector2u(6, 1), 10.f);
+	item.openFromFile("./resources/Goal.wav");
 
 }
 
@@ -32,6 +33,7 @@ void Gem::collision(Player &e)
 		collide = true;
 		e.m_heartscore += 0.3;
 		e.gemCount += 1;
+		item.play();
 	}
 }
 

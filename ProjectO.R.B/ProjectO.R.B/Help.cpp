@@ -98,23 +98,15 @@ Help::Help(Game & game, sf::Font font) :
 	m_helpText.setCharacterSize(50);
 	m_helpText.setPosition(420, 79);
 
-	if (!logoTexture.loadFromFile("./resources/images/help.png"))
+
+	if (!backgroundTexture.loadFromFile("./resources/images/Help1.png"))
 	{
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
-
-	if (!backgroundTexture.loadFromFile("./resources/images/background2.png"))
-	{
-		std::string s("Error Loading Texture");
-		throw std::exception(s.c_str());
-	}
-
-	logoSprite.setTexture(logoTexture);
-	logoSprite.setPosition(100, 420);
 
 	backgroundSprite.setTexture(backgroundTexture);
-	backgroundSprite.setPosition(0, 0);
+
 
 }
 
@@ -127,49 +119,11 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 {
 	m_cumulativeTime += dt;
 
-	if (logoSprite.getPosition().y > -421 && logoSprite.getPosition().y > 0)
-	{
-		alpha = alpha + 2.8;
-		logoSprite.move(0, -5);
-		logoSprite.setColor(sf::Color(255, 255, 255, alpha));
-	}
-
-	if (logoSprite.getPosition().y == 0 && alphaText <= 252)
-	{
-		logoSprite.move(0, 0);
-		logoSprite.setColor(sf::Color(255, 255, 255, 255));
-
-		alphaText = alphaText + 2;
-		m_R2.setColor(sf::Color(0, 0, 0, alphaText));
-		m_R1.setColor(sf::Color(0, 0, 0, alphaText));
-		m_L2.setColor(sf::Color(0, 0, 0, alphaText));
-		m_L1.setColor(sf::Color(0, 0, 0, alphaText));
-		m_X.setColor(sf::Color(0, 0, 0, alphaText));
-		m_Y.setColor(sf::Color(0, 0, 0, alphaText));
-		m_B.setColor(sf::Color(0, 0, 0, alphaText));
-		m_A.setColor(sf::Color(0, 0, 0, alphaText));
-		m_rightAnalog.setColor(sf::Color(0, 0, 0, alphaText));
-		m_leftAnalog.setColor(sf::Color(0, 0, 0, alphaText));
-		m_dPad.setColor(sf::Color(0, 0, 0, alphaText));
-		m_start.setColor(sf::Color(0, 0, 0, alphaText));
-
-
-	}
+	
+	
 	// Button to go back to previous menu
-	if (controller.m_currentState.B)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-		m_R2.setColor(sf::Color(0, 0, 0, 0));
-		m_R1.setColor(sf::Color(0, 0, 0, 0));
-		m_L2.setColor(sf::Color(0, 0, 0, 0));
-		m_L1.setColor(sf::Color(0, 0, 0, 0));
-		m_X.setColor(sf::Color(0, 0, 0, 0));
-		m_Y.setColor(sf::Color(0, 0, 0, 0));
-		m_B.setColor(sf::Color(0, 0, 0, 0));
-		m_A.setColor(sf::Color(0, 0, 0, 0));
-		m_rightAnalog.setColor(sf::Color(0, 0, 0, 0));
-		m_leftAnalog.setColor(sf::Color(0, 0, 0, 0));
-		m_dPad.setColor(sf::Color(0, 0, 0, 0));
-		m_start.setColor(sf::Color(0, 0, 0, 0));
 
 		m_game->setGameState(GameState::Options);
 		
@@ -180,19 +134,6 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 void Help::render(sf::RenderWindow & window)
 {
 	window.draw(backgroundSprite);
-	window.draw(logoSprite);
-	window.draw(m_R1);
-	window.draw(m_R2);
-	window.draw(m_L1);
-	window.draw(m_L2);
-	window.draw(m_A);
-	window.draw(m_X);
-	window.draw(m_Y);
-	window.draw(m_B);
-	window.draw(m_rightAnalog);
-	window.draw(m_leftAnalog);
-	window.draw(m_dPad);
-	window.draw(m_start);
-	window.draw(m_helpText);
+	
 
 }

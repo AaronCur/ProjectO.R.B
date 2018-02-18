@@ -147,7 +147,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Return) )
 		{
 			buttonPress.play();
-			//m_game->setGameState(GameState::);
+			m_game->setGameState(GameState::Options);
 		}
 	}
 	if (buttonThreeSelected == true)

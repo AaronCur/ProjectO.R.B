@@ -68,5 +68,6 @@ private:
 
 	sf::Sound buttonPress;
 	sf::SoundBuffer buffer;
+	bool pressed = false;
 };
 #endif // !Options

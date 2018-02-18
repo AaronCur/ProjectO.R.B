@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Animation.h"
 #include <sstream>
+#include "SFML\Audio.hpp"
 
 class Player;
 class TileMap;
@@ -34,4 +35,5 @@ private:
 	sf::Time time;
 	sf::Time m_cumulativeTime;
 	Animation animation;
+	sf::Music item;
 };

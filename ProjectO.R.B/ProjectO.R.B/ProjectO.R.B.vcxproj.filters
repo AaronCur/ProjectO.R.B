@@ -58,6 +58,12 @@
     <ClCompile Include="Gem.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Help.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -115,6 +121,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Gem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Help.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@ static double const MS_PER_UPDATE = 10.0;
 
 Game::Game() :
 	m_window(sf::VideoMode(1920, 1080, 32), "ProjectO.R.B"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::MainMenu)
 {
 	if (!m_agentOrange.loadFromFile("./resources/images/AGENTORANGE.ttf"))
 	{
@@ -27,6 +27,8 @@ Game::Game() :
 	m_GameScreen = new GameScreen(*this, m_player,m_tileMap,m_enemy);
 	m_CoopScreen = new CoopScreen(*this, m_player, m_tileMap, m_enemy, m_player2);
 	controller = new Xbox360Controller();
+	m_optionsScreen = new Options(*this, m_agentOrange);
+	m_help = new Help(*this, m_agentOrange);
 		
 }
 
@@ -154,8 +156,15 @@ void Game::update(sf::Time time)
 	case GameState::GameScreen:
 		m_GameScreen->update(time, *controller);
 		break;
+	case GameState::Options:
+		m_optionsScreen->update(time, *controller);
+		break;
 	case GameState::CoopScreen:
 		m_CoopScreen->update(time, *controller);
+		break;
+	case GameState::Help:
+		m_help->update(time, *controller);
+		break;
 	default:
 		break;
 	}
@@ -191,6 +200,12 @@ void Game::render()
 		break;
 	case GameState::CoopScreen:
 		m_CoopScreen->render(m_window);
+		break;
+	case GameState::Options:
+		m_optionsScreen->render(m_window);
+		break;
+	case GameState::Help:
+		m_help->render(m_window);
 	default:
 		break;
 	}

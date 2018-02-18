@@ -37,7 +37,7 @@ Options::Options(Game & game, sf::Font font) :
 	m_helpText.setCharacterSize(40);
 
 	currentSongtext.setFont(m_meatLoaf);
-	currentSongtext.setString("Lil Jon & The East Side Boyz - Get Low");
+	currentSongtext.setString("Post Malone- go flex");
 	currentSongtext.setStyle(sf::Text::Bold);
 	currentSongtext.setCharacterSize(30);
 	currentSongtext.setPosition(1000, 610);
@@ -75,9 +75,9 @@ Options::Options(Game & game, sf::Font font) :
 	m_sliderSprite.setTexture(m_sliderTexture);
 
 	//SONGS ARE LOADED and loops are set and volume 
-	song1.openFromFile("./resources/images/song1.wav");
-	song2.openFromFile("./resources/images/song2.wav");
-	song3.openFromFile("./resources/images/song3.wav");
+	song1.openFromFile("./resources/song3.wav");
+	song2.openFromFile("./resources/Song2.wav");
+	song3.openFromFile("./resources/song1.wav");
 	song1.play();
 	song1.setLoop(true);
 	song2.setLoop(true);
@@ -118,6 +118,13 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 	m_cumulativeTime += deltaTime;
 	if (ready)
 	{
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Down) == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false
+			&& sf::Keyboard::isKeyPressed(sf::Keyboard::E) == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Return) == false)
+		{
+			pressed = false;
+		}
+
 		currentSongtext.move(-2, 0);
 		if (currentSongtext.getPosition().x <= -400)
 		{
@@ -129,122 +136,139 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		/// </summary>
 		/// <param name="deltaTime"></param>
 		/// <param name="controller"></param>
-		if (controller.m_currentState.DpadDown && onHelp && !controller.m_previousState.DpadDown)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onHelp && pressed == false)
 		{
 			m_arrowSprite.setPosition(140, 195);
 			onHelp = false;
 			onHighScores = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadDown && onHighScores && !controller.m_previousState.DpadDown)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onHighScores && pressed == false)
 		{
 			m_arrowSprite.setPosition(45, 305);
 			onHighScores = false;
 			onSlider = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadDown && onSlider && !controller.m_previousState.DpadDown)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onSlider && pressed == false)
 		{
 			m_arrowSprite.setPosition(45, 430);
 			onSlider = false;
 			onMute = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadDown && onMute && !controller.m_previousState.DpadDown)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onMute && pressed == false )
 		{
 			m_arrowSprite.setPosition(55, 560);
 			onMute = false;
 			onSong1 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadDown && onSong1 && !controller.m_previousState.DpadDown)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onSong1 && pressed == false)
 		{
 			m_arrowSprite.setPosition(140, 65);
 			onSong1 = false;
 			onHelp = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadRight && onSong1 && !controller.m_previousState.DpadRight)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && onSong1 && pressed == false)
 		{
 			m_arrowSprite.setPosition(205, 560);
 			onSong1 = false;
 			onSong2 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadRight && onSong2 && !controller.m_previousState.DpadRight)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && onSong2 && pressed == false)
 		{
 			m_arrowSprite.setPosition(355, 560);
 			onSong2 = false;
 			onSong3 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadRight && onSong3 && !controller.m_previousState.DpadRight)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && onSong3 && pressed == false)
 		{
 			m_arrowSprite.setPosition(55, 560);
 			onSong3 = false;
 			onSong1 = true;
+			pressed = true;
 		}
 
 
-		if (controller.m_currentState.DpadUp && onHelp && !controller.m_previousState.DpadUp)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onHelp && pressed == false)
 		{
 			m_arrowSprite.setPosition(55, 560);
 			onHelp = false;
 			onSong1 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadUp && onHighScores && !controller.m_previousState.DpadUp)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onHighScores && pressed == false)
 		{
 			m_arrowSprite.setPosition(140, 65);
 			onHighScores = false;
 			onHelp = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadUp && onSlider && !controller.m_previousState.DpadUp)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onSlider && pressed == false)
 		{
 			m_arrowSprite.setPosition(140, 195);
 			onSlider = false;
 			onHighScores = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadUp && onMute && !controller.m_previousState.DpadUp)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onMute && pressed == false)
 		{
 			m_arrowSprite.setPosition(45, 305);
 			onMute = false;
 			onSlider = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadUp && onSong1 && !controller.m_previousState.DpadUp)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onSong1 && pressed == false)
 		{
 			m_arrowSprite.setPosition(45, 430);
 			onSong1 = false;
 			onMute = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadLeft && onSong1 && !controller.m_previousState.DpadLeft)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && onSong1 && pressed == false)
 		{
 			m_arrowSprite.setPosition(355, 560);
 			onSong1 = false;
 			onSong3 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadLeft && onSong2 && !controller.m_previousState.DpadLeft)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && onSong2 && pressed == false)
 		{
 			m_arrowSprite.setPosition(55, 560);
 			onSong2 = false;
 			onSong1 = true;
+			pressed = true;
 		}
-		else if (controller.m_currentState.DpadLeft && onSong3 && !controller.m_previousState.DpadLeft)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && onSong3 &&  pressed == false)
 		{
 			m_arrowSprite.setPosition(205, 560);
 			onSong3 = false;
 			onSong2 = true;
+			pressed = true;
 		}
 
 
-		else if (controller.m_currentState.B && !controller.m_previousState.B)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && pressed == false )
 		{
 
 			m_game->setGameState(GameState::MainMenu);
 			ready = false;
 			setPosition();
+			pressed = true;
 
 		}
 
 
 
-		if (controller.m_currentState.DpadRight && onSlider)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && onSlider)
 		{
 			increaseVolume();
 		}
-		else if (controller.m_currentState.DpadLeft && onSlider)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && onSlider)
 		{
 			decreaseVolume();
 		}
@@ -253,47 +277,48 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		/// </summary>
 		/// <param name="deltaTime"></param>
 		/// <param name="controller"></param>
-		if (controller.m_currentState.A && onSong1 && !controller.m_previousState.A)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onSong1)
 		{
 			buttonPress.play();
 			song1.play();
 			song2.stop();
 			song3.stop();
-			currentSongtext.setString("Lil Jon & The East Side Boyz - Get Low");//changes the text
+			currentSongtext.setString("Post Malone - go Flex");//changes the text
 			currentSongtext.setPosition(1000, 610);
 		}
-		if (controller.m_currentState.A && onSong2 && !controller.m_previousState.A)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onSong2)
 		{
 			buttonPress.play();
 			song1.stop();
 			song2.play();
 			song3.stop();
-			currentSongtext.setString("Snoop Dogg ft. The Doors - Riders On The Storm ");//changes the text
+			currentSongtext.setString("Lil Uzi Vert - Sauce it Up ");//changes the text
 			currentSongtext.setPosition(1000, 610);
 		}
-		if (controller.m_currentState.A && onSong3 && !controller.m_previousState.A)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onSong3)
 		{
 			buttonPress.play();
 			song1.stop();
 			song2.stop();
 			song3.play();
-			currentSongtext.setString("Smash Mouth - All Star");//changes the text
+			currentSongtext.setString("Lil Uzi - xo tour life ");//changes the text
 			currentSongtext.setPosition(1000, 610);
 		}
 		//Stops player from going straight to help after selecting options if A button is held
 		//Button has to be released and then pressed before allowing the player to go to the help menu
-		if (controller.m_currentState.A && controller.m_previousState.A == false && onHelp)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onHelp)
 		{
 			buttonPress.play();
-			m_game->setGameState(GameState::Help);
+		   m_game->setGameState(GameState::Help);
 		}
 	}
 
 	//changes the button to mute 
-	if (controller.m_currentState.A && onMute && !controller.m_previousState.A && !changed)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onMute && !changed && pressed == false)
 	{
 		buttonPress.play();
 		changed = true;
+		
 		if (changed)//stops all the music 
 		{
 			m_muteSprite.setTexture(m_muteTexture[1]);
@@ -306,9 +331,10 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 			m_muteSprite.setTexture(m_muteTexture[0]);
 			song1.play();
 		}
+		pressed = true;
 	}
 	//changes the button to un mute 
-	else if (controller.m_currentState.A && onMute && !controller.m_previousState.A && changed)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && onMute && changed && pressed == false)
 	{
 		buttonPress.play();
 		changed = false;
@@ -324,9 +350,8 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 			m_muteSprite.setTexture(m_muteTexture[0]);
 			song1.play();
 		}
+		pressed = true;
 	}
-
-	controller.m_previousState = controller.m_currentState;
 
 	buttonUpdate();
 	//moves all the sprites and texture to animate on the screen 

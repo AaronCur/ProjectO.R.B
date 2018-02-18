@@ -13,6 +13,7 @@
 #include "Animation.h"
 #include "Health.h"
 #include <sstream>
+#include "SFML\Audio.hpp"
 
 class Game;
 class TileMap;
@@ -73,6 +74,11 @@ private:
 	sf::Font Font;
 	Animation animation;
 	TileMap m_tileMap;
+	sf::SoundBuffer buffer;
+	sf::Music jumpsound;
+	sf::Music item;
+	sf::Music wall;
+	sf::Music die;
 	bool jumped;
 
 };
