@@ -13,10 +13,10 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 		std::string s("error loading texture from file");
 		throw std::exception(s.c_str());
 	}
-
+	m_player.m_position.x -= 200;
 	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
 	follow.setSize(1920, 1080);
-	follow.setCenter(m_player.m_position.x, m_player.m_position.y - 200);
+	follow.setCenter(m_player.m_position.x, m_player.m_position.y-200);
 	m_BGtexture.loadFromFile("./resources/images/BG.png");
 	m_BGsprite.setTexture(m_BGtexture);
 	m_BGsprite.setPosition(0, -40);
@@ -44,7 +44,7 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 
 	m_snowSprite.setPosition(0, 0);
 
-	follow.setCenter(960, m_player.m_position.y - 300);
+	follow.setCenter(960, m_player.m_position.y-300);
 
 	yourScore.setFont(Font);
 	yourScore.setCharacterSize(60);
@@ -212,7 +212,7 @@ void Level2::updateScroll()
 
 void Level2::update(sf::Time t)
 {
-
+	updateScroll();
 	m_cumulativeTime += t;
 	updateShader = m_cumulativeTime.asSeconds();
 	for (int i = 0; i < checkpoints.size(); i++)
@@ -226,14 +226,15 @@ void Level2::update(sf::Time t)
 
 
 		m_player.update(t, follow.getCenter().x, follow.getCenter().y);
-		m_Enemy.update(t);
-		offScreenDetection();
+		//m_Enemy.update(t);
+		//offScreenDetection();
+		TrapCollision();
 
 
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
 		{
-			follow.setCenter(m_player.m_position.x, follow.getCenter().y);
+			follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		}
 
 		else if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
@@ -241,18 +242,15 @@ void Level2::update(sf::Time t)
 			m_Enemy.m_velocity.x = 6;
 			if (m_player.m_position.x >= m_Enemy.m_position.x)
 			{
-				follow.setCenter(m_player.m_position.x, follow.getCenter().y);
+				//follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 			}
-			else if (m_Enemy.m_position.x >= m_player.m_position.x)
-			{
-				follow.setCenter(m_Enemy.m_position.x, follow.getCenter().y);
-			}
+		
 		}
 
-
+		follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
 		{
-			follow.setCenter(follow.getCenter().x, 510);
+			follow.setCenter(follow.getCenter().x, m_player.m_position.y);
 			updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920 / 2), follow.getCenter().y - (1080 / 2));
 
@@ -420,11 +418,7 @@ void Level2::render(sf::RenderWindow &window)
 			reset();
 		}
 		//go to next level
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			m_gameScreen->setLevelState(LevelState::Level2);
-		}
-
+		
 
 
 	}

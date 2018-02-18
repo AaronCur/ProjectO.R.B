@@ -1,6 +1,7 @@
 
 #pragma once
 #include "Player.h"
+#include "Player2.h"
 #include "Enemy.h"
 #include "Game.h"
 #include "TileMap.h"
@@ -9,11 +10,11 @@
 #include <fstream>
 class Game;
 
-class coopscreen
+class CoopScreen
 {
 public:
-	coopscreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy);
-	~coopscreen();
+	CoopScreen(Game &game, Player &player, TileMap &tileMap, Enemy &enemy, Player2&player2);
+	~CoopScreen();
 
 	void update(sf::Time t, Xbox360Controller &controller);
 	void render(sf::RenderWindow &window);
@@ -34,7 +35,7 @@ private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
-	Player &m_player2;
+	Player2 &m_player2;
 	TileMap &m_tileMap;
 	Game *m_game;
 	sf::Font Font;

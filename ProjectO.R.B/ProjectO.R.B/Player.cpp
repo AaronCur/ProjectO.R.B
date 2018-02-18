@@ -165,39 +165,7 @@ void Player::keyHandler()
 			
 		}
 	}
-	else
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
-		{
-			jump();
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) == false)
-		{
-			jumpPress = false;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
-		{
-			m_velocity.x = 0;
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && dirLeft==true)
-		{
-
-			moveLeft();
-
-
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true)
-		{
-			moveRight();
-		}
-		
-	}
-
-
 	
-
-
 
 }
 void Player::collision()
@@ -376,7 +344,7 @@ void Player::respawn(float x, float y)
 {
 	m_health.m_healthValue--;
 	m_position.x = x;
-	m_position.y = y;
+	m_position.y = y - 50;
 }
 
 void Player::render(sf::RenderWindow &window)

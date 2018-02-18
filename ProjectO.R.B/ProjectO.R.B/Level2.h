@@ -24,7 +24,7 @@ class Level2
 {
 public:
 	Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy);
-	~Level12);
+	~Level2();
 
 
 	void update(sf::Time t);

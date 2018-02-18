@@ -6,8 +6,8 @@ time spent: 7 hours
 */
 
 #pragma once
-#pragma once
-#include "Level1.h"
+//#include "Level1.h"
+#include "Level2.h"
 #include <iostream>
 #include <fstream>
 #include "Player.h"
@@ -16,6 +16,7 @@ time spent: 7 hours
 #include "Player2.h"
 class Game;
 class Level1;
+class Level2;
 
 
 enum class
@@ -46,6 +47,7 @@ private:
 	sf::CircleShape test;
 	Game *m_game;
 	Level1 *m_level1;
+	Level2 *m_level2;
 	Player m_player;
 	Player2 m_player2;
 	TileMap m_tileMap;

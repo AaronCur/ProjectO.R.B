@@ -25,6 +25,7 @@ Game::Game() :
 	m_splashScreen = new Splash(*this, m_meatLoaf, m_adventure);
 	m_mainMenu = new MainMenu(*this, m_meatLoaf, m_agentOrange);
 	m_GameScreen = new GameScreen(*this, m_player,m_tileMap,m_enemy);
+	m_CoopScreen = new CoopScreen(*this, m_player, m_tileMap, m_enemy, m_player2);
 	controller = new Xbox360Controller();
 		
 }
@@ -152,6 +153,9 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::GameScreen:
 		m_GameScreen->update(time, *controller);
+		break;
+	case GameState::CoopScreen:
+		m_CoopScreen->update(time, *controller);
 	default:
 		break;
 	}
@@ -184,6 +188,9 @@ void Game::render()
 		break;
 	case GameState::GameScreen:
 		m_GameScreen->render(m_window);
+		break;
+	case GameState::CoopScreen:
+		m_CoopScreen->render(m_window);
 	default:
 		break;
 	}
