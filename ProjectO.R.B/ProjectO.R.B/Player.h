@@ -54,6 +54,7 @@ public:
 	sf::Texture playerTxt;
 	float playerColWidth;
 	float playerColHeight;
+	bool trapCollided = false;
 
 private:
 	sf::CircleShape player;

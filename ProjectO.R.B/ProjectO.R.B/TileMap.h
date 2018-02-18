@@ -25,9 +25,8 @@ public:
 	std::vector<sf::Vector2f> m_checkpoint_position;
 	std::vector<sf::Vector2f> m_checkpoint_WH;
 	std::vector<sf::Vector2f> m_trap_position;
-	std::vector<sf::Vector2f> m_slope_pos;
-	std::vector<sf::Vector2f> m_slope_WH;
-	std::vector<float> m_slope_rotation;
+	std::vector<sf::Vector2f> m_ceiling_position;
+	std::vector<sf::Vector2f> m_ceiling_WH;
 	std::vector<sf::Vector2f> m_trap_WH;
 	bool parse = true;
 private:

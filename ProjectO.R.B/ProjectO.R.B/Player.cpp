@@ -302,13 +302,59 @@ void Player::collision()
 					{
 						dirRight = true;
 					}
-			
-
 				
 			}
-		
 
-		
+			for (int i = 0; i < m_tileMap.m_ceiling_position.size(); i++)
+			{
+				
+				if (m_position.y + animation.uvRect.height*2 >= m_tileMap.m_ceiling_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_ceiling_position.at(i).y + m_tileMap.m_ceiling_WH.at(i).y
+					&& m_position.x >= m_tileMap.m_ceiling_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_ceiling_position.at(i).x + m_tileMap.m_ceiling_WH.at(i).x)
+				{
+					if (m_velocity.y < 0)
+					{
+						
+						m_velocity.y = 0;
+						break;
+						
+					}
+				}
+			}
+
+
+			for (int i = 0; i < m_tileMap.m_trap_position.size(); i++)
+			{
+				//test moving left collision 
+				if (m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x &&
+					m_position.x >= m_tileMap.m_trap_position.at(i).x
+					&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&
+					m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
+				{
+					trapCollided = true;
+					break;
+				}
+
+
+				//Test moving right collision
+				else if (m_position.x + animation.uvRect.width >= m_tileMap.m_trap_position.at(i).x && 
+					m_position.x + animation.uvRect.width < m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x
+					&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&  
+					m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
+				{
+					trapCollided = true;
+					break;
+				}
+
+				/*else if (m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y
+					&& m_position.x >= m_tileMap.m_trap_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x)
+				{
+					if (m_velocity.y > 0)
+					{
+						respawn(m_tileMap.m_checkpoint_position.at(i).x, m_tileMap.m_checkpoint_position.at(i).y);
+					}
+				}*/
+
+			}
 		
 			
 		

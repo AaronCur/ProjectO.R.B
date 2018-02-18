@@ -65,7 +65,11 @@ TileMap::TileMap()
 						m_trap_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
 						m_trap_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
-
+					else if (object.getName() == "Ceiling")
+					{
+						m_ceiling_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+						m_ceiling_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
+					}
 				
 
 					else
