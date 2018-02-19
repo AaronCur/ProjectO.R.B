@@ -1,7 +1,6 @@
 #include "Level2.h"
-#include <stdio.h>
 
-Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy) :
+Level2::Level2(GameScreen &gameScreen, Player &player, TileMap2 &tileMap, Enemy &enemy) :
 	m_player(player),
 	m_Enemy(enemy),
 	m_tileMap(tileMap),
@@ -34,11 +33,22 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 		std::cout << "Shader is not available" << std::endl;
 	}
 
+	if (!m_gemHUD.loadFromFile("resources/gemHUD.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	m_gemHUDSprite.setTexture(m_gemHUD);
+
 	for (int i = 0; i < m_tileMap.m_checkpoint_position.size(); i++)
 	{
 		checkpoints.push_back(new Torch(m_tileMap.m_checkpoint_position[i].x, m_tileMap.m_checkpoint_position[i].y));
 	}
 
+	for (int i = 0; i < m_tileMap.m_gem_position.size(); i++)
+	{
+		gems.push_back(new Gem(m_tileMap.m_gem_position[i].x, m_tileMap.m_gem_position[i].y));
+	}
 	m_snowShader.setParameter("time", 0);
 	m_snowShader.setParameter("resolution", 1920, 1080);
 
@@ -76,6 +86,11 @@ Level2::Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &
 	Reset.setCharacterSize(50);
 	Reset.setColor(sf::Color(20, 20, 20));
 
+	scoreHUD.setFont(Font);
+	scoreHUD.setCharacterSize(50);
+	scoreHUD.setColor(sf::Color(20, 20, 20));
+
+
 
 
 	m_s_score << 0;
@@ -109,6 +124,7 @@ void Level2::offScreenDetection()
 			}
 
 			m_player.respawn(tempX, tempY);
+			follow.setCenter(tempX, tempY);
 			m_Enemy.respawn();
 
 
@@ -144,6 +160,7 @@ void Level2::TrapCollision()
 
 			m_player.trapCollided = false;
 			m_player.respawn(tempX, tempY);
+			follow.setCenter(tempX, tempY);
 			m_Enemy.respawn();
 
 
@@ -159,7 +176,7 @@ void Level2::TrapCollision()
 
 void Level2::updateScroll()
 {
-	if (m_player.m_position.x >= 1475 && follow.getCenter().x < 1475 + 1392)
+	if (m_player.m_position.x >= 600 && follow.getCenter().x < 1475 + 1392)
 	{
 		follow.move(8, 0);
 
@@ -203,7 +220,7 @@ void Level2::updateScroll()
 	}
 	else if (follow.getCenter().x >= 1475 + (1392 * 8) && follow.getCenter().x < 1475 + (1392 * 9))
 	{
-		follow.move(19, 0);
+		follow.move(17, 0);
 
 	}
 
@@ -212,12 +229,17 @@ void Level2::updateScroll()
 
 void Level2::update(sf::Time t)
 {
-	updateScroll();
+	//updateScroll();
 	m_cumulativeTime += t;
+	offScreenDetection();
 	updateShader = m_cumulativeTime.asSeconds();
 	for (int i = 0; i < checkpoints.size(); i++)
 	{
 		checkpoints[i]->update(t, m_player);
+	}
+	for (int i = 0; i < gems.size(); i++)
+	{
+		gems[i]->update(t, m_player);
 	}
 	m_snowShader.setParameter("time", updateShader);
 
@@ -227,13 +249,13 @@ void Level2::update(sf::Time t)
 
 		m_player.update(t, follow.getCenter().x, follow.getCenter().y);
 		//m_Enemy.update(t);
-		//offScreenDetection();
-		TrapCollision();
+		
+		TrapCollision();;
 
 
 
 		if (m_player.m_position.x < 1470 && m_player.m_position.x > 960)
-		{
+	{
 			follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 		}
 
@@ -242,25 +264,22 @@ void Level2::update(sf::Time t)
 			m_Enemy.m_velocity.x = 6;
 			if (m_player.m_position.x >= m_Enemy.m_position.x)
 			{
-				//follow.setCenter(m_player.m_position.x, m_player.m_position.y);
+				follow.setCenter(m_player.m_position.x, m_player.m_position.y);
 			}
 		
 		}
 
 		follow.setCenter(m_player.m_position.x, m_player.m_position.y);
-		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
-		{
+	
 			follow.setCenter(follow.getCenter().x, m_player.m_position.y);
 			updateScroll();
 			m_GOsprite.setPosition(follow.getCenter().x - (1920 / 2), follow.getCenter().y - (1080 / 2));
 
-
-		}
-		m_player.distance.setPosition(follow.getCenter().x, 100);
-		m_player.metresToGoal.setPosition(follow.getCenter().x + 300, 100);
-		_score = 14000 - m_player.distToGoal;
+		_score = static_cast<int> (((14000 - m_player.distToGoal) - (m_cumulativeTime.asSeconds() * 50) * m_player.m_heartscore));
 		m_s_score.str("");
 		m_s_score << _score;
+		scoreHUD.setString("Score: " + m_s_score.str());
+		scoreHUD.setPosition(follow.getCenter().x - 200, follow.getCenter().y - 500);
 
 		m_player.m_health.healthSprite.setPosition(follow.getCenter().x - 800, follow.getCenter().y - 500);
 
@@ -279,11 +298,13 @@ void Level2::update(sf::Time t)
 		}
 	}
 
+	m_gemHUDSprite.setPosition(follow.getCenter().x + 600, follow.getCenter().y - 500);
+
 }
 void Level2::getHighscore()
 {
 	std::ifstream readFile;
-	readFile.open("./resources/HighScore.txt");
+	readFile.open("./resources/HighScore2.txt");
 	yourScore.setString(m_s_score.str() + " m");
 
 	std::string Name;
@@ -312,19 +333,19 @@ void Level2::getHighscore()
 	}
 
 
-	std::ofstream writeFile("./resources/HighScore.txt");
+	std::ofstream writeFile2("./resources/HighScore2.txt");
 
 	// write back to the file with the new score
-	if (writeFile.is_open())
+	if (writeFile2.is_open())
 	{
 		for (auto const& x : m_highscoreTable)
 		{
-			writeFile << x.second << " " << x.first << "\n";
+			writeFile2 << x.second << " " << x.first << "\n";
 
 		}
 
 	}
-	writeFile.close();
+	writeFile2.close();
 
 }
 // method to reset level and stats when called
@@ -358,8 +379,19 @@ void Level2::render(sf::RenderWindow &window)
 	{
 		checkpoints[i]->render(window);
 	}
+	for (int i = 0; i < gems.size(); i++)
+	{
+		gems[i]->render(window);
+
+
+	}
 	m_player.render(window);
 	m_Enemy.render(window);
+	gemText.setPosition(follow.getCenter().x + 700, follow.getCenter().y - 500);
+	window.draw(m_gemHUDSprite);
+	gemText.setString(std::to_string(m_player.gemCount) + " / " + std::to_string(gems.size()));
+	window.draw(gemText);
+	window.draw(scoreHUD);
 
 
 
@@ -417,10 +449,8 @@ void Level2::render(sf::RenderWindow &window)
 
 			reset();
 		}
-		//go to next level
 		
-
-
+	
 	}
 
 	if (m_player.m_health.m_healthValue == 0)

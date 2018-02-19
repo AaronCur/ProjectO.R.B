@@ -6,24 +6,26 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "GameScreen.h"
-#include "TileMap.h"
+#include "TileMap2.h"
 #include "Xbox360Controller.h"
 #include "torch.h"
 #include <algorithm>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "Gem.h"
 class GameScreen;
 
 class Player;
-class TileMap;
+class TileMap2;
 class Enemy;
 class Torch;
+class Gem;
 
 class Level2
 {
 public:
-	Level2(GameScreen &gameScreen, Player &player, TileMap &tileMap, Enemy &enemy);
+	Level2(GameScreen &gameScreen, Player &player, TileMap2 &tileMap, Enemy &enemy);
 	~Level2();
 
 
@@ -44,15 +46,16 @@ public:
 	std::string s_tableName;
 	//	std::vector<std::string> m_highscoreData;
 	std::vector<Torch *> checkpoints;
+	std::vector<Gem *> gems;
 
 private:
 	std::map<int, std::string> m_highscoreTable;
-	std::map<sf::Text, sf::Text> m_highscoreTableDisplay;;
+	std::map<sf::Text, sf::Text> m_highscoreTableDisplay;
 	sf::Time m_cumulativeTime;//the time 
 	sf::CircleShape test;
 	Player &m_player;
 	Enemy &m_Enemy;
-	TileMap &m_tileMap;
+	TileMap2 &m_tileMap;
 	GameScreen *m_gameScreen;
 	sf::Font Font;
 	std::stringstream m_s_score;
@@ -63,6 +66,9 @@ private:
 
 	sf::Text nameTable;
 	sf::Text scoreTable;
+
+	sf::Texture m_gemHUD;
+	sf::Sprite m_gemHUDSprite;
 
 	sf::Texture m_BGtexture;
 	sf::Sprite m_BGsprite;
@@ -82,4 +88,9 @@ private:
 	bool gettable = true;
 
 	sf::Text Reset;
+
+	sf::Text gemText;
+	sf::Text gemText2;
+	int gemCount = 0;
+	sf::Text scoreHUD;
 };

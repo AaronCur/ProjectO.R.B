@@ -38,6 +38,11 @@ Player::Player() :
 	metresToGoal.setCharacterSize(36);
 	metresToGoal.setColor(sf::Color::Black);
 	metresToGoal.setPosition(1200, 100);
+
+	jumpsound.openFromFile("./resources/swoosh.wav");
+	item.openFromFile("./resources/Goal.wav");
+	wall.openFromFile("./resources/Drop.wav");
+	die.openFromFile("./resources/rocks.wav");
 	
 }
 	Player::~Player()
@@ -114,6 +119,7 @@ void Player::jump()
 {
 	if (m_velocity.y < m_maxForce.y && jumpPress == false)
 	{
+		jumpsound.play();
 		jumpCount++;
 
 		if (jumpCount <= 1)
@@ -121,7 +127,7 @@ void Player::jump()
 			m_velocity.y = m_velocity.y - 30;
 			jumpPress = true;
 		}
-		else if (jumpCount <= 2)
+		else if (jumpCount <= 2 && m_velocity.y >=0)
 		{
 			m_velocity.y = m_velocity.y - 30;
 			jumpPress = true;
@@ -148,18 +154,22 @@ void Player::keyHandler()
 		{
 			jumpPress = false;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::D) == false)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) == false || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) == false)
 		{
 			m_velocity.x = 0;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && dirLeft == true)
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+
 		{
 
 			moveLeft();
 
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && dirRight == true)
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && moveX == true)
+
 		{
 			moveRight();
 			
@@ -170,181 +180,366 @@ void Player::keyHandler()
 }
 void Player::collision()
 {
-
-	for (int i = 0; i < m_tileMap.m_object_position.size(); i++)
-	{	
-		//Top of the onject 
-		if (m_position.y + animation.uvRect.height  >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height  <= m_tileMap.m_object_position.at(i).y  + m_tileMap.m_object_WH.at(i).y
-		&& m_position.x >= m_tileMap.m_object_position.at(i).x -animation.uvRect.width && m_position.x  <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+	if (level2 == false)
+	{
+		for (int i = 0; i < m_tileMap.m_object_position.size(); i++)
 		{
+			//Top of the onject 
+			if (m_position.y + animation.uvRect.height >= m_tileMap.m_object_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y
+				&& m_position.x >= m_tileMap.m_object_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+			{
+				if (m_velocity.y > 0)
+				{
+					gravity = false;
+					m_velocity.y = 0;
+					m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
+					jumped = false;
+					jumpCount = 0;
+				}
+
+			}
+
+			else
+			{
+				gravity = true;
+				jumped = true;
+			}
+
+
+			/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
+			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+			{
+
+			m_velocity.y = 0;
+
+
+
+			}
+			std::cout << gravity << std::endl;*/
+
+		}
+		//for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+		//{
+		//	//Top of the onject 
+		//	
+		//	//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+		//		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+		//	if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+		//		&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+		//	{
+		//		moveX = false;
+		//		m_velocity.x = 0;
+
+
+		//	}
+		//	else
+		//	{
+		//		moveX = true;
+		//	}
+		//	
+		//}
+
+		//
+
+
+		for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+		{
+			//test moving right collision 
+			if (m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x &&
+				m_position.x >= m_tileMap.m_wall_position.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&
+				m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+			{
+
+
+				dirLeft = false;
+				m_velocity.x = 0;
+				wall.play();
+				break;
+
+
+			}
+			else
+			{
+				dirLeft = true;
+
+
+			}
+
+
+			//Test moving right collision
+			if (m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+			{
+				dirRight = false;
+				m_velocity.x = 0;
+				wall.play();
+				break;
+
+
+			}
+
+
+			else
+			{
+				dirRight = true;
+			}
+
+		}
+
+		for (int i = 0; i < m_tileMap.m_ceiling_position.size(); i++)
+		{
+
+			if (m_position.y + animation.uvRect.height * 2 >= m_tileMap.m_ceiling_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_ceiling_position.at(i).y + m_tileMap.m_ceiling_WH.at(i).y
+				&& m_position.x >= m_tileMap.m_ceiling_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_ceiling_position.at(i).x + m_tileMap.m_ceiling_WH.at(i).x)
+			{
+				if (m_velocity.y < 0)
+				{
+
+					m_velocity.y = 0;
+					break;
+
+				}
+			}
+		}
+
+
+		for (int i = 0; i < m_tileMap.m_trap_position.size(); i++)
+		{
+			//test moving left collision 
+			if (m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x &&
+				m_position.x >= m_tileMap.m_trap_position.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&
+				m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
+			{
+				trapCollided = true;
+				break;
+			}
+
+
+			//Test moving right collision
+			else if (m_position.x + animation.uvRect.width >= m_tileMap.m_trap_position.at(i).x &&
+				m_position.x + animation.uvRect.width < m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&
+				m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
+			{
+				trapCollided = true;
+				break;
+			}
+
+			/*else if (m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y
+			&& m_position.x >= m_tileMap.m_trap_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x)
+			{
 			if (m_velocity.y > 0)
 			{
-				gravity = false;
-				m_velocity.y = 0;
-				m_position.y = m_tileMap.m_object_position.at(i).y - animation.uvRect.height;
-				jumped = false;
-				jumpCount = 0;
+			respawn(m_tileMap.m_checkpoint_position.at(i).x, m_tileMap.m_checkpoint_position.at(i).y);
 			}
+			}*/
+
 		}
 
-		else
+		for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
 		{
-			gravity = true;
-			jumped = true; 
+
+			if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
+			{
+				goalreached = true;
+
+				item.play();
+
+
+
+			}
+
 		}
-
-
-		/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
-			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
-		{
-			
-			m_velocity.y = 0;
-			
-
-
-		}
-		std::cout << gravity << std::endl;*/
-		
 	}
-	//for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
-	//{
-	//	//Top of the onject 
-	//	
-	//	//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
-	//		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
-	//	if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
-	//		&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
-	//	{
-	//		moveX = false;
-	//		m_velocity.x = 0;
-
-
-	//	}
-	//	else
-	//	{
-	//		moveX = true;
-	//	}
-	//	
-	//}
-
-	//
-	
-		
-			for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
-			{
-				//test moving right collision 
-				if (m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x &&
-					m_position.x >= m_tileMap.m_wall_position.at(i).x
-					&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y && 
-					m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
-				{
-					
-					
-						dirLeft = false;
-						m_velocity.x = 0;
-						break;
-	
-				
-				}
-				else
-				{
-					dirLeft = true;
-			
-					
-				}
-
-			
-				//Test moving right collision
-					if (m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
-						&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
-					{
-						dirRight = false;
-						m_velocity.x = 0;
-						break;
-
-
-					}
-
-
-					else
-					{
-						dirRight = true;
-					}
-				
-			}
-
-			for (int i = 0; i < m_tileMap.m_ceiling_position.size(); i++)
-			{
-				
-				if (m_position.y + animation.uvRect.height*2 >= m_tileMap.m_ceiling_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_ceiling_position.at(i).y + m_tileMap.m_ceiling_WH.at(i).y
-					&& m_position.x >= m_tileMap.m_ceiling_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_ceiling_position.at(i).x + m_tileMap.m_ceiling_WH.at(i).x)
-				{
-					if (m_velocity.y < 0)
-					{
-						
-						m_velocity.y = 0;
-						break;
-						
-					}
-				}
-			}
-
-
-			for (int i = 0; i < m_tileMap.m_trap_position.size(); i++)
-			{
-				//test moving left collision 
-				if (m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x &&
-					m_position.x >= m_tileMap.m_trap_position.at(i).x
-					&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&
-					m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
-				{
-					trapCollided = true;
-					break;
-				}
-
-
-				//Test moving right collision
-				else if (m_position.x + animation.uvRect.width >= m_tileMap.m_trap_position.at(i).x && 
-					m_position.x + animation.uvRect.width < m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x
-					&& m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y &&  
-					m_position.y <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y)
-				{
-					trapCollided = true;
-					break;
-				}
-
-				/*else if (m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y
-					&& m_position.x >= m_tileMap.m_trap_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x)
-				{
-					if (m_velocity.y > 0)
-					{
-						respawn(m_tileMap.m_checkpoint_position.at(i).x, m_tileMap.m_checkpoint_position.at(i).y);
-					}
-				}*/
-
-			}
-		
-			
-		
-
-			
-
-	for (int i = 0; i < m_tileMap.m_goal_position.size(); i++)
+	else if (level2 == true)
 	{
-		
-		if (m_position.x + animation.uvRect.width >= m_tileMap.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_goal_position.at(i).x + m_tileMap.m_goal_WH.at(i).x
-			&& m_position.y + animation.uvRect.height >= m_tileMap.m_goal_position.at(i).y &&  m_position.y <= m_tileMap.m_goal_position.at(i).y + m_tileMap.m_goal_WH.at(i).y)
+		for (int i = 0; i < m_tileMap2.m_object_position.size(); i++)
 		{
-			goalreached = true;
+			//Top of the onject 
+			if (m_position.y + animation.uvRect.height >= m_tileMap2.m_object_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap2.m_object_position.at(i).y + m_tileMap2.m_object_WH.at(i).y
+				&& m_position.x >= m_tileMap2.m_object_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap2.m_object_position.at(i).x + m_tileMap2.m_object_WH.at(i).x)
+			{
+				if (m_velocity.y > 0)
+				{
+					gravity = false;
+					m_velocity.y = 0;
+					m_position.y = m_tileMap2.m_object_position.at(i).y - animation.uvRect.height;
+					jumped = false;
+					jumpCount = 0;
+				}
+
+			}
+
+			else
+			{
+				gravity = true;
+				jumped = true;
+			}
+
+
+			/*if (m_position.y - m_radius <= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y && m_position.y - m_radius >= m_tileMap.m_object_position.at(i).y + m_tileMap.m_object_WH.at(i).y - 40
+			&& m_position.x >= m_tileMap.m_object_position.at(i).x && m_position.x <= m_tileMap.m_object_position.at(i).x + m_tileMap.m_object_WH.at(i).x)
+			{
+
+			m_velocity.y = 0;
+
+
+
+			}
+			std::cout << gravity << std::endl;*/
+
+		}
+		//for (int i = 0; i < m_tileMap.m_wall_position.size(); i++)
+		//{
+		//	//Top of the onject 
+		//	
+		//	//m_position.y + animation.uvRect.height <= m_tileMap.m_wall_position.at(i).y && m_position.y >= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y
+		//		//&& m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x <= m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x)
+		//	if(m_position.x + animation.uvRect.width >= m_tileMap.m_wall_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap.m_wall_position.at(i).x + m_tileMap.m_wall_WH.at(i).x
+		//		&& m_position.y + animation.uvRect.height >= m_tileMap.m_wall_position.at(i).y &&  m_position.y <= m_tileMap.m_wall_position.at(i).y + m_tileMap.m_wall_WH.at(i).y)
+		//	{
+		//		moveX = false;
+		//		m_velocity.x = 0;
+
+
+		//	}
+		//	else
+		//	{
+		//		moveX = true;
+		//	}
+		//	
+		//}
+
+		//
+
+
+		for (int i = 0; i < m_tileMap2.m_wall_position.size(); i++)
+		{
+			//test moving right collision 
+			if (m_position.x <= m_tileMap2.m_wall_position.at(i).x + m_tileMap2.m_wall_WH.at(i).x &&
+				m_position.x >= m_tileMap2.m_wall_position.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap2.m_wall_position.at(i).y &&
+				m_position.y <= m_tileMap2.m_wall_position.at(i).y + m_tileMap2.m_wall_WH.at(i).y)
+			{
+
+
+				dirLeft = false;
+				m_velocity.x = 0;
+				wall.play();
+				break;
+
+
+			}
+			else
+			{
+				dirLeft = true;
+
+
+			}
+
+
+			//Test moving right collision
+			if (m_position.x + animation.uvRect.width >= m_tileMap2.m_wall_position.at(i).x && m_position.x + animation.uvRect.width < m_tileMap2.m_wall_position.at(i).x + m_tileMap2.m_wall_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap2.m_wall_position.at(i).y &&  m_position.y <= m_tileMap2.m_wall_position.at(i).y + m_tileMap2.m_wall_WH.at(i).y)
+			{
+				dirRight = false;
+				m_velocity.x = 0;
+				wall.play();
+				break;
+
+
+			}
+
+
+			else
+			{
+				dirRight = true;
+			}
+
+		}
+
+		for (int i = 0; i < m_tileMap2.m_ceiling_position.size(); i++)
+		{
+
+			if (m_position.y + animation.uvRect.height * 2 >= m_tileMap2.m_ceiling_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap2.m_ceiling_position.at(i).y + m_tileMap2.m_ceiling_WH.at(i).y
+				&& m_position.x >= m_tileMap2.m_ceiling_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap2.m_ceiling_position.at(i).x + m_tileMap2.m_ceiling_WH.at(i).x)
+			{
+				if (m_velocity.y < 0)
+				{
+
+					m_velocity.y = 0;
+					break;
+
+				}
+			}
+		}
+
+
+		for (int i = 0; i < m_tileMap2.m_trap_position.size(); i++)
+		{
+			//test moving left collision 
+			if (m_position.x <= m_tileMap2.m_trap_position.at(i).x + m_tileMap2.m_trap_WH.at(i).x &&
+				m_position.x >= m_tileMap2.m_trap_position.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap2.m_trap_position.at(i).y &&
+				m_position.y <= m_tileMap2.m_trap_position.at(i).y + m_tileMap2.m_trap_WH.at(i).y)
+			{
+				trapCollided = true;
+				break;
+			}
+
+
+			//Test moving right collision
+			else if (m_position.x + animation.uvRect.width >= m_tileMap2.m_trap_position.at(i).x &&
+				m_position.x + animation.uvRect.width < m_tileMap2.m_trap_position.at(i).x + m_tileMap2.m_trap_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap2.m_trap_position.at(i).y &&
+				m_position.y <= m_tileMap2.m_trap_position.at(i).y + m_tileMap2.m_trap_WH.at(i).y)
+			{
+				trapCollided = true;
+				break;
+			}
+
+			/*else if (m_position.y + animation.uvRect.height >= m_tileMap.m_trap_position.at(i).y && m_position.y + animation.uvRect.height <= m_tileMap.m_trap_position.at(i).y + m_tileMap.m_trap_WH.at(i).y
+			&& m_position.x >= m_tileMap.m_trap_position.at(i).x - animation.uvRect.width && m_position.x <= m_tileMap.m_trap_position.at(i).x + m_tileMap.m_trap_WH.at(i).x)
+			{
+			if (m_velocity.y > 0)
+			{
+			respawn(m_tileMap.m_checkpoint_position.at(i).x, m_tileMap.m_checkpoint_position.at(i).y);
+			}
+			}*/
+
+		}
+
+		for (int i = 0; i < m_tileMap2.m_goal_position.size(); i++)
+		{
+
+			if (m_position.x + animation.uvRect.width >= m_tileMap2.m_goal_position.at(i).x && m_position.x + +animation.uvRect.width < m_tileMap2.m_goal_position.at(i).x + m_tileMap2.m_goal_WH.at(i).x
+				&& m_position.y + animation.uvRect.height >= m_tileMap2.m_goal_position.at(i).y &&  m_position.y <= m_tileMap2.m_goal_position.at(i).y + m_tileMap2.m_goal_WH.at(i).y)
+			{
+				goalreached = true;
+
+				item.play();
+
+
+
+			}
 
 		}
 	}
+
+	
 }
+
 void Player::respawn(float x, float y)
 {
-	m_health.m_healthValue--;
+	m_health.m_healthValue-=2;
 	m_position.x = x;
 	m_position.y = y - 50;
+	m_heartscore -= 0.2;
+	die.play();
+
 }
 
 void Player::render(sf::RenderWindow &window)
@@ -354,8 +549,7 @@ void Player::render(sf::RenderWindow &window)
 		window.draw(playerRect);
 		 
 	}
-	window.draw(distance);
-	window.draw(metresToGoal);
+
 	m_health.render(window);
 }
 

@@ -6,7 +6,7 @@ TileMap::TileMap()
 {
 	tmx::Map map;
 
-	if (map.load("./resources/Map3.tmx"))
+	if (map.load("./resources/Map.tmx"))
 	{
 		std::cout << "Loaded Map version: " << map.getVersion().upper << ", " << map.getVersion().lower << std::endl;
 
@@ -71,7 +71,10 @@ TileMap::TileMap()
 						m_ceiling_WH.push_back(sf::Vector2f(object.getAABB().width, object.getAABB().height));
 					}
 				
-
+					else if (object.getName() == "Gem")
+					{
+						m_gem_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));
+					}
 					else
 					{
 						m_object_position.push_back(sf::Vector2f(object.getPosition().x, object.getPosition().y));

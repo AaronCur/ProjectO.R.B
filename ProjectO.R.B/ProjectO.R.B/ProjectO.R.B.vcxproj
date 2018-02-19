@@ -24,17 +24,22 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Gem.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player2.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="Tilemap2.h" />
     <ClInclude Include="torch.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
@@ -44,17 +49,22 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Gem.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="Help.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player2.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="Tilemap2.cpp" />
     <ClCompile Include="torch.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
@@ -70,7 +80,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8D2F00CB-E260-4947-BB37-4F0E58F9533B}</ProjectGuid>
     <RootNamespace>ProjectORB</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

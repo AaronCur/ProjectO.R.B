@@ -6,151 +6,54 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Gem.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="Help.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
+    <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player2.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="torch.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
-    <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Tilemap2.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="Animation.h" />
     <ClInclude Include="coopscreen.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Gem.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="KeyHandler.h" />
+    <ClInclude Include="Level2.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player2.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="torch.h" />
     <ClInclude Include="Xbox360Controller.h" />
-    <ClInclude Include="Level2.h" />
+    <ClInclude Include="Tilemap2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\BackGround.png" />
     <Image Include="resources\images\sprite.png" />
     <Image Include="resources\table.png" />
-=======
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="License.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Splash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Xbox360Controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Highscore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Health.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="coopscreen.h">
-=======
-    <ClInclude Include="torch.h">
->>>>>>> checkpoints
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="License.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Xbox360Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Highscore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Health.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="coopscreen.cpp">
-=======
-    <ClCompile Include="torch.cpp">
->>>>>>> checkpoints
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
->>>>>>> e18120774331675f23ebded97d96511981a38e92
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\snowShader.frag" />

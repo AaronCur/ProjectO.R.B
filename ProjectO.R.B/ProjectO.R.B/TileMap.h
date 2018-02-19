@@ -3,6 +3,7 @@
 #include <tmxlite\Map.hpp>
 #include <SFML\Graphics.hpp>
 #include "tmxlite\SFMLOrthogonalLayer.hpp"
+#include <iostream>
 /// <summary>
 /// author Aaron Curry
 /// time taken: 9:00 - 16:00
@@ -28,6 +29,7 @@ public:
 	std::vector<sf::Vector2f> m_ceiling_position;
 	std::vector<sf::Vector2f> m_ceiling_WH;
 	std::vector<sf::Vector2f> m_trap_WH;
+	std::vector<sf::Vector2f> m_gem_position;
 	bool parse = true;
 private:
 	std::vector<MapLayer *>map1;

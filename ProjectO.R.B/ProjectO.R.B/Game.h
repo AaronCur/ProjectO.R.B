@@ -11,8 +11,11 @@
 #include "Player.h"
 #include "Xbox360Controller.h"
 #include "TileMap.h"
+#include "Tilemap2.h"
 #include "Enemy.h"
 #include "Player2.h"
+#include "Options.h"
+#include "Help.h"
 
 
 /// <summary>
@@ -26,6 +29,8 @@ class Splash;
 class GameScreen;
 class MainMenu;
 class CoopScreen;
+class Options;
+class Help;
 
 enum class
 	GameState
@@ -35,7 +40,9 @@ enum class
 	Splash,
 	MainMenu,
 	GameScreen,
-	CoopScreen
+	CoopScreen,
+	Options,
+	Help
 
 };
 
@@ -68,10 +75,13 @@ protected:
 	MainMenu *m_mainMenu;
 	GameScreen *m_GameScreen;
 	CoopScreen *m_CoopScreen;
+	Options *m_optionsScreen;
 	Xbox360Controller *controller;
 	Player m_player;
 	Player2 m_player2;
 	TileMap m_tileMap;
+	TileMap2 m_tileMap2;
 	Enemy m_enemy;
+	Help *m_help;
 
 };

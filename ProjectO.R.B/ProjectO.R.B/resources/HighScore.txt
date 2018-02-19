@@ -1,0 +1,11 @@
+steven 100
+paul 700
+jake 900
+aaron 4728
+paul 5115
+aaron 8131
+Aaron 11378
+Aaron 11696
+Aaron 12105
+Aaron 12403
+Aaron 12513
