@@ -158,7 +158,7 @@ void Level2::TrapCollision()
 
 void Level2::ScrollCollision()
 {
-	if ((m_Enemy.m_position.x - m_player.m_position.x) < 60)
+	if ((m_Enemy.m_position.x - m_player.m_position.x) < 30 && (m_Enemy.m_position.y - m_player.m_position.y) <30)
 	{
 		int tempX = 0;
 		int tempY = 0;
@@ -243,8 +243,8 @@ void Level2::update(sf::Time t)
 		}
 
 
-		follow.setCenter(m_player.m_position.x, m_player.m_position.y);
-		if (m_player.m_position.x > 1470 && follow.getCenter().x < 13040)
+		
+		if (m_player.m_position.x > 100 && follow.getCenter().x < 13040)
 		{
 			follow.setCenter(follow.getCenter().x, m_player.m_position.y);
 			updateScroll();
